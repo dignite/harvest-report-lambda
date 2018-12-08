@@ -9,7 +9,7 @@
     "deploy:prod": "serverless deploy -v --stage prod"
   },
   "author": "Daniel Ignat",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "devDependencies": {
     "serverless": "^1.34.1"
   }
