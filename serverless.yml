@@ -88,8 +88,9 @@ functions:
 #          trigger: PreSignUp
 
 #    Define function environment variables here
-#    environment:
-#      variable2: value2
+    environment:
+      HARVEST_ACCESS_TOKEN: HARVEST_ACCESS_TOKEN_DUMMY_VALUE
+      HARVEST_ACCOUNT_ID: HARVEST_ACCESS_TOKEN_DUMMY_VALUE
 
 # you can add CloudFormation resource templates here
 #resources:
