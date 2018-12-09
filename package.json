@@ -5,12 +5,14 @@
   "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "serverless offline start",
     "deploy": "serverless deploy -v",
     "deploy:prod": "serverless deploy -v --stage prod"
   },
   "author": "Daniel Ignat",
   "license": "MIT",
   "devDependencies": {
-    "serverless": "^1.34.1"
+    "serverless": "^1.34.1",
+    "serverless-offline": "^3.31.3"
   }
 }
