@@ -89,8 +89,8 @@ functions:
 
 #    Define function environment variables here
     environment:
-      HARVEST_ACCESS_TOKEN: HARVEST_ACCESS_TOKEN_DUMMY_VALUE
-      HARVEST_ACCOUNT_ID: HARVEST_ACCESS_TOKEN_DUMMY_VALUE
+      HARVEST_ACCESS_TOKEN: ${env:HARVEST_ACCESS_TOKEN}
+      HARVEST_ACCOUNT_ID: ${env:HARVEST_ACCOUNT_ID}
 
 # you can add CloudFormation resource templates here
 #resources:
@@ -106,3 +106,4 @@ functions:
 
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
