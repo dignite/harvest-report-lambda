@@ -1,4 +1,4 @@
-const harvestClient = require("./dignatconsultingab-harvest");
+const harvestClient = require("./time-entries");
 const mockHarvestApi = require("./authenticated-harvest");
 const { when } = require("jest-when");
 

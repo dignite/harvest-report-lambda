@@ -1,6 +1,6 @@
 "use strict";
 
-const harvest = require("./src/dignatconsultingab-harvest");
+const timeEntries = require("./src/time-entries");
 
 module.exports.hours = async () => {
   return {
@@ -10,7 +10,7 @@ module.exports.hours = async () => {
         description:
           "*All* unbilled billable hours, and any non-billable hours logged for the current month."
       },
-      timeEntries: await harvest.getUnbilledRelevantTimeEntries()
+      timeEntries: await timeEntries.getUnbilledRelevantTimeEntries()
     })
   };
 };
