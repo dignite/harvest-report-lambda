@@ -10,10 +10,7 @@ const harvest = new Harvest({
   }
 });
 
-const accessToken = process.env.HARVEST_ACCESS_TOKEN;
-const accountId = process.env.HARVEST_ACCOUNT_ID;
-
-module.exports.hours = async (event, context) => {
+module.exports.hours = async event => {
   const timeEntriesResponse = await harvest.timeEntries.list({
     is_billed: "false"
   });
