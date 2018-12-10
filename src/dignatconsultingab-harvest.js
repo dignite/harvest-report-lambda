@@ -21,11 +21,11 @@ const getUnbilledRelevantTimeEntries = async () => {
   const mappedTimeEntries = relevantUnbilledEntries.map(timeEntry => ({
     date: timeEntry.spent_date,
     name: timeEntry.task.name,
-    comment: timeEntry.notes,
     billableHours:
       timeEntry.billable && timeEntry.billable_rate
         ? roundToNearestSixMinutes(timeEntry.hours)
-        : 0
+        : 0,
+    comment: timeEntry.notes
   }));
   return mappedTimeEntries;
 };
