@@ -22,7 +22,10 @@ const getUnbilledRelevantTimeEntries = async () => {
     date: timeEntry.spent_date,
     name: timeEntry.task.name,
     comment: timeEntry.notes,
-    hours: roundToNearestSixMinutes(timeEntry.hours)
+    billableHours:
+      timeEntry.billable && timeEntry.billable_rate
+        ? roundToNearestSixMinutes(timeEntry.hours)
+        : 0
   }));
   return mappedTimeEntries;
 };
