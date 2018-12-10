@@ -14,13 +14,30 @@ const accessToken = process.env.HARVEST_ACCESS_TOKEN;
 const accountId = process.env.HARVEST_ACCOUNT_ID;
 
 module.exports.hours = async (event, context) => {
-  const company = await harvest.company.get();
+  const timeEntriesResponse = await harvest.timeEntries.list({
+    is_billed: "false"
+  });
+  const unbilledTimeEntries = timeEntriesResponse.time_entries.filter(isNotBilled);
+  const relevantUnbilledEntries = unbilledTimeEntries.filter(fromThisMonthUnlessBillable)
+  const mappedTimeEntries = relevantUnbilledEntries.map(timeEntry => ({
+    date: timeEntry.spent_date,
+    name: timeEntry.task.name,
+    billed: timeEntry.is_billed,
+    comment: timeEntry.notes
+  }));
   return {
     statusCode: 200,
     body: JSON.stringify({
-      company,
-      message: `${accessToken}, ${accountId}`,
+      mappedTimeEntries,
+      unmappedTimeEntries: relevantUnbilledEntries,
       input: event,
     }),
   };
+};
+
+const isNotBilled = (timeEntry) => !timeEntry.is_billed;
+const fromThisMonthUnlessBillable = (timeEntry) => timeEntry.billable || Date.parse(timeEntry.spent_date) >= startOfMonth();
+const startOfMonth = () => {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), 1);
 };
