@@ -19,6 +19,7 @@ const getUnbilledRelevantTimeEntries = async () => {
     fromThisMonthUnlessBillable
   );
   const mappedTimeEntries = relevantUnbilledEntries.map(timeEntry => ({
+    id: timeEntry.id,
     date: timeEntry.spent_date,
     name: timeEntry.task.name,
     billableHours:
@@ -39,6 +40,4 @@ const startOfMonth = () => {
 };
 const roundToNearestSixMinutes = hours => Math.round(hours * 10) / 10;
 
-module.exports = {
-  getUnbilledRelevantTimeEntries
-};
+module.exports.getUnbilledRelevantTimeEntries = getUnbilledRelevantTimeEntries;
