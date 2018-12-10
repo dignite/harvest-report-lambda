@@ -22,15 +22,14 @@ module.exports.hours = async (event, context) => {
   const mappedTimeEntries = relevantUnbilledEntries.map(timeEntry => ({
     date: timeEntry.spent_date,
     name: timeEntry.task.name,
-    billed: timeEntry.is_billed,
-    comment: timeEntry.notes
+    comment: timeEntry.notes,
+    hours: roundToNearestSixMinutes(timeEntry.hours)
   }));
   return {
     statusCode: 200,
     body: JSON.stringify({
       mappedTimeEntries,
-      unmappedTimeEntries: relevantUnbilledEntries,
-      input: event,
+      relevantUnbilledEntries
     }),
   };
 };
@@ -41,3 +40,4 @@ const startOfMonth = () => {
   const now = new Date();
   return new Date(now.getFullYear(), now.getMonth(), 1);
 };
+const roundToNearestSixMinutes = (hours) => Math.round(hours * 10) / 10;
