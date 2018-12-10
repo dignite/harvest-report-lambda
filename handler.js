@@ -10,7 +10,7 @@ module.exports.hours = async () => {
         description:
           "*All* unbilled billable hours, and any non-billable hours logged for the current month."
       },
-      timeEntries: await timeEntries.getUnbilledRelevantTimeEntries()
+      timeEntries: await timeEntries.getRelevantUnbilled()
     })
   };
 };

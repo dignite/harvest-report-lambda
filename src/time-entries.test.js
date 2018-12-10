@@ -8,7 +8,7 @@ jest.mock("./authenticated-harvest", () => ({
   }
 }));
 
-describe(harvestClient.getUnbilledRelevantTimeEntries, () => {
+describe(harvestClient.getRelevantUnbilled, () => {
   test("should return all unbilled billable hours", async () => {
     setupReturnTimeEntries(
       unbilledBillableDecember,
@@ -57,7 +57,7 @@ describe(harvestClient.getUnbilledRelevantTimeEntries, () => {
       });
 
   const getIdsOfMatchingTimeEntries = async () => {
-    const result = await harvestClient.getUnbilledRelevantTimeEntries();
+    const result = await harvestClient.getRelevantUnbilled();
     return result.map(timeEntry => timeEntry.id);
   };
 
