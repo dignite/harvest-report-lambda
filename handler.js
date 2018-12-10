@@ -28,8 +28,8 @@ module.exports.hours = async (event, context) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      mappedTimeEntries,
-      relevantUnbilledEntries
+      timeEntries: mappedTimeEntries,
+      unMappedEntries: event.isOffline ? relevantUnbilledEntries : undefined
     }),
   };
 };
