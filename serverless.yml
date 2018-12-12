@@ -56,7 +56,7 @@ provider:
 
 functions:
   hours:
-    handler: handler.hours
+    handler: src/index.hours
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

@@ -1,7 +1,7 @@
 "use strict";
 
-const timeEntries = require("./src/time-entries");
-const timePerDay = require("./src/time-per-day");
+const timeEntries = require("./time-entries");
+const timePerDay = require("./time-per-day");
 
 module.exports.hours = async () => {
   const relevantTimeEntries = await timeEntries.getRelevantUnbilled();
