@@ -10,5 +10,8 @@
   "env": {
     "node": true,
     "jest": true
+  },
+  "globals": {
+    "Proxy": true
   }
 }
