@@ -1,8 +1,10 @@
 "use strict";
 
 const timeEntries = require("./src/time-entries");
+const timePerDay = require("./src/time-per-day");
 
 module.exports.hours = async () => {
+  const relevantTimeEntries = await timeEntries.getRelevantUnbilled();
   return {
     statusCode: 200,
     body: JSON.stringify({
@@ -10,7 +12,8 @@ module.exports.hours = async () => {
         description:
           "*All* unbilled billable hours, and any non-billable hours logged for the current month."
       },
-      timeEntries: await timeEntries.getRelevantUnbilled()
+      timeEntries: relevantTimeEntries,
+      perDay: timePerDay.merge(relevantTimeEntries)
     })
   };
 };
