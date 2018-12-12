@@ -1,4 +1,5 @@
 const harvest = require("./authenticated-harvest");
+const { startOfMonth } = require("./date");
 
 const getRelevantUnbilled = async () => {
   const timeEntriesResponse = await harvest.timeEntries.list({
@@ -26,10 +27,6 @@ const getRelevantUnbilled = async () => {
 const isNotBilled = timeEntry => !timeEntry.is_billed;
 const fromThisMonthUnlessBillable = timeEntry =>
   timeEntry.billable || Date.parse(timeEntry.spent_date) >= startOfMonth();
-const startOfMonth = () => {
-  const now = new Date();
-  return new Date(now.getFullYear(), now.getMonth(), 1);
-};
 const roundToNearestSixMinutes = hours => Math.round(hours * 10) / 10;
 
 module.exports.getRelevantUnbilled = getRelevantUnbilled;

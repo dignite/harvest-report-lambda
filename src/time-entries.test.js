@@ -8,6 +8,10 @@ jest.mock("./authenticated-harvest", () => ({
   }
 }));
 
+jest.mock("./date", () => ({
+  startOfMonth: () => Date.parse("2018-11-01")
+}));
+
 describe(timeEntries.getRelevantUnbilled, () => {
   test("should return all unbilled billable hours", async () => {
     setupReturnTimeEntries(
@@ -63,7 +67,7 @@ describe(timeEntries.getRelevantUnbilled, () => {
 
   const unbilledBillableDecember = {
     id: 1,
-    spent_date: "2018-12-04",
+    spent_date: "2018-11-04",
     task: {
       name: "Programming"
     },
@@ -76,7 +80,7 @@ describe(timeEntries.getRelevantUnbilled, () => {
 
   const unbilledUnbillableDecember = {
     id: 2,
-    spent_date: "2018-12-03",
+    spent_date: "2018-11-03",
     task: {
       name: "Vacation"
     },
