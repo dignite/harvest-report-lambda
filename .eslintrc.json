@@ -24,9 +24,7 @@
     "fp/no-mutation": ["error", { "commonjs": true }],
     "fp/no-nil": "error",
     "fp/no-proxy": "error",
-    "fp/no-rest-parameters": "warn",
-    "fp/no-this": "warn",
-    "fp/no-throw": "warn",
+    "fp/no-this": "error",
     "fp/no-unused-expression": ["error", { "allowUseStrict": true }],
     "fp/no-valueof-field": "error"
   },
