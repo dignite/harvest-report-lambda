@@ -20,10 +20,25 @@ describe(timeEntries.getRelevantUnbilled, () => {
       unbilledBillableJanuary
     );
 
-    const actualIds = await getIdsOfMatchingTimeEntries();
+    const result = await timeEntries.getRelevantUnbilled();
 
-    const expectedIds = [1, 4];
-    expect(actualIds).toEqual(expect.arrayContaining(expectedIds));
+    const expected = [
+      {
+        id: 1,
+        date: "2018-11-04",
+        name: "Programming",
+        billableHours: 4.1,
+        comment: null
+      },
+      {
+        id: 4,
+        date: "2018-01-01",
+        name: "Programming",
+        billableHours: 7.0,
+        comment: null
+      }
+    ];
+    expect(result).toEqual(expect.arrayContaining(expected));
   });
 
   test("should return non-billable hours from the current month", async () => {
@@ -32,10 +47,18 @@ describe(timeEntries.getRelevantUnbilled, () => {
       unbilledUnbillableJanuary
     );
 
-    const actualIds = await getIdsOfMatchingTimeEntries();
+    const result = await timeEntries.getRelevantUnbilled();
 
-    const expectedIds = [2];
-    expect(actualIds).toEqual(expect.arrayContaining(expectedIds));
+    const expected = [
+      {
+        id: 2,
+        date: "2018-11-03",
+        name: "Vacation",
+        billableHours: 0,
+        comment: null
+      }
+    ];
+    expect(result).toEqual(expect.arrayContaining(expected));
   });
 
   test("should not return anything but unbilled billable hours and non-billable hours from the current month", async () => {
@@ -47,7 +70,8 @@ describe(timeEntries.getRelevantUnbilled, () => {
       unbilledUnbillableJanuary
     );
 
-    const actualIds = await getIdsOfMatchingTimeEntries();
+    const result = await timeEntries.getRelevantUnbilled();
+    const actualIds = result.map(timeEntry => timeEntry.id);
 
     const expectedIds = [1, 2, 4];
     expect(actualIds).toEqual(expectedIds);
@@ -59,11 +83,6 @@ describe(timeEntries.getRelevantUnbilled, () => {
       .mockReturnValue({
         time_entries: entries
       });
-
-  const getIdsOfMatchingTimeEntries = async () => {
-    const result = await timeEntries.getRelevantUnbilled();
-    return result.map(timeEntry => timeEntry.id);
-  };
 
   const unbilledBillableDecember = {
     id: 1,
