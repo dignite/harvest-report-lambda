@@ -23,7 +23,7 @@
     "fp/no-mutating-methods": "error",
     "fp/no-mutation": ["error", { "commonjs": true }],
     "fp/no-nil": "error",
-    "fp/no-proxy": "warn",
+    "fp/no-proxy": "error",
     "fp/no-rest-parameters": "warn",
     "fp/no-this": "warn",
     "fp/no-throw": "warn",
