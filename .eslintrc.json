@@ -1,9 +1,17 @@
 {
   "extends": ["eslint:recommended", "prettier"],
-  "plugins": ["prettier"],
+  "plugins": ["prefer-arrow", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "no-var": "error"
+    "no-var": "error",
+    "prefer-arrow/prefer-arrow-functions": [
+      "error",
+      {
+        "disallowPrototype": true,
+        "singleReturnOnly": false,
+        "classPropertiesAllowed": false
+      }
+    ]
   },
   "parserOptions": {
     "ecmaVersion": 8
