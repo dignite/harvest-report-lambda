@@ -13,7 +13,8 @@ module.exports.hours = async () => {
       meta: {
         description:
           "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
-        totalUnbilledHours: timeSummary.totalSum(relevantTimeEntries)
+        totalUnbilledHours: timeSummary.totalSum(relevantTimeEntries),
+        totalUnbilledHoursPerWeek: timeSummary.perWeek(relevantTimeEntries)
       },
       timeEntriesPerDay: timePerDay.merge(relevantTimeEntries)
     })

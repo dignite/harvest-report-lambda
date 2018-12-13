@@ -11,7 +11,8 @@ jest.mock("./time-per-day", () => ({
   merge: jest.fn()
 }));
 jest.mock("./time-summary", () => ({
-  totalSum: jest.fn()
+  totalSum: jest.fn(),
+  perWeek: jest.fn()
 }));
 jest.mock("./serializer");
 
@@ -67,6 +68,30 @@ describe(functions.hours, () => {
           expect.objectContaining({
             meta: expect.objectContaining({
               totalUnbilledHours: mockTimeSummary.totalSum(relevantTimeEntries)
+            })
+          })
+        )
+      })
+    );
+  });
+
+  test("should return total unbilled billable hours per week", async () => {
+    const relevantTimeEntries = ["fakeTimeEntry1", "fakeTimeEntry2"];
+    mockTimeEntries.getRelevantUnbilled.mockReturnValue(relevantTimeEntries);
+    mockTimeSummary.totalSum.mockImplementation(input => ({
+      "mockTimeSummary.totalSum() of": input
+    }));
+
+    const result = await functions.hours();
+
+    expect(result).toEqual(
+      expect.objectContaining({
+        body: mockSerializer.serialize(
+          expect.objectContaining({
+            meta: expect.objectContaining({
+              totalUnbilledHoursPerWeek: mockTimeSummary.perWeek(
+                relevantTimeEntries
+              )
             })
           })
         )

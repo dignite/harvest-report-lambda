@@ -1,10 +1,27 @@
-const oneDecimalPrecisionGuarantee = 10;
+const getISOWeek = require("date-fns/get_iso_week");
+const groupBy = require("lodash.groupby");
+const mapValues = require("lodash.mapvalues");
 
 const totalSum = timeEntries =>
   timeEntries.reduce(
     (previous, timeEntry) =>
-      previous + timeEntry.billableHours * oneDecimalPrecisionGuarantee,
+      sumPreservingOneDecimal(previous, timeEntry.billableHours),
     0
-  ) / oneDecimalPrecisionGuarantee;
+  );
+
+const perWeek = timeEntries => {
+  const hoursWithWeekNumber = timeEntries.map(timeEntry => ({
+    billableHours: timeEntry.billableHours,
+    week: `w${getISOWeek(Date.parse(timeEntry.date))}`
+  }));
+
+  const hoursByWeek = groupBy(hoursWithWeekNumber, "week");
+
+  return mapValues(hoursByWeek, totalSum);
+};
+
+const sumPreservingOneDecimal = (value1, value2) =>
+  (value1 * 10 + value2 * 10) / 10;
 
 module.exports.totalSum = totalSum;
+module.exports.perWeek = perWeek;
