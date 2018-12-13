@@ -18,13 +18,19 @@ const mergeSingleDay = timeEntriesInASingleDay =>
       id: timeEntry.id,
       date: timeEntry.date,
       name: mergeStrings(previous.name, timeEntry.name),
-      billableHours: previous.billableHours + timeEntry.billableHours,
+      billableHours: sumPreservingOneDecimal(
+        previous.billableHours,
+        timeEntry.billableHours
+      ),
       comment: timeEntry.comment
     }),
     {
       billableHours: 0
     }
   );
+
+const sumPreservingOneDecimal = (value1, value2) =>
+  (value1 * 10 + value2 * 10) / 10;
 
 const mergeStrings = (string1, string2) =>
   string1 === undefined || string1 === string2
