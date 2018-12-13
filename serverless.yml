@@ -16,11 +16,17 @@ functions:
     handler: src/index.hours
     events:
       - http:
-          path: /
+          path: /${env:SECRET_URL_SLUG}
           method: get
     environment:
       HARVEST_ACCESS_TOKEN: ${env:HARVEST_ACCESS_TOKEN}
       HARVEST_ACCOUNT_ID: ${env:HARVEST_ACCOUNT_ID}
+  rootPath:
+    handler: src/index.root
+    events:
+      - http:
+          path: /
+          method: get
 
 plugins:
   - serverless-offline

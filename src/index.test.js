@@ -16,6 +16,17 @@ jest.mock("./time-summary", () => ({
 }));
 jest.mock("./serializer");
 
+describe(functions.root, () => {
+  test("should return status code not found", async () => {
+    const result = await functions.root();
+
+    expect(result).toEqual({
+      statusCode: 404,
+      body: "Not Found"
+    });
+  });
+});
+
 describe(functions.hours, () => {
   test("should return status code and endpoint description", async () => {
     const result = await functions.hours();
