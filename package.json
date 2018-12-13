@@ -9,7 +9,8 @@
     "pretest": "npm run lint",
     "test": "jest",
     "start": "serverless offline start",
-    "deploy": "serverless deploy -v",
+    "deploy": "npm run deploy:dev && npm run deploy:prod",
+    "deploy:dev": "serverless deploy -v",
     "deploy:prod": "serverless deploy -v --stage prod"
   },
   "author": "Daniel Ignat",
