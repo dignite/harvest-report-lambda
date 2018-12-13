@@ -2,6 +2,7 @@
 
 const timeEntries = require("./time-entries");
 const timePerDay = require("./time-per-day");
+const timeSummary = require("./time-summary");
 const { serialize } = require("./serializer");
 
 module.exports.hours = async () => {
@@ -11,7 +12,8 @@ module.exports.hours = async () => {
     body: serialize({
       meta: {
         description:
-          "*All* unbilled billable hours, and any non-billable hours logged for the current month."
+          "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
+        totalUnbilledHours: timeSummary.totalSum(relevantTimeEntries)
       },
       timeEntriesPerDay: timePerDay.merge(relevantTimeEntries)
     })
