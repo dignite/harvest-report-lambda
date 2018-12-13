@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-nil, fp/no-unused-expression */
 const timePerDay = require("./time-per-day");
 
 describe(timePerDay.merge, () => {

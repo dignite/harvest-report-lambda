@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-nil, fp/no-unused-expression */
 const timeEntries = require("./time-entries");
 const mockHarvestApi = require("./authenticated-harvest");
 const { when } = require("jest-when");

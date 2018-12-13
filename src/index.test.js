@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-nil, fp/no-unused-expression */
 const functions = require("./");
 const mockTimeEntries = require("./time-entries");
 const mockTimePerDay = require("./time-per-day");

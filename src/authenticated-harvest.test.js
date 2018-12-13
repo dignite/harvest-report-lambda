@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-nil, fp/no-unused-expression */
 const authenticatedHarvest = require("./authenticated-harvest");
 
 jest.mock("harvest", () => ({

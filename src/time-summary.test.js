@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-nil, fp/no-unused-expression */
 const timeSummary = require("./time-summary");
 
 describe(timeSummary.totalSum, () => {

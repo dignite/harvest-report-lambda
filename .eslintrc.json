@@ -28,6 +28,21 @@
     "fp/no-unused-expression": ["error", { "allowUseStrict": true }],
     "fp/no-valueof-field": "error"
   },
+  "overrides": [
+    {
+      "files": ["*.test.js"],
+      "rules": {
+        "fp/no-nil": "off",
+        "fp/no-unused-expression": "off"
+      }
+    },
+    {
+      "files": ["**/__mocks__/*.js"],
+      "rules": {
+        "fp/no-proxy": "off"
+      }
+    }
+  ],
   "parserOptions": {
     "ecmaVersion": 8
   },
