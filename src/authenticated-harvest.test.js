@@ -1,17 +1,17 @@
 const authenticatedHarvest = require("./authenticated-harvest");
-const mockHarvest = require("harvest");
 
 jest.mock("harvest", () => ({
-  default: function FakeHarvest(options) {
-    this.options = options;
-  }
+  default: jest.fn(options => ({
+    origin: "instance of harvest wrapper",
+    options
+  }))
 }));
 
 jest.mock("./process-env");
 
 describe("authenticatedHarvest", () => {
   test("should return instance of harvest api wrapper", () => {
-    expect(authenticatedHarvest).toBeInstanceOf(mockHarvest.default);
+    expect(authenticatedHarvest.origin).toEqual("instance of harvest wrapper");
   });
   test("should authenticate with user agent", () => {
     expect(authenticatedHarvest.options).toEqual(

@@ -21,7 +21,7 @@
     "fp/no-loops": "error",
     "fp/no-mutating-assign": "error",
     "fp/no-mutating-methods": "error",
-    "fp/no-mutation": ["warn", { "commonjs": true }],
+    "fp/no-mutation": ["error", { "commonjs": true }],
     "fp/no-nil": "warn",
     "fp/no-proxy": "warn",
     "fp/no-rest-parameters": "warn",
