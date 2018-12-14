@@ -1,5 +1,6 @@
 const harvest = require("./authenticated-harvest");
 const { startOfMonth } = require("./date");
+const { SEK } = require("./swedish-crowns");
 
 const getRelevantUnbilled = async () => {
   const timeEntriesResponse = await harvest.timeEntries.list({
@@ -11,16 +12,22 @@ const getRelevantUnbilled = async () => {
   const relevantUnbilledEntries = unbilledTimeEntries.filter(
     fromThisMonthUnlessBillable
   );
-  const mappedTimeEntries = relevantUnbilledEntries.map(timeEntry => ({
-    id: timeEntry.id,
-    date: timeEntry.spent_date,
-    name: timeEntry.task.name,
-    billableHours:
+  const mappedTimeEntries = relevantUnbilledEntries.map(timeEntry => {
+    const billableHours =
       timeEntry.billable && timeEntry.billable_rate
         ? roundToNearestSixMinutes(timeEntry.hours)
-        : 0,
-    comment: timeEntry.notes
-  }));
+        : 0;
+    return {
+      id: timeEntry.id,
+      date: timeEntry.spent_date,
+      name: timeEntry.task.name,
+      billableHours,
+      cost: SEK(billableHours)
+        .multiply(timeEntry.billable_rate)
+        .getAmount(),
+      comment: timeEntry.notes
+    };
+  });
   return mappedTimeEntries;
 };
 

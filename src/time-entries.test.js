@@ -28,6 +28,7 @@ describe(timeEntries.getRelevantUnbilled, () => {
         date: "2018-11-04",
         name: "Programming",
         billableHours: 4.1,
+        cost: 548.17,
         comment: null
       },
       {
@@ -35,6 +36,7 @@ describe(timeEntries.getRelevantUnbilled, () => {
         date: "2018-01-01",
         name: "Programming",
         billableHours: 7.0,
+        cost: 935.9,
         comment: null
       }
     ];
@@ -55,6 +57,7 @@ describe(timeEntries.getRelevantUnbilled, () => {
         date: "2018-11-03",
         name: "Vacation",
         billableHours: 0,
+        cost: 0,
         comment: null
       }
     ];
