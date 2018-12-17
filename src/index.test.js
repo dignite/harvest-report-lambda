@@ -2,6 +2,7 @@ const functions = require("./");
 const mockTimeEntries = require("./time-entries");
 const mockTimePerDay = require("./time-per-day");
 const mockTimeSummary = require("./time-summary");
+const mockCostSummary = require("./cost-summary");
 const mockSerializer = require("./serializer");
 
 jest.mock("./time-entries", () => ({
@@ -13,6 +14,9 @@ jest.mock("./time-per-day", () => ({
 jest.mock("./time-summary", () => ({
   totalSum: jest.fn(),
   perWeek: jest.fn()
+}));
+jest.mock("./cost-summary", () => ({
+  totalSum: jest.fn()
 }));
 jest.mock("./serializer");
 
@@ -103,6 +107,28 @@ describe(functions.hours, () => {
               totalUnbilledHoursPerWeek: mockTimeSummary.perWeek(
                 relevantTimeEntries
               )
+            })
+          })
+        )
+      })
+    );
+  });
+
+  test("should return total unbilled invoice size", async () => {
+    const relevantTimeEntries = ["fakeTimeEntry1", "fakeTimeEntry2"];
+    mockTimeEntries.getRelevantUnbilled.mockReturnValue(relevantTimeEntries);
+    mockCostSummary.totalSum.mockImplementation(input => ({
+      "mockCostSummary.totalSum() of": input
+    }));
+
+    const result = await functions.hours();
+
+    expect(result).toEqual(
+      expect.objectContaining({
+        body: mockSerializer.serialize(
+          expect.objectContaining({
+            meta: expect.objectContaining({
+              unbilledInvoice: mockCostSummary.totalSum(relevantTimeEntries)
             })
           })
         )
