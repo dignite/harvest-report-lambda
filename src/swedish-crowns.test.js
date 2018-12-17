@@ -7,7 +7,7 @@ describe(SEK, () => {
 
       const result = `${thirteenThirtySeven}`;
 
-      expect(result).toEqual("SEK 13.37");
+      expect(result).toEqual("13.37 Swedish kronor");
     });
 
     test("should print 3.3333333 nicely", () => {
@@ -15,7 +15,7 @@ describe(SEK, () => {
 
       const result = `${oneThirdOfTen}`;
 
-      expect(result).toEqual("SEK 3.33");
+      expect(result).toEqual("3.33 Swedish kronor");
     });
 
     test("should print 2.03 nicely", () => {
@@ -23,14 +23,14 @@ describe(SEK, () => {
 
       const result = `${twoOhThree}`;
 
-      expect(result).toEqual("SEK 2.03");
+      expect(result).toEqual("2.03 Swedish kronor");
     });
   });
   describe("add", () => {
     test("should add 13.37 + 2.03", () => {
       const sum = SEK(13.37).add(SEK(2.03));
 
-      expect(sum.toString()).toEqual("SEK 15.40");
+      expect(sum.toString()).toEqual("15.40 Swedish kronor");
     });
   });
 
@@ -38,13 +38,13 @@ describe(SEK, () => {
     test("should add 6% VAT", () => {
       const result = SEK(100).addVAT(6);
 
-      expect(result.toString()).toEqual("SEK 106.00");
+      expect(result.toString()).toEqual("106.00 Swedish kronor");
     });
 
     test("should add 25% VAT", () => {
       const result = SEK(100).addVAT(25);
 
-      expect(result.toString()).toEqual("SEK 125.00");
+      expect(result.toString()).toEqual("125.00 Swedish kronor");
     });
   });
 
@@ -52,7 +52,7 @@ describe(SEK, () => {
     test("should multiply by 4.1", () => {
       const result = SEK(3.33).multiply(4.1);
 
-      expect(result.toString()).toEqual("SEK 13.65");
+      expect(result.toString()).toEqual("13.65 Swedish kronor");
     });
   });
 });

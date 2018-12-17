@@ -5,8 +5,8 @@ describe(costSummary.totalSum, () => {
     const result = costSummary.totalSum([]);
 
     expect(result).toEqual({
-      excludingVAT: "SEK 0.00",
-      includingVAT: "SEK 0.00"
+      excludingVAT: "0.00 Swedish kronor",
+      includingVAT: "0.00 Swedish kronor"
     });
   });
 
@@ -23,8 +23,8 @@ describe(costSummary.totalSum, () => {
     const result = costSummary.totalSum([novemberThird]);
 
     expect(result).toEqual({
-      excludingVAT: "SEK 1,000.00",
-      includingVAT: "SEK 1,250.00"
+      excludingVAT: "1000.00 Swedish kronor",
+      includingVAT: "1250.00 Swedish kronor"
     });
   });
 
@@ -61,8 +61,8 @@ describe(costSummary.totalSum, () => {
     ]);
 
     expect(result).toEqual({
-      excludingVAT: "SEK 3,514.30",
-      includingVAT: "SEK 4,392.88"
+      excludingVAT: "3514.30 Swedish kronor",
+      includingVAT: "4392.88 Swedish kronor"
     });
   });
 });

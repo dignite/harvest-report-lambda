@@ -5,7 +5,8 @@ const SEK = amount => encapsulateDineroAsSEK(dineroFromAmount(amount));
 const dineroFromAmount = amount =>
   Dinero({
     amount: parseInt((amount * 100).toFixed(0), 10),
-    currency: "SEK"
+    currency: "SEK",
+    locale: "sv-SE"
   });
 
 const encapsulateDineroAsSEK = dineroInstance => ({
@@ -23,7 +24,7 @@ const encapsulateDineroAsSEK = dineroInstance => ({
     return encapsulateDineroAsSEK(multiplied);
   },
   getAmount: () => dineroInstance.getAmount() / 100,
-  toString: () => dineroInstance.toFormat()
+  toString: () => dineroInstance.toFormat("0.00 dollar")
 });
 
 module.exports.SEK = SEK;
