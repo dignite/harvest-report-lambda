@@ -5,6 +5,7 @@ const timePerDay = require("./time-per-day");
 const timeSummary = require("./time-summary");
 const costSummary = require("./cost-summary");
 const { serialize } = require("./serializer");
+const { timestampForFilename } = require("./date");
 
 module.exports.root = async () => {
   return {
@@ -27,5 +28,24 @@ module.exports.hours = async () => {
       },
       timeEntriesPerDay: timePerDay.merge(relevantTimeEntries)
     })
+  };
+};
+
+module.exports.hoursCsv = async () => {
+  const relevantTimeEntries = await timeEntries.getRelevantUnbilled();
+  const timeEntriesPerDay = timePerDay.merge(relevantTimeEntries);
+  return {
+    statusCode: 200,
+    headers: {
+      "Content-Disposition": `attachment; filename=unbilled-hours-${timestampForFilename()}.csv`
+    },
+    body:
+      "\uFEFFDate;Task;Hours\n" +
+      timeEntriesPerDay
+        .map(
+          timeEntry =>
+            `${timeEntry.date};${timeEntry.name};${timeEntry.billableHours}`
+        )
+        .join("\n")
   };
 };

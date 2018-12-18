@@ -3,4 +3,10 @@ const startOfMonth = () => {
   return new Date(now.getFullYear(), now.getMonth(), 1);
 };
 
+const timestampForFilename = () => {
+  const now = new Date();
+  return now.toISOString();
+};
+
 module.exports.startOfMonth = startOfMonth;
+module.exports.timestampForFilename = timestampForFilename;
