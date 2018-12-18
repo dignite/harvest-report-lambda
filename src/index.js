@@ -6,6 +6,7 @@ const timeSummary = require("./time-summary");
 const costSummary = require("./cost-summary");
 const { serialize } = require("./serializer");
 const { timestampForFilename } = require("./date");
+const serverlessAbsolutePath = require("./serverless-absolute-path");
 
 module.exports.root = async () => {
   return {
@@ -14,7 +15,7 @@ module.exports.root = async () => {
   };
 };
 
-module.exports.hours = async () => {
+module.exports.hours = async event => {
   const relevantTimeEntries = await timeEntries.getRelevantUnbilled();
   return {
     statusCode: 200,
@@ -24,7 +25,8 @@ module.exports.hours = async () => {
           "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
         totalUnbilledHours: timeSummary.totalSum(relevantTimeEntries),
         totalUnbilledHoursPerWeek: timeSummary.perWeek(relevantTimeEntries),
-        unbilledInvoice: costSummary.totalSum(relevantTimeEntries)
+        unbilledInvoice: costSummary.totalSum(relevantTimeEntries),
+        csvFile: serverlessAbsolutePath.resolve(event, `${event.path}.csv`)
       },
       timeEntriesPerDay: timePerDay.merge(relevantTimeEntries)
     })

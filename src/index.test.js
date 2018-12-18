@@ -4,6 +4,7 @@ const mockTimePerDay = require("./time-per-day");
 const mockTimeSummary = require("./time-summary");
 const mockCostSummary = require("./cost-summary");
 const mockSerializer = require("./serializer");
+const mockServerlessAbsolutePath = require("./serverless-absolute-path");
 
 jest.mock("./time-entries", () => ({
   getRelevantUnbilled: jest.fn()
@@ -19,6 +20,9 @@ jest.mock("./cost-summary", () => ({
   totalSum: jest.fn()
 }));
 jest.mock("./serializer");
+jest.mock("./serverless-absolute-path", () => ({
+  resolve: jest.fn()
+}));
 
 describe(functions.root, () => {
   test("should return status code not found", async () => {
@@ -32,15 +36,32 @@ describe(functions.root, () => {
 });
 
 describe(functions.hours, () => {
-  test("should return status code and endpoint description", async () => {
-    const result = await functions.hours();
+  const event = {
+    path: "/my-path"
+  };
+
+  test("should return status code, endpoint description and csv url", async () => {
+    mockServerlessAbsolutePath.resolve.mockImplementation(
+      (event, relativePath) => ({
+        "mockServerlessAbsolutePath.resolve() of": {
+          event,
+          relativePath
+        }
+      })
+    );
+
+    const result = await functions.hours(event);
 
     expect(result).toEqual(
       expect.objectContaining({
         body: mockSerializer.serialize({
           meta: {
             description:
-              "*All* unbilled billable hours, and any non-billable hours logged for the current month."
+              "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
+            csvFile: mockServerlessAbsolutePath.resolve(
+              event,
+              event.path + ".csv"
+            )
           }
         }),
         statusCode: 200
@@ -55,7 +76,7 @@ describe(functions.hours, () => {
       "mockTimePerDay.merge() of": input
     }));
 
-    const result = await functions.hours();
+    const result = await functions.hours(event);
 
     expect(result).toEqual(
       expect.objectContaining({
@@ -75,7 +96,7 @@ describe(functions.hours, () => {
       "mockTimeSummary.totalSum() of": input
     }));
 
-    const result = await functions.hours();
+    const result = await functions.hours(event);
 
     expect(result).toEqual(
       expect.objectContaining({
@@ -97,7 +118,7 @@ describe(functions.hours, () => {
       "mockTimeSummary.totalSum() of": input
     }));
 
-    const result = await functions.hours();
+    const result = await functions.hours(event);
 
     expect(result).toEqual(
       expect.objectContaining({
@@ -121,7 +142,7 @@ describe(functions.hours, () => {
       "mockCostSummary.totalSum() of": input
     }));
 
-    const result = await functions.hours();
+    const result = await functions.hours(event);
 
     expect(result).toEqual(
       expect.objectContaining({
