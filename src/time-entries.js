@@ -1,6 +1,6 @@
-const harvest = require("./authenticated-harvest");
+const harvest = require("./npm-package-encapsulation/authenticated-harvest");
 const { startOfMonth } = require("./date");
-const { SEK } = require("./swedish-crowns");
+const { SEK } = require("./npm-package-encapsulation/swedish-crowns");
 
 const getRelevantUnbilled = async () => {
   const timeEntriesResponse = await harvest.timeEntries.list({

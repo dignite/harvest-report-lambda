@@ -1,8 +1,8 @@
 const timeEntries = require("./time-entries");
-const mockHarvestApi = require("./authenticated-harvest");
+const mockHarvestApi = require("./npm-package-encapsulation/authenticated-harvest");
 const { when } = require("jest-when");
 
-jest.mock("./authenticated-harvest", () => ({
+jest.mock("./npm-package-encapsulation/authenticated-harvest", () => ({
   timeEntries: {
     list: jest.fn()
   }
