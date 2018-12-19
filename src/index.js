@@ -24,7 +24,7 @@ module.exports.hours = async event => {
   return {
     statusCode: 200,
     body: serialize({
-      meta: await hoursMeta(event),
+      meta: await hoursMeta(relevantTimeEntries, event),
       timeEntriesPerDay: timePerDay.merge(relevantTimeEntries)
     })
   };
@@ -33,7 +33,7 @@ module.exports.hours = async event => {
 module.exports.hoursCsv = async event => {
   const relevantTimeEntries = await timeEntries.getRelevantUnbilled();
   const timeEntriesPerDay = timePerDay.merge(relevantTimeEntries);
-  const meta = await hoursMeta(event);
+  const meta = await hoursMeta(relevantTimeEntries, event);
   return {
     statusCode: 200,
     headers: {
@@ -46,8 +46,7 @@ module.exports.hoursCsv = async event => {
   };
 };
 
-const hoursMeta = async event => {
-  const relevantTimeEntries = await timeEntries.getRelevantUnbilled();
+const hoursMeta = async (relevantTimeEntries, event) => {
   return {
     description:
       "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
