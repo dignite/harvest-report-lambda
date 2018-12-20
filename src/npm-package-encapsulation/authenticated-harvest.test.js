@@ -16,7 +16,8 @@ describe("authenticatedHarvest", () => {
   test("should authenticate with user agent", () => {
     expect(authenticatedHarvest.options).toEqual(
       expect.objectContaining({
-        userAgent: "dignatconsultingab-harvest-report-lambda (daniel@dignat.se)"
+        userAgent:
+          "dignatconsultingab-harvest-report-lambda (Value from process.env.USER_AGENT_EMAIL)"
       })
     );
   });
