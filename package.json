@@ -11,7 +11,8 @@
     "start": "serverless offline start",
     "deploy": "npm run deploy:dev && npm run deploy:prod",
     "deploy:dev": "serverless deploy -v",
-    "deploy:prod": "serverless deploy -v --stage prod"
+    "deploy:prod": "serverless deploy -v --stage prod",
+    "remove-deploys": "serverless remove -v && serverless remove -v --stage prod"
   },
   "author": "Daniel Ignat",
   "license": "MIT",
