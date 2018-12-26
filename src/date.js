@@ -5,7 +5,7 @@ const startOfMonth = () => {
 
 const timestampForFilename = () => {
   const now = new Date();
-  return now.toISOString();
+  return now.toJSON().split("T")[0];
 };
 
 module.exports.startOfMonth = startOfMonth;
