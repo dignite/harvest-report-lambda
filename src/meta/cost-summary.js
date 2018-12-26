@@ -1,4 +1,4 @@
-const { SEK } = require("./npm-package-encapsulation/swedish-crowns");
+const { SEK } = require("../npm-package-encapsulation/swedish-crowns");
 
 const totalSum = timeEntries => {
   const cost = timeEntries.reduce(

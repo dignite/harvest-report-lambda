@@ -2,11 +2,9 @@
 
 const timeEntries = require("./time-entries");
 const timePerDay = require("./time-per-day");
-const timeSummary = require("./time-summary");
-const costSummary = require("./cost-summary");
+const { hoursMeta } = require("./meta");
 const { serialize } = require("./serializer");
 const { timestampForFilename } = require("./date");
-const serverlessAbsolutePath = require("./serverless-absolute-path");
 const {
   csvFromObjectTransposed,
   csvFromObjectWithoutBOM
@@ -43,16 +41,5 @@ module.exports.hoursCsv = async event => {
       csvFromObjectTransposed(meta),
       csvFromObjectWithoutBOM(timeEntriesPerDay)
     ].join("\n\n")
-  };
-};
-
-const hoursMeta = (relevantTimeEntries, event) => {
-  return {
-    description:
-      "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
-    totalUnbilledHours: timeSummary.totalSum(relevantTimeEntries),
-    totalUnbilledHoursPerWeek: timeSummary.perWeek(relevantTimeEntries),
-    unbilledInvoice: costSummary.totalSum(relevantTimeEntries),
-    csvFile: serverlessAbsolutePath.resolve(event, `${event.path}.csv`)
   };
 };

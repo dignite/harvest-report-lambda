@@ -1,4 +1,4 @@
-const { getWeekNumber } = require("./npm-package-encapsulation/date-info");
+const { getWeekNumber } = require("../npm-package-encapsulation/date-info");
 const groupBy = require("lodash.groupby");
 const mapValues = require("lodash.mapvalues");
 
