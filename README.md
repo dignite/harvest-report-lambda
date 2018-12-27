@@ -2,6 +2,12 @@
 
 A serverless framework function to expose time reporting data to clients.
 
+# Pre-requisites
+
+- Node + Npm for building, running and deploying the project.
+- [AWS account](https://aws.amazon.com/) for hosting the serverless function (lambda).
+- [Harvest account](https://www.getharvest.com/) where the time tracking is done, the source of data.
+
 # Getting started
 
 1. `npm install`
