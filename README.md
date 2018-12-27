@@ -1,4 +1,4 @@
-# Dignat Consulting AB Harvest Lambda
+# Harvest Lambda
 
 A serverless framework function to expose time reporting data to clients.
 

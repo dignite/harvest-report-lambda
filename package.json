@@ -1,5 +1,5 @@
 {
-  "name": "dignatconsultingab-harvest-report-lambda",
+  "name": "harvest-report-lambda",
   "version": "1.0.0",
   "description": "",
   "main": "handler.js",

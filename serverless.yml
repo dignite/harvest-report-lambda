@@ -4,7 +4,7 @@
 # For full config options, check the docs:
 #    docs.serverless.com
 
-service: dignat-harvest-report-lambda
+service: harvest-report-lambda
 
 provider:
   name: aws

@@ -6,7 +6,7 @@ const {
 } = require("../process-env");
 
 const harvest = new Harvest({
-  userAgent: `dignatconsultingab-harvest-report-lambda (${USER_AGENT_EMAIL})`,
+  userAgent: `harvest-report-lambda (${USER_AGENT_EMAIL})`,
   concurrency: 1,
   auth: {
     accessToken: HARVEST_ACCESS_TOKEN,
