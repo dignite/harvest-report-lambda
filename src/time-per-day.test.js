@@ -7,7 +7,7 @@ describe(timePerDay.merge, () => {
     );
   });
 
-  test("should return distinct time entries as-is", () => {
+  test("should return distinct time entries as-is without id", () => {
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -27,7 +27,20 @@ describe(timePerDay.merge, () => {
 
     const result = timePerDay.merge(input);
 
-    expect(result).toEqual(input);
+    expect(result).toEqual([
+      {
+        date: "2018-11-03",
+        name: "Programming",
+        billableHours: 3.1,
+        comment: null
+      },
+      {
+        date: "2018-11-04",
+        name: "Programming",
+        billableHours: 4.1,
+        comment: null
+      }
+    ]);
   });
 
   test("should merge morning and afternoon work time entries", () => {
@@ -50,7 +63,6 @@ describe(timePerDay.merge, () => {
 
     expect(result).toEqual([
       {
-        id: 2,
         date: "2018-11-03",
         name: "Programming",
         billableHours: 8.1,
@@ -82,7 +94,6 @@ describe(timePerDay.merge, () => {
 
     expect(result).toEqual([
       {
-        id: 5,
         date: "2018-11-05",
         name: "Vacation",
         billableHours: 0,
@@ -114,7 +125,6 @@ describe(timePerDay.merge, () => {
 
     expect(result).toEqual([
       {
-        id: 7,
         date: "2018-11-06",
         name: "Programming + Sick",
         billableHours: 4.1,
@@ -146,7 +156,6 @@ describe(timePerDay.merge, () => {
 
     expect(result).toEqual([
       {
-        id: 9,
         date: "2018-11-07",
         name: "Sick + Programming",
         billableHours: 5,

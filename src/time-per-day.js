@@ -15,7 +15,6 @@ const merge = timeEntries => {
 const mergeSingleDay = timeEntriesInASingleDay =>
   timeEntriesInASingleDay.reduce(
     (previous, timeEntry) => ({
-      id: timeEntry.id,
       date: timeEntry.date,
       name: mergeStrings(previous.name, timeEntry.name),
       billableHours: sumPreservingOneDecimal(
