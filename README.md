@@ -2,9 +2,11 @@
 
 <img src="https://www.getharvest.com/assets/press/harvest-logo-capsule-9b74927af1c93319c7d6c47ee89d4c2d442f569492c82899b203dd3bdeaa81a4.png" height="100px" align="right" />
 
-A serverless framework function to expose time reporting data to clients.
+Serverless framework functions to expose time reporting data to clients.
 
-[![AWS Lambda - Serverless](https://img.shields.io/badge/AWS%20Lambda-Serverless-green.svg?logo=amazon&logoColor=white)](https://www.serverless.com) ![100% coverage](https://img.shields.io/badge/coverage-100%25-green.svg) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![ESLint](https://img.shields.io/badge/code%20style-ESLint-purple.svg)](https://github.com/eslint/eslint) [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![AWS Lambda - Serverless](https://img.shields.io/badge/AWS%20Lambda-Serverless-green.svg?logo=amazon&logoColor=white)](https://www.serverless.com) [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+![100% coverage](https://img.shields.io/badge/coverage-100%25-green.svg) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![ESLint](https://img.shields.io/badge/code%20style-ESLint-purple.svg)](https://github.com/eslint/eslint)
 
 ## Getting started with Local Development 💻
 
