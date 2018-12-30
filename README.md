@@ -4,9 +4,9 @@
 
 Serverless framework functions to expose time reporting data to clients.
 
-[![AWS Lambda - Serverless](https://img.shields.io/badge/AWS%20Lambda-Serverless-green.svg?logo=amazon&logoColor=white)](https://www.serverless.com) [![MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![AWS Lambda - Serverless][serverless-badge]][serverless-link] [![MIT][mit-badge]][license]
 
-![100% coverage](https://img.shields.io/badge/coverage-100%25-green.svg) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![ESLint](https://img.shields.io/badge/code%20style-ESLint-purple.svg)](https://github.com/eslint/eslint)
+![100% coverage][coverage-badge] [![code style: prettier][prettier-badge]][prettier-link] [![ESLint][eslint-badge]][eslint-link]
 
 ---
 
@@ -59,7 +59,7 @@ Start the project locally
 npm run start
 ```
 
-You should now have the project running on [http://localhost:3000](http://localhost:3000)! ✨
+You should now have the project running on <http://localhost:3000>! ✨
 
 ### Quality Assurance
 
@@ -151,8 +151,19 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 - **Daniel Ignat** - _Initial work_ - [dignite](https://github.com/dignite)
 
-See also the list of [contributors](https://github.com/dignite/harvest-report-lambda/graphs/contributors) who participated in this project.
+See also the list of [contributors] who participated in this project.
 
 ## License 📓
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE] file for details.
+
+[contributors]: https://github.com/dignite/harvest-report-lambda/graphs/contributors
+[license]: LICENSE
+[serverless-badge]: https://img.shields.io/badge/AWS%20Lambda-Serverless-green.svg?logo=amazon&logoColor=white
+[serverless-link]: https://www.serverless.com
+[mit-badge]: https://img.shields.io/badge/license-MIT-green.svg
+[coverage-badge]: https://img.shields.io/badge/coverage-100%25-green.svg
+[prettier-badge]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg
+[prettier-link]: https://github.com/prettier/prettier
+[eslint-badge]: https://img.shields.io/badge/code%20style-ESLint-purple.svg
+[eslint-link]: https://github.com/eslint/eslint
