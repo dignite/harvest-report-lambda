@@ -35,8 +35,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Pre-requisites
 
-- [Node.js + npm](https://nodejs.org/en/) for building, running and deploying the project
-- [Harvest account](https://www.getharvest.com/) where the time tracking is done, the source of data
+- [Node.js + npm][node.js] for building, running and deploying the project
+- [Harvest account][harvest] where the time tracking is done, the source of data
 
 ### Installing and Running
 
@@ -63,7 +63,7 @@ You should now have the project running on <http://localhost:3000>! ✨
 
 ### Quality Assurance
 
-This project relies heavily on unit tests with `jest` and has 100% coverage! Additionally [`prettier`](https://github.com/prettier/prettier) helps with code style consistency and [`ESLint`](https://github.com/eslint/eslint) guides some code style decisions.
+This project relies heavily on unit tests with `jest` and has 100% coverage! Additionally [`prettier`][prettier-link] helps with code style consistency and [`ESLint`][eslint-link] guides some code style decisions.
 
 Run the tests by running one of
 
@@ -90,13 +90,13 @@ npm run prettier
 
 ## Deployment 🌩️
 
-To set up a deployment on AWS you need to configure serverless, make sure the values in `.env` are correct and then run deploy commands.
+To set up a deployment on AWS you need an AWS account.
 
 ### Pre-requisites
 
-- [Node.js + npm](https://nodejs.org/en/) for building, running and deploying the project
-- [Harvest account](https://www.getharvest.com/) where the time tracking is done, the source of data
-- [AWS account](https://aws.amazon.com/) for hosting the serverless function (lambda)
+- [Node.js + npm][node.js] for building, running and deploying the project
+- [Harvest account][harvest] where the time tracking is done, the source of data
+- [AWS account][aws] for hosting the serverless function (lambda)
 
 ### Installing and Deploying
 
@@ -139,9 +139,9 @@ npm run remove-deploys
 
 ## Built With 🛠️
 
-- [Serverless](https://serverless.com/) - The most widely-adopted toolkit for building serverless applications
-- [node-harvest](https://github.com/simplyspoke/node-harvest) - An easy to use wrapper for the Harvest API
-- [Dinero.js](https://sarahdayan.github.io/dinero.js/) - A library for working with monetary values in JavaScript
+- [Serverless][serverless-link] - The most widely-adopted toolkit for building serverless applications
+- [node-harvest][node-harvest] - An easy to use wrapper for the Harvest API
+- [Dinero.js][dinero] - A library for working with monetary values in JavaScript
 
 ## Contributing 💗
 
@@ -149,7 +149,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors ✒️
 
-- **Daniel Ignat** - _Initial work_ - [dignite](https://github.com/dignite)
+- **Daniel Ignat** ([dignite][dignite]) - _Initial work_
 
 See also the list of [contributors] who participated in this project.
 
@@ -167,3 +167,9 @@ This project is licensed under the MIT License - see the [LICENSE] file for deta
 [prettier-link]: https://github.com/prettier/prettier
 [eslint-badge]: https://img.shields.io/badge/code%20style-ESLint-purple.svg
 [eslint-link]: https://github.com/eslint/eslint
+[node.js]: https://nodejs.org/en/
+[harvest]: https://www.getharvest.com/
+[aws]: https://aws.amazon.com/
+[node-harvest]: https://github.com/simplyspoke/node-harvest
+[dinero]: https://sarahdayan.github.io/dinero.js/
+[dignite]: https://github.com/dignite
