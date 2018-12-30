@@ -8,6 +8,27 @@ Serverless framework functions to expose time reporting data to clients.
 
 ![100% coverage](https://img.shields.io/badge/coverage-100%25-green.svg) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier) [![ESLint](https://img.shields.io/badge/code%20style-ESLint-purple.svg)](https://github.com/eslint/eslint)
 
+---
+
+## Table of Contents
+
+- [Harvest Report Lambda](#harvest-report-lambda)
+  - [Table of Contents](#table-of-contents)
+  - [Getting started with Local Development 💻](#getting-started-with-local-development-%F0%9F%92%BB)
+    - [Pre-requisites](#pre-requisites)
+    - [Installing and Running](#installing-and-running)
+    - [Quality Assurance](#quality-assurance)
+  - [Deployment 🌩️](#deployment-%F0%9F%8C%A9%EF%B8%8F)
+    - [Pre-requisites](#pre-requisites-1)
+    - [Installing and Deploying](#installing-and-deploying)
+    - [Clean up](#clean-up)
+  - [Built With 🛠️](#built-with-%F0%9F%9B%A0%EF%B8%8F)
+  - [Contributing 💗](#contributing-%F0%9F%92%97)
+  - [Authors ✒️](#authors-%E2%9C%92%EF%B8%8F)
+  - [License 📓](#license-%F0%9F%93%93)
+
+---
+
 ## Getting started with Local Development 💻
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -65,6 +86,8 @@ npm run lint -- --fix
 npm run prettier
 ```
 
+---
+
 ## Deployment 🌩️
 
 To set up a deployment on AWS you need to configure serverless, make sure the values in `.env` are correct and then run deploy commands.
@@ -111,6 +134,8 @@ To remove everything that was set up on AWS, run
 ```
 npm run remove-deploys
 ```
+
+---
 
 ## Built With 🛠️
 
