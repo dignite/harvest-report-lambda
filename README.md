@@ -14,18 +14,18 @@ Serverless framework functions to expose time reporting data to clients.
 
 - [Harvest Report Lambda](#harvest-report-lambda)
   - [Table of Contents](#table-of-contents)
-  - [Getting started with Local Development 💻](#getting-started-with-local-development-%F0%9F%92%BB)
+  - [Getting started with Local Development 💻](#getting-started-with-local-development-)
     - [Pre-requisites](#pre-requisites)
     - [Installing and Running](#installing-and-running)
     - [Quality Assurance](#quality-assurance)
-  - [Deployment 🌩️](#deployment-%F0%9F%8C%A9%EF%B8%8F)
+  - [Deployment 🌩️](#deployment-️)
     - [Pre-requisites](#pre-requisites-1)
     - [Installing and Deploying](#installing-and-deploying)
     - [Clean up](#clean-up)
-  - [Built With 🛠️](#built-with-%F0%9F%9B%A0%EF%B8%8F)
-  - [Contributing 💗](#contributing-%F0%9F%92%97)
-  - [Authors ✒️](#authors-%E2%9C%92%EF%B8%8F)
-  - [License 📓](#license-%F0%9F%93%93)
+  - [Built With 🛠️](#built-with-️)
+  - [Contributing 💗](#contributing-)
+  - [Authors ✒️](#authors-️)
+  - [License 📓](#license-)
 
 ---
 
