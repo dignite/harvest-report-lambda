@@ -17,7 +17,7 @@ jest.mock("./serverless-absolute-path", () => ({
 describe(hoursMeta, () => {
   const relevantTimeEntries = ["fake-time-entry-1", "fake-time-entry-2"];
 
-  const event = {
+  const jsonRouteEvent = {
     path: "/my-path"
   };
 
@@ -31,12 +31,40 @@ describe(hoursMeta, () => {
       })
     );
 
-    const result = hoursMeta(relevantTimeEntries, event);
+    const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
 
     expect(result).toEqual({
       description:
         "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
-      csvFile: mockServerlessAbsolutePath.resolve(event, event.path + ".csv")
+      csvFile: mockServerlessAbsolutePath.resolve(
+        jsonRouteEvent,
+        jsonRouteEvent.path + ".csv"
+      )
+    });
+  });
+
+  test("should return status code, endpoint description and json url if on csv path", () => {
+    const csvRouteEvent = {
+      path: jsonRouteEvent.path + ".csv"
+    };
+    mockServerlessAbsolutePath.resolve.mockImplementation(
+      (event, relativePath) => ({
+        "mockServerlessAbsolutePath.resolve() of": {
+          event,
+          relativePath
+        }
+      })
+    );
+
+    const result = hoursMeta(relevantTimeEntries, csvRouteEvent);
+
+    expect(result).toEqual({
+      description:
+        "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
+      jsonFile: mockServerlessAbsolutePath.resolve(
+        csvRouteEvent,
+        jsonRouteEvent.path
+      )
     });
   });
 
@@ -45,7 +73,7 @@ describe(hoursMeta, () => {
       "mockTimeSummary.totalSum() of": input
     }));
 
-    const result = hoursMeta(relevantTimeEntries, event);
+    const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
 
     expect(result).toEqual(
       expect.objectContaining({
@@ -59,7 +87,7 @@ describe(hoursMeta, () => {
       "mockTimeSummary.totalSum() of": input
     }));
 
-    const result = hoursMeta(relevantTimeEntries, event);
+    const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
 
     expect(result).toEqual(
       expect.objectContaining({
@@ -73,7 +101,7 @@ describe(hoursMeta, () => {
       "mockCostSummary.totalSum() of": input
     }));
 
-    const result = hoursMeta(relevantTimeEntries, event);
+    const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
 
     expect(result).toEqual(
       expect.objectContaining({
