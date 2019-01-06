@@ -2,7 +2,7 @@
 
 <img src="https://www.getharvest.com/assets/press/harvest-logo-capsule-9b74927af1c93319c7d6c47ee89d4c2d442f569492c82899b203dd3bdeaa81a4.png" height="100px" align="right" />
 
-Serverless framework functions to expose time reporting data to clients.
+Serverless framework functions to expose time reporting data to clients as JSON ([Example][hours-json-example]) or CSV ([Example][hours-csv-example]).
 
 [![AWS Lambda - Serverless][serverless-badge]][serverless-link] [![MIT][mit-badge]][license]
 
@@ -173,3 +173,5 @@ This project is licensed under the MIT License - see the [LICENSE] file for deta
 [node-harvest]: https://github.com/simplyspoke/node-harvest
 [dinero]: https://sarahdayan.github.io/dinero.js/
 [dignite]: https://github.com/dignite
+[hours-json-example]: ./examples/hours.json
+[hours-csv-example]: ./examples/unbilled-hours-2019-01-06.csv
