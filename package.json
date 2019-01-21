@@ -11,8 +11,8 @@
     "start": "serverless offline start",
     "ci": "npm run test && npm run deploy",
     "deploy": "npm run deploy:dev && npm run deploy:prod",
-    "deploy:dev": "serverless deploy -v",
-    "deploy:prod": "serverless deploy -v --stage prod",
+    "deploy:dev": "serverless create_domain && serverless deploy -v",
+    "deploy:prod": "serverless create_domain --stage prod && serverless deploy -v --stage prod",
     "remove-deploys": "serverless remove -v && serverless remove -v --stage prod"
   },
   "author": "Daniel Ignat",
@@ -38,6 +38,7 @@
     "mockdate": "^2.0.2",
     "prettier": "^1.15.3",
     "serverless": "^1.34.1",
+    "serverless-domain-manager": "^2.6.12",
     "serverless-dotenv-plugin": "^2.0.1",
     "serverless-offline": "^3.31.3"
   },

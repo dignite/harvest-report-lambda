@@ -97,6 +97,7 @@ To set up a deployment on AWS you need an AWS account.
 - [Node.js + npm][node.js] for building, running and deploying the project
 - [Harvest account][harvest] where the time tracking is done, the source of data
 - [AWS account][aws] for hosting the serverless function (lambda)
+- [Certificates set up](aws-certificates) for the domains provided in `.env` (`PROD_DOMAIN` and `DEV_DOMAIN`)
 
 ### Installing and Deploying
 
@@ -170,6 +171,7 @@ This project is licensed under the MIT License - see the [LICENSE] file for deta
 [node.js]: https://nodejs.org/en/
 [harvest]: https://www.getharvest.com/
 [aws]: https://aws.amazon.com/
+[aws-certificates]: https://eu-west-1.console.aws.amazon.com/acm/home?region=eu-west-1#/
 [node-harvest]: https://github.com/simplyspoke/node-harvest
 [dinero]: https://sarahdayan.github.io/dinero.js/
 [dignite]: https://github.com/dignite
