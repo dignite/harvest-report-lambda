@@ -69,7 +69,7 @@ describe(hoursMeta, () => {
   });
 
   test("should return total unbilled billable hours", () => {
-    mockTimeSummary.totalSum.mockImplementation(input => ({
+    mockTimeSummary.totalSum.mockImplementation((input) => ({
       "mockTimeSummary.totalSum() of": input,
     }));
 
@@ -83,7 +83,7 @@ describe(hoursMeta, () => {
   });
 
   test("should return total unbilled billable hours per week", () => {
-    mockTimeSummary.totalSum.mockImplementation(input => ({
+    mockTimeSummary.totalSum.mockImplementation((input) => ({
       "mockTimeSummary.totalSum() of": input,
     }));
 
@@ -97,7 +97,7 @@ describe(hoursMeta, () => {
   });
 
   test("should return total unbilled invoice size", () => {
-    mockCostSummary.totalSum.mockImplementation(input => ({
+    mockCostSummary.totalSum.mockImplementation((input) => ({
       "mockCostSummary.totalSum() of": input,
     }));
 

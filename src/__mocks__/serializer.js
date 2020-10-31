@@ -1,3 +1,3 @@
-module.exports.serialize = input => ({
+module.exports.serialize = (input) => ({
   "serialize() of": input,
 });

@@ -17,7 +17,7 @@ module.exports.root = async () => {
   };
 };
 
-module.exports.hours = async event => {
+module.exports.hours = async (event) => {
   const relevantTimeEntries = await timeEntries.getRelevantUnbilled();
   return {
     statusCode: 200,
@@ -28,7 +28,7 @@ module.exports.hours = async event => {
   };
 };
 
-module.exports.hoursCsv = async event => {
+module.exports.hoursCsv = async (event) => {
   const relevantTimeEntries = await timeEntries.getRelevantUnbilled();
   const timeEntriesPerDay = timePerDay.merge(relevantTimeEntries);
   const meta = hoursMeta(relevantTimeEntries, event);
