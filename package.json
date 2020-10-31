@@ -37,9 +37,9 @@
     "jest-when": "^2.8.1",
     "mockdate": "^2.0.5",
     "prettier": "1.15.3",
-    "serverless": "^1.83.0",
-    "serverless-dotenv-plugin": "^2.4.2",
-    "serverless-offline": "^3.33.0"
+    "serverless": "^2.9.0",
+    "serverless-dotenv-plugin": "^3.1.0",
+    "serverless-offline": "^6.8.0"
   },
   "dependencies": {
     "date-fns": "^1.30.1",
