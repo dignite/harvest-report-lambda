@@ -1,0 +1,20 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Config
+.env
+
+# Test artifacts
+coverage
+
+# Files prettier can't understand anyway
+LICENSE
+.env.example
+.eslintignore
+.gitignore
+.prettierignore
+**/*.csv
