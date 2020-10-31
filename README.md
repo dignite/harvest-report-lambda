@@ -79,11 +79,10 @@ Check the code style by running
 npm run lint
 ```
 
-Fix the code style issues manually or together with thw following commands
+Fix the code style issues manually or together with the following command
 
 ```
-npm run lint -- --fix
-npm run prettier
+npm run lint:fix
 ```
 
 ---

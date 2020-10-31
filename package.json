@@ -4,8 +4,8 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "prettier": "prettier **/*.{js,css,md,json,yaml} --write --loglevel warn",
-    "lint": "eslint .",
+    "lint": "prettier **/!(*.js) --check --loglevel warn && eslint .",
+    "lint:fix": "prettier **/*.* --write --loglevel warn && eslint . --fix",
     "pretest": "npm run lint",
     "test": "jest --coverage",
     "start": "serverless offline start",
