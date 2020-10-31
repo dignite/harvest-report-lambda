@@ -2,7 +2,7 @@ const Harvest = require("harvest").default;
 const {
   HARVEST_ACCESS_TOKEN,
   HARVEST_ACCOUNT_ID,
-  USER_AGENT_EMAIL
+  USER_AGENT_EMAIL,
 } = require("../process-env");
 
 const harvest = new Harvest({
@@ -10,8 +10,8 @@ const harvest = new Harvest({
   concurrency: 1,
   auth: {
     accessToken: HARVEST_ACCESS_TOKEN,
-    accountId: HARVEST_ACCOUNT_ID
-  }
+    accountId: HARVEST_ACCOUNT_ID,
+  },
 });
 
 module.exports = harvest;

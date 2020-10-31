@@ -3,18 +3,18 @@ const json2csv = require("json2csv");
 const csvFromObjectWithBOM = input =>
   json2csv.parse(input, {
     withBOM: true,
-    delimiter: ";"
+    delimiter: ";",
   });
 const csvFromObjectWithoutBOM = input =>
   json2csv.parse(input, {
     withBOM: false,
-    delimiter: ";"
+    delimiter: ";",
   });
 const csvFromObjectTransposed = input =>
   json2csv.parse(transposeToArrayOfArrays(input), {
     withBOM: true,
     delimiter: ";",
-    header: false
+    header: false,
   });
 
 const transposeToArrayOfArrays = obj =>

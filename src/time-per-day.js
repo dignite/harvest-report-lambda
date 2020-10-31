@@ -21,10 +21,10 @@ const mergeSingleDay = timeEntriesInASingleDay =>
         previous.billableHours,
         timeEntry.billableHours
       ),
-      comment: timeEntry.comment
+      comment: timeEntry.comment,
     }),
     {
-      billableHours: 0
+      billableHours: 0,
     }
   );
 

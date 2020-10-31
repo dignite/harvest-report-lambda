@@ -6,6 +6,6 @@ module.exports = new Proxy(
         return false;
       }
       return `Value from process.env.${key}`;
-    }
+    },
   }
 );

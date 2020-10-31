@@ -8,7 +8,7 @@ describe(csv.csvFromObjectWithBOM, () => {
       one: 1,
       two: 2,
       three: 3,
-      pi: "between 3 and 4"
+      pi: "between 3 and 4",
     };
 
     const result = csv.csvFromObjectWithBOM(input);
@@ -24,7 +24,7 @@ describe(csv.csvFromObjectWithoutBOM, () => {
     const input = {
       four: true,
       five: false,
-      six: "half a dozen"
+      six: "half a dozen",
     };
 
     const result = csv.csvFromObjectWithoutBOM(input);
@@ -38,7 +38,7 @@ describe(csv.csvFromObjectTransposed, () => {
     const input = {
       four: true,
       five: false,
-      six: "half a dozen"
+      six: "half a dozen",
     };
 
     const result = csv.csvFromObjectTransposed(input);

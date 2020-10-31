@@ -5,20 +5,20 @@ const mockServerlessAbsolutePath = require("./serverless-absolute-path");
 
 jest.mock("./time-summary", () => ({
   totalSum: jest.fn(),
-  perWeek: jest.fn()
+  perWeek: jest.fn(),
 }));
 jest.mock("./cost-summary", () => ({
-  totalSum: jest.fn()
+  totalSum: jest.fn(),
 }));
 jest.mock("./serverless-absolute-path", () => ({
-  resolve: jest.fn()
+  resolve: jest.fn(),
 }));
 
 describe(hoursMeta, () => {
   const relevantTimeEntries = ["fake-time-entry-1", "fake-time-entry-2"];
 
   const jsonRouteEvent = {
-    path: "/my-path"
+    path: "/my-path",
   };
 
   test("should return status code, endpoint description and csv url", () => {
@@ -26,8 +26,8 @@ describe(hoursMeta, () => {
       (event, relativePath) => ({
         "mockServerlessAbsolutePath.resolve() of": {
           event,
-          relativePath
-        }
+          relativePath,
+        },
       })
     );
 
@@ -39,20 +39,20 @@ describe(hoursMeta, () => {
       csvFile: mockServerlessAbsolutePath.resolve(
         jsonRouteEvent,
         jsonRouteEvent.path + ".csv"
-      )
+      ),
     });
   });
 
   test("should return status code, endpoint description and json url if on csv path", () => {
     const csvRouteEvent = {
-      path: jsonRouteEvent.path + ".csv"
+      path: jsonRouteEvent.path + ".csv",
     };
     mockServerlessAbsolutePath.resolve.mockImplementation(
       (event, relativePath) => ({
         "mockServerlessAbsolutePath.resolve() of": {
           event,
-          relativePath
-        }
+          relativePath,
+        },
       })
     );
 
@@ -64,48 +64,48 @@ describe(hoursMeta, () => {
       jsonFile: mockServerlessAbsolutePath.resolve(
         csvRouteEvent,
         jsonRouteEvent.path
-      )
+      ),
     });
   });
 
   test("should return total unbilled billable hours", () => {
     mockTimeSummary.totalSum.mockImplementation(input => ({
-      "mockTimeSummary.totalSum() of": input
+      "mockTimeSummary.totalSum() of": input,
     }));
 
     const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
 
     expect(result).toEqual(
       expect.objectContaining({
-        totalUnbilledHours: mockTimeSummary.totalSum(relevantTimeEntries)
+        totalUnbilledHours: mockTimeSummary.totalSum(relevantTimeEntries),
       })
     );
   });
 
   test("should return total unbilled billable hours per week", () => {
     mockTimeSummary.totalSum.mockImplementation(input => ({
-      "mockTimeSummary.totalSum() of": input
+      "mockTimeSummary.totalSum() of": input,
     }));
 
     const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
 
     expect(result).toEqual(
       expect.objectContaining({
-        totalUnbilledHoursPerWeek: mockTimeSummary.perWeek(relevantTimeEntries)
+        totalUnbilledHoursPerWeek: mockTimeSummary.perWeek(relevantTimeEntries),
       })
     );
   });
 
   test("should return total unbilled invoice size", () => {
     mockCostSummary.totalSum.mockImplementation(input => ({
-      "mockCostSummary.totalSum() of": input
+      "mockCostSummary.totalSum() of": input,
     }));
 
     const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
 
     expect(result).toEqual(
       expect.objectContaining({
-        unbilledInvoice: mockCostSummary.totalSum(relevantTimeEntries)
+        unbilledInvoice: mockCostSummary.totalSum(relevantTimeEntries),
       })
     );
   });

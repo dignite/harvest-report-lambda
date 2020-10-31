@@ -8,20 +8,20 @@ const hoursMeta = (relevantTimeEntries, event) => {
       "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
     totalUnbilledHours: timeSummary.totalSum(relevantTimeEntries),
     totalUnbilledHoursPerWeek: timeSummary.perWeek(relevantTimeEntries),
-    unbilledInvoice: costSummary.totalSum(relevantTimeEntries)
+    unbilledInvoice: costSummary.totalSum(relevantTimeEntries),
   };
   return onCsvRoute(event)
     ? Object.assign({}, meta, {
         jsonFile: serverlessAbsolutePath.resolve(
           event,
           jsonRouteFromCsvRouteEvent(event)
-        )
+        ),
       })
     : Object.assign({}, meta, {
         csvFile: serverlessAbsolutePath.resolve(
           event,
           csvRouteFromJsonRouteEvent(event)
-        )
+        ),
       });
 };
 
