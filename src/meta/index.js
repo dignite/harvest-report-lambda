@@ -25,8 +25,8 @@ const hoursMeta = (relevantTimeEntries, event) => {
       });
 };
 
-const onCsvRoute = event => event.path.indexOf(".csv") !== -1;
-const jsonRouteFromCsvRouteEvent = event => event.path.replace(".csv", "");
-const csvRouteFromJsonRouteEvent = event => `${event.path}.csv`;
+const onCsvRoute = (event) => event.path.indexOf(".csv") !== -1;
+const jsonRouteFromCsvRouteEvent = (event) => event.path.replace(".csv", "");
+const csvRouteFromJsonRouteEvent = (event) => `${event.path}.csv`;
 
 module.exports.hoursMeta = hoursMeta;

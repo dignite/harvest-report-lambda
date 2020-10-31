@@ -65,7 +65,7 @@ describe(functions.hours, () => {
   test("should return relevant time entries per day", async () => {
     const relevantTimeEntries = ["fakeTimeEntry1", "fakeTimeEntry2"];
     mockTimeEntries.getRelevantUnbilled.mockReturnValue(relevantTimeEntries);
-    mockTimePerDay.merge.mockImplementation(input => ({
+    mockTimePerDay.merge.mockImplementation((input) => ({
       "mockTimePerDay.merge() of": input,
     }));
 
@@ -112,13 +112,13 @@ describe(functions.hoursCsv, () => {
         event,
       },
     }));
-    mockTimePerDay.merge.mockImplementation(input => ({
+    mockTimePerDay.merge.mockImplementation((input) => ({
       "mockTimePerDay.merge() of": input,
     }));
-    mockCsv.csvFromObjectTransposed.mockImplementation(input => ({
+    mockCsv.csvFromObjectTransposed.mockImplementation((input) => ({
       "mockCsv.csvFromObjectTransposed() of": input,
     }));
-    mockCsv.csvFromObjectWithoutBOM.mockImplementation(input => ({
+    mockCsv.csvFromObjectWithoutBOM.mockImplementation((input) => ({
       "mockCsv.csvFromObjectWithoutBOM() of": input,
     }));
 

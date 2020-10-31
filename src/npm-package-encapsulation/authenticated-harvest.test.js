@@ -1,7 +1,7 @@
 const authenticatedHarvest = require("./authenticated-harvest");
 
 jest.mock("harvest", () => ({
-  default: jest.fn(options => ({
+  default: jest.fn((options) => ({
     origin: "instance of harvest wrapper",
     options,
   })),

@@ -5,7 +5,7 @@ const resolve = (event, relativePath) => {
   return rootUrl + relativePath;
 };
 
-const getRootUrlWhenDeployed = event => {
+const getRootUrlWhenDeployed = (event) => {
   const protocol = event.headers["X-Forwarded-Proto"];
   const host = event.headers["Host"];
   const deploymentStage = event.requestContext["stage"];

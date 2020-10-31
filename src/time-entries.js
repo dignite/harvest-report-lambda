@@ -12,7 +12,7 @@ const getRelevantUnbilled = async () => {
   const relevantUnbilledEntries = unbilledTimeEntries.filter(
     fromThisMonthUnlessBillable
   );
-  const mappedTimeEntries = relevantUnbilledEntries.map(timeEntry => {
+  const mappedTimeEntries = relevantUnbilledEntries.map((timeEntry) => {
     const billableHours =
       timeEntry.billable && timeEntry.billable_rate
         ? roundToNearestSixMinutes(timeEntry.hours)
@@ -31,9 +31,9 @@ const getRelevantUnbilled = async () => {
   return mappedTimeEntries;
 };
 
-const isNotBilled = timeEntry => !timeEntry.is_billed;
-const fromThisMonthUnlessBillable = timeEntry =>
+const isNotBilled = (timeEntry) => !timeEntry.is_billed;
+const fromThisMonthUnlessBillable = (timeEntry) =>
   timeEntry.billable || Date.parse(timeEntry.spent_date) >= startOfMonth();
-const roundToNearestSixMinutes = hours => Math.round(hours * 10) / 10;
+const roundToNearestSixMinutes = (hours) => Math.round(hours * 10) / 10;
 
 module.exports.getRelevantUnbilled = getRelevantUnbilled;

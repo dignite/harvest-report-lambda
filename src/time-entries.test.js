@@ -74,7 +74,7 @@ describe(timeEntries.getRelevantUnbilled, () => {
     );
 
     const result = await timeEntries.getRelevantUnbilled();
-    const actualIds = result.map(timeEntry => timeEntry.id);
+    const actualIds = result.map((timeEntry) => timeEntry.id);
 
     const expectedIds = [1, 2, 4];
     expect(actualIds).toEqual(expectedIds);

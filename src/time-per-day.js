@@ -1,6 +1,6 @@
 const groupBy = require("lodash.groupby");
 
-const merge = timeEntries => {
+const merge = (timeEntries) => {
   if (!timeEntries) {
     throw new Error("First argument timeEntries not provided!");
   }
@@ -12,7 +12,7 @@ const merge = timeEntries => {
   return mergedTimeEntriesPerDay;
 };
 
-const mergeSingleDay = timeEntriesInASingleDay =>
+const mergeSingleDay = (timeEntriesInASingleDay) =>
   timeEntriesInASingleDay.reduce(
     (previous, timeEntry) => ({
       date: timeEntry.date,
