@@ -4,7 +4,7 @@ const { SEK } = require("./npm-package-encapsulation/swedish-crowns");
 
 const getRelevantUnbilled = async () => {
   const timeEntriesResponse = await harvest.timeEntries.list({
-    is_billed: "false"
+    is_billed: "false",
   });
   const unbilledTimeEntries = timeEntriesResponse.time_entries.filter(
     isNotBilled
@@ -25,7 +25,7 @@ const getRelevantUnbilled = async () => {
       cost: SEK(billableHours)
         .multiply(timeEntry.billable_rate)
         .getAmount(),
-      comment: timeEntry.notes
+      comment: timeEntry.notes,
     };
   });
   return mappedTimeEntries;

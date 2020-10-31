@@ -12,7 +12,7 @@ const totalSum = timeEntries =>
 const perWeek = timeEntries => {
   const hoursWithWeekNumber = timeEntries.map(timeEntry => ({
     billableHours: timeEntry.billableHours,
-    week: `w${getWeekNumber(Date.parse(timeEntry.date))}`
+    week: `w${getWeekNumber(Date.parse(timeEntry.date))}`,
   }));
 
   const hoursByWeek = groupBy(hoursWithWeekNumber, "week");

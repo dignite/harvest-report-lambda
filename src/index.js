@@ -7,13 +7,13 @@ const { serialize } = require("./serializer");
 const { timestampForFilename } = require("./date");
 const {
   csvFromObjectTransposed,
-  csvFromObjectWithoutBOM
+  csvFromObjectWithoutBOM,
 } = require("./npm-package-encapsulation/csv");
 
 module.exports.root = async () => {
   return {
     statusCode: 404,
-    body: "Not Found"
+    body: "Not Found",
   };
 };
 
@@ -23,8 +23,8 @@ module.exports.hours = async event => {
     statusCode: 200,
     body: serialize({
       meta: hoursMeta(relevantTimeEntries, event),
-      timeEntriesPerDay: timePerDay.merge(relevantTimeEntries)
-    })
+      timeEntriesPerDay: timePerDay.merge(relevantTimeEntries),
+    }),
   };
 };
 
@@ -35,11 +35,11 @@ module.exports.hoursCsv = async event => {
   return {
     statusCode: 200,
     headers: {
-      "Content-Disposition": `attachment; filename=unbilled-hours-${timestampForFilename()}.csv`
+      "Content-Disposition": `attachment; filename=unbilled-hours-${timestampForFilename()}.csv`,
     },
     body: [
       csvFromObjectTransposed(meta),
-      csvFromObjectWithoutBOM(timeEntriesPerDay)
-    ].join("\n\n")
+      csvFromObjectWithoutBOM(timeEntriesPerDay),
+    ].join("\n\n"),
   };
 };

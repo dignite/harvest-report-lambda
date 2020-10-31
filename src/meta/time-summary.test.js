@@ -13,7 +13,7 @@ describe(timeSummary.totalSum, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null
+      comment: null,
     };
 
     const result = timeSummary.totalSum([novemberThird]);
@@ -27,27 +27,27 @@ describe(timeSummary.totalSum, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null
+      comment: null,
     };
     const novemberFourth = {
       id: 2,
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
-      comment: null
+      comment: null,
     };
     const novemberSixth = {
       id: 3,
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.1,
-      comment: null
+      comment: null,
     };
 
     const result = timeSummary.totalSum([
       novemberThird,
       novemberFourth,
-      novemberSixth
+      novemberSixth,
     ]);
 
     expect(result).toEqual(11.3);
@@ -67,13 +67,13 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null
+      comment: null,
     };
 
     const result = timeSummary.perWeek([novemberThird]);
 
     expect(result).toEqual({
-      w44: 3.1
+      w44: 3.1,
     });
   });
 
@@ -83,20 +83,20 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null
+      comment: null,
     };
     const novemberFourth = {
       id: 2,
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
-      comment: null
+      comment: null,
     };
 
     const result = timeSummary.perWeek([novemberThird, novemberFourth]);
 
     expect(result).toEqual({
-      w44: 7.2
+      w44: 7.2,
     });
   });
 
@@ -106,32 +106,32 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null
+      comment: null,
     };
     const novemberFourth = {
       id: 2,
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
-      comment: null
+      comment: null,
     };
     const novemberSixth = {
       id: 3,
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.1,
-      comment: null
+      comment: null,
     };
 
     const result = timeSummary.perWeek([
       novemberThird,
       novemberFourth,
-      novemberSixth
+      novemberSixth,
     ]);
 
     expect(result).toEqual({
       w44: 7.2,
-      w45: 4.1
+      w45: 4.1,
     });
   });
 });

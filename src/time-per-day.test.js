@@ -13,14 +13,14 @@ describe(timePerDay.merge, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null
+      comment: null,
     };
     const novemberFourth = {
       id: 3,
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
-      comment: null
+      comment: null,
     };
     const listWithNoDateClashes = [novemberThird, novemberFourth];
     const input = listWithNoDateClashes;
@@ -32,14 +32,14 @@ describe(timePerDay.merge, () => {
         date: "2018-11-03",
         name: "Programming",
         billableHours: 3.1,
-        comment: null
+        comment: null,
       },
       {
         date: "2018-11-04",
         name: "Programming",
         billableHours: 4.1,
-        comment: null
-      }
+        comment: null,
+      },
     ]);
   });
 
@@ -49,14 +49,14 @@ describe(timePerDay.merge, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null
+      comment: null,
     };
     const novemberThirdAfterLunch = {
       id: 2,
       date: "2018-11-03",
       name: "Programming",
       billableHours: 5,
-      comment: null
+      comment: null,
     };
 
     const result = timePerDay.merge([novemberThird, novemberThirdAfterLunch]);
@@ -66,8 +66,8 @@ describe(timePerDay.merge, () => {
         date: "2018-11-03",
         name: "Programming",
         billableHours: 8.1,
-        comment: null
-      }
+        comment: null,
+      },
     ]);
   });
 
@@ -77,19 +77,19 @@ describe(timePerDay.merge, () => {
       date: "2018-11-05",
       name: "Vacation",
       billableHours: 0,
-      comment: null
+      comment: null,
     };
     const novemberFifthVacationAfterLunch = {
       id: 5,
       date: "2018-11-05",
       name: "Vacation",
       billableHours: 0,
-      comment: null
+      comment: null,
     };
 
     const result = timePerDay.merge([
       novemberFifthVacation,
-      novemberFifthVacationAfterLunch
+      novemberFifthVacationAfterLunch,
     ]);
 
     expect(result).toEqual([
@@ -97,8 +97,8 @@ describe(timePerDay.merge, () => {
         date: "2018-11-05",
         name: "Vacation",
         billableHours: 0,
-        comment: null
-      }
+        comment: null,
+      },
     ]);
   });
 
@@ -108,19 +108,19 @@ describe(timePerDay.merge, () => {
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.1,
-      comment: null
+      comment: null,
     };
     const novemberSixthSickAfterLunch = {
       id: 7,
       date: "2018-11-06",
       name: "Sick",
       billableHours: 0,
-      comment: null
+      comment: null,
     };
 
     const result = timePerDay.merge([
       novemberSixth,
-      novemberSixthSickAfterLunch
+      novemberSixthSickAfterLunch,
     ]);
 
     expect(result).toEqual([
@@ -128,8 +128,8 @@ describe(timePerDay.merge, () => {
         date: "2018-11-06",
         name: "Programming + Sick",
         billableHours: 4.1,
-        comment: null
-      }
+        comment: null,
+      },
     ]);
   });
 
@@ -139,19 +139,19 @@ describe(timePerDay.merge, () => {
       date: "2018-11-07",
       name: "Sick",
       billableHours: 0,
-      comment: null
+      comment: null,
     };
     const novemberSeventhAfterLunch = {
       id: 9,
       date: "2018-11-07",
       name: "Programming",
       billableHours: 5,
-      comment: null
+      comment: null,
     };
 
     const result = timePerDay.merge([
       novemberSeventhSickMorning,
-      novemberSeventhAfterLunch
+      novemberSeventhAfterLunch,
     ]);
 
     expect(result).toEqual([
@@ -159,8 +159,8 @@ describe(timePerDay.merge, () => {
         date: "2018-11-07",
         name: "Sick + Programming",
         billableHours: 5,
-        comment: null
-      }
+        comment: null,
+      },
     ]);
   });
 });

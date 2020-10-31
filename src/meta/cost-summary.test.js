@@ -6,7 +6,7 @@ describe(costSummary.totalSum, () => {
 
     expect(result).toEqual({
       excludingVAT: "0.00 Swedish kronor",
-      includingVAT: "0.00 Swedish kronor"
+      includingVAT: "0.00 Swedish kronor",
     });
   });
 
@@ -17,14 +17,14 @@ describe(costSummary.totalSum, () => {
       name: "Programming",
       billableHours: 3.1,
       cost: 1000,
-      comment: null
+      comment: null,
     };
 
     const result = costSummary.totalSum([novemberThird]);
 
     expect(result).toEqual({
       excludingVAT: "1000.00 Swedish kronor",
-      includingVAT: "1250.00 Swedish kronor"
+      includingVAT: "1250.00 Swedish kronor",
     });
   });
 
@@ -35,7 +35,7 @@ describe(costSummary.totalSum, () => {
       name: "Programming",
       billableHours: 3.1,
       cost: 964.1,
-      comment: null
+      comment: null,
     };
     const novemberFourth = {
       id: 2,
@@ -43,7 +43,7 @@ describe(costSummary.totalSum, () => {
       name: "Programming",
       billableHours: 4.1,
       cost: 1275.1,
-      comment: null
+      comment: null,
     };
     const novemberSixth = {
       id: 3,
@@ -51,18 +51,18 @@ describe(costSummary.totalSum, () => {
       name: "Programming",
       billableHours: 4.1,
       cost: 1275.1,
-      comment: null
+      comment: null,
     };
 
     const result = costSummary.totalSum([
       novemberThird,
       novemberFourth,
-      novemberSixth
+      novemberSixth,
     ]);
 
     expect(result).toEqual({
       excludingVAT: "3514.30 Swedish kronor",
-      includingVAT: "4392.88 Swedish kronor"
+      includingVAT: "4392.88 Swedish kronor",
     });
   });
 });

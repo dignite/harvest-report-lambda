@@ -3,7 +3,7 @@ const serverlessAbsolutePath = require("./serverless-absolute-path");
 describe(serverlessAbsolutePath.resolve, () => {
   test("should resolve to localhost when offline", () => {
     const offlineEvent = {
-      isOffline: true
+      isOffline: true,
     };
 
     const url = serverlessAbsolutePath.resolve(
@@ -20,11 +20,11 @@ describe(serverlessAbsolutePath.resolve, () => {
     const devLambdaEvent = {
       headers: {
         "X-Forwarded-Proto": "https",
-        Host: "example.uri"
+        Host: "example.uri",
       },
       requestContext: {
-        stage: "dev"
-      }
+        stage: "dev",
+      },
     };
 
     const url = serverlessAbsolutePath.resolve(
@@ -41,11 +41,11 @@ describe(serverlessAbsolutePath.resolve, () => {
     const prodLambdaEvent = {
       headers: {
         "X-Forwarded-Proto": "https",
-        Host: "example.uri"
+        Host: "example.uri",
       },
       requestContext: {
-        stage: "prod"
-      }
+        stage: "prod",
+      },
     };
 
     const url = serverlessAbsolutePath.resolve(
@@ -62,11 +62,11 @@ describe(serverlessAbsolutePath.resolve, () => {
     const prodLambdaEvent = {
       headers: {
         "X-Forwarded-Proto": "http",
-        Host: "example.uri"
+        Host: "example.uri",
       },
       requestContext: {
-        stage: "insecure"
-      }
+        stage: "insecure",
+      },
     };
 
     const url = serverlessAbsolutePath.resolve(

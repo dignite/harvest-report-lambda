@@ -7,7 +7,7 @@ const totalSum = timeEntries => {
   );
   return {
     excludingVAT: cost.toString(),
-    includingVAT: cost.addVAT(25).toString()
+    includingVAT: cost.addVAT(25).toString(),
   };
 };
 
