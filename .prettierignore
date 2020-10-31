@@ -15,6 +15,7 @@ coverage
 LICENSE
 .env.example
 .eslintignore
+.gitattributes
 .gitignore
 .prettierignore
 **/*.csv
