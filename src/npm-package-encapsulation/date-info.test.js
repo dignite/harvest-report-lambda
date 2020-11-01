@@ -1,10 +1,10 @@
 const dateInfo = require("./date-info");
-const mockGetISOWeek = require("date-fns/get_iso_week");
+const mockGetISOWeek = require("date-fns/getISOWeek");
 
-jest.mock("date-fns/get_iso_week");
+jest.mock("date-fns/getISOWeek");
 
 describe(dateInfo.getWeekNumber, () => {
-  test("should be alias for date-fns/get_iso_week", () => {
+  test("should be alias for date-fns/getISOWeek", () => {
     expect(dateInfo.getWeekNumber).toEqual(mockGetISOWeek);
   });
 });
