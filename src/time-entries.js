@@ -22,9 +22,7 @@ const getRelevantUnbilled = async () => {
       date: timeEntry.spent_date,
       name: timeEntry.task.name,
       billableHours,
-      cost: SEK(billableHours)
-        .multiply(timeEntry.billable_rate)
-        .getAmount(),
+      cost: SEK(billableHours).multiply(timeEntry.billable_rate).getAmount(),
       comment: timeEntry.notes,
     };
   });
