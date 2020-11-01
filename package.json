@@ -15,7 +15,7 @@
     "deploy:prod": "serverless deploy -v --stage prod",
     "remove-deploys": "serverless remove -v && serverless remove -v --stage prod"
   },
-  "author": "Daniel Ignat",
+  "author": "Daniel Edholm Ignat",
   "license": "MIT",
   "jest": {
     "coverageThreshold": {
