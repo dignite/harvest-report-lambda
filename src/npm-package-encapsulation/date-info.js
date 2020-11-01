@@ -1,3 +1,3 @@
-const getISOWeek = require("date-fns/get_iso_week");
+const getISOWeek = require("date-fns/getISOWeek");
 
 module.exports.getWeekNumber = getISOWeek;
