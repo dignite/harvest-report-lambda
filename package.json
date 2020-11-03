@@ -27,10 +27,13 @@
         "statements": 100
       }
     },
-    "verbose": true,
+    "modulePathIgnorePatterns": [
+      "<rootDir>/.build/"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/src/setup-tests.js"
-    ]
+    ],
+    "verbose": true
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.1",
