@@ -27,6 +27,9 @@
         "statements": 100
       }
     },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/.build/"
+    ],
     "verbose": true
   },
   "devDependencies": {
