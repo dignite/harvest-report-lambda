@@ -12,6 +12,9 @@ jspm_packages
 coverage
 *.snap
 
+# Build artifacts
+.build
+
 # Files prettier can't understand anyway
 LICENSE
 .env.example

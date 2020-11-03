@@ -47,6 +47,7 @@ package:
     - "**/__snapshots__/*.*"
 
 plugins:
+  - serverless-plugin-typescript
   - serverless-offline
 
 custom:
