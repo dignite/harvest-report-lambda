@@ -34,6 +34,14 @@
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
+    "@types/eslint": "^7.2.4",
+    "@types/eslint-config-prettier": "^6.11.0",
+    "@types/eslint-plugin-prettier": "^3.1.0",
+    "@types/jest": "^26.0.15",
+    "@types/jest-when": "^2.7.2",
+    "@types/mockdate": "^2.0.0",
+    "@types/prettier": "^2.1.5",
+    "@types/serverless": "^1.78.7",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-fp": "^2.3.0",
@@ -49,6 +57,11 @@
     "typescript": "^4.0.5"
   },
   "dependencies": {
+    "@types/date-fns": "^2.6.0",
+    "@types/dinero.js": "^1.6.5",
+    "@types/json2csv": "^5.0.1",
+    "@types/lodash.groupby": "^4.6.6",
+    "@types/lodash.mapvalues": "^4.6.6",
     "date-fns": "^2.21.1",
     "dinero.js": "^1.8.1",
     "harvest": "^2.2.6",
