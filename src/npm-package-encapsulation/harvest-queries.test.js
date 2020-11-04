@@ -1,12 +1,8 @@
 const { getUnbilledTimeEntries } = require("./harvest-queries");
-const mockHarvestApi = require("./authenticated-harvest");
+const { authenticatedHarvest } = require("./authenticated-harvest");
 const { when } = require("jest-when");
 
-jest.mock("./authenticated-harvest", () => ({
-  timeEntries: {
-    list: jest.fn(),
-  },
-}));
+jest.mock("./authenticated-harvest");
 
 describe(getUnbilledTimeEntries, () => {
   test("should return all billable but unbilled and non-billable hours", async () => {
@@ -72,7 +68,7 @@ describe(getUnbilledTimeEntries, () => {
   });
 
   const setupReturnTimeEntries = (...entries) =>
-    when(mockHarvestApi.timeEntries.list)
+    when(authenticatedHarvest.timeEntries.list)
       .calledWith({ is_billed: "false" })
       .mockReturnValue({
         time_entries: entries,

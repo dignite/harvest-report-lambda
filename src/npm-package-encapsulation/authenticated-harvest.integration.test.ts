@@ -1,11 +1,10 @@
-require("dotenv").config();
-const authenticatedHarvest = require("./authenticated-harvest");
-const { getMandatoryEnvironmentVariable } = require("../process-env");
+import { authenticatedHarvest } from "./authenticated-harvest";
+import { getMandatoryEnvironmentVariable } from "../process-env";
 
 jest.unmock("harvest");
-+jest.unmock("../process-env");
+jest.unmock("../process-env");
 
-const testIfAllDefined = (...args) =>
+const testIfAllDefined = (...args: string[]) =>
   args.some((arg) => getMandatoryEnvironmentVariable(arg) === arg)
     ? test.skip
     : test;

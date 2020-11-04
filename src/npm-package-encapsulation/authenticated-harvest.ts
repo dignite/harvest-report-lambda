@@ -1,7 +1,7 @@
-const Harvest = require("harvest").default;
-const { getMandatoryEnvironmentVariable } = require("../process-env");
+import Harvest from "harvest";
+import { getMandatoryEnvironmentVariable } from "../process-env";
 
-const harvest = new Harvest({
+export const authenticatedHarvest = new Harvest({
   userAgent: `harvest-report-lambda (${getMandatoryEnvironmentVariable(
     "USER_AGENT_EMAIL"
   )})`,
@@ -10,6 +10,5 @@ const harvest = new Harvest({
     accessToken: getMandatoryEnvironmentVariable("HARVEST_ACCESS_TOKEN"),
     accountId: getMandatoryEnvironmentVariable("HARVEST_ACCOUNT_ID"),
   },
+  subdomain: "",
 });
-
-module.exports = harvest;

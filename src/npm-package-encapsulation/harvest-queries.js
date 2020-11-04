@@ -1,7 +1,7 @@
-const harvest = require("./authenticated-harvest");
+const { authenticatedHarvest } = require("./authenticated-harvest");
 
 module.exports.getUnbilledTimeEntries = async () => {
-  const timeEntries = await harvest.timeEntries.list({
+  const timeEntries = await authenticatedHarvest.timeEntries.list({
     is_billed: "false",
   });
   return timeEntries.time_entries.map((timeEntry) =>

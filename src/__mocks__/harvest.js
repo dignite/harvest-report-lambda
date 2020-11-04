@@ -2,7 +2,7 @@
 /* eslint-disable fp/no-nil */
 /* eslint-disable fp/no-mutation */
 
-module.exports.default = class FakeHarvest {
+module.exports = class FakeHarvest {
   constructor(options) {
     this.options = options;
     this.timeEntries = {
