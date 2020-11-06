@@ -11,6 +11,7 @@ jspm_packages
 # Test artifacts
 coverage
 *.snap
+coverage-ts
 
 # Build artifacts
 .build
