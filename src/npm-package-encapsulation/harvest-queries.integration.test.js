@@ -3,7 +3,7 @@ dotenv.config();
 
 const { getUnbilledTimeEntries } = require("./harvest-queries");
 
-const get = require("../process-env");
+const { get } = require("../process-env");
 
 const testIfAllDefined = (...args) =>
   args.some((key) => get(key) === undefined) ? test.skip : test;

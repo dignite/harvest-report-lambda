@@ -1,5 +1,5 @@
 const fetch = require("node-fetch");
-const get = require("../process-env");
+const { get } = require("../process-env");
 
 module.exports.getUnbilledTimeEntries = async () => {
   const res = await fetch(
