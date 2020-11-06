@@ -5,7 +5,9 @@ const {
   getTimeEntriesError,
 } = require("../__mocks__/mock-service-worker/harvest-handlers");
 
-jest.mock("../process-env", () => (key) => `Value from process.env.${key}`);
+jest.mock("../process-env", () => ({
+  get: (key) => `Value from process.env.${key}`,
+}));
 
 describe(getUnbilledTimeEntries, () => {
   test("should return all billable but unbilled and non-billable hours", async () => {

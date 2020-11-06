@@ -4,7 +4,9 @@ const {
   prepareGetTimeEntriesSuccess,
 } = require("./__mocks__/mock-service-worker/harvest-handlers");
 
-jest.mock("./process-env", () => (key) => `Value from process.env.${key}`);
+jest.mock("./process-env", () => ({
+  get: (key) => `Value from process.env.${key}`,
+}));
 jest.mock("./serializer", () => ({
   serialize: (input) => ({
     "serialize() of": input,
