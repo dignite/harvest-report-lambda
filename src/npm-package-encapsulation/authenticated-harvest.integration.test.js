@@ -1,21 +1,19 @@
 require("dotenv").config();
 const authenticatedHarvest = require("./authenticated-harvest");
-const {
-  HARVEST_ACCESS_TOKEN,
-  HARVEST_ACCOUNT_ID,
-  USER_AGENT_EMAIL,
-} = require("../process-env");
+const { getMandatoryEnvironmentVariable } = require("../process-env");
 
 jest.unmock("harvest");
-jest.unmock("process-env");
++jest.unmock("../process-env");
 
 const testIfAllDefined = (...args) =>
-  args.some((arg) => arg === undefined) ? test.skip : test;
+  args.some((arg) => getMandatoryEnvironmentVariable(arg) === arg)
+    ? test.skip
+    : test;
 
 const testIfEnvSetup = testIfAllDefined(
-  HARVEST_ACCESS_TOKEN,
-  HARVEST_ACCOUNT_ID,
-  USER_AGENT_EMAIL
+  "HARVEST_ACCESS_TOKEN",
+  "HARVEST_ACCOUNT_ID",
+  "USER_AGENT_EMAIL"
 );
 
 describe("authenticatedHarvest integration test", () => {
