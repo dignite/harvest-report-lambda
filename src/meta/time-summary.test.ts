@@ -43,7 +43,7 @@ describe(totalSum, () => {
       id: 3,
       date: "2018-11-06",
       name: "Programming",
-      billableHours: 4.1,
+      billableHours: 4.12,
       cost: 0,
       comment: "",
     };
