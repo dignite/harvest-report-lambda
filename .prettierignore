@@ -10,6 +10,7 @@ jspm_packages
 
 # Test artifacts
 coverage
+*.snap
 
 # Files prettier can't understand anyway
 LICENSE
