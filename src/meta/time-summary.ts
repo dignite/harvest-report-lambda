@@ -31,4 +31,4 @@ export const perWeek = (
 };
 
 const sumPreservingOneDecimal = (value1: number, value2: number) =>
-  (value1 * 10 + value2 * 10) / 10;
+  Math.round(value1 * 10 + value2 * 10) / 10;
