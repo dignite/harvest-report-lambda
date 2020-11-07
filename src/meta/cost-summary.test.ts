@@ -1,8 +1,8 @@
-const costSummary = require("./cost-summary");
+import { totalSum } from "./cost-summary";
 
-describe(costSummary.totalSum, () => {
+describe(totalSum, () => {
   test("should return zero for zero time entries", () => {
-    const result = costSummary.totalSum([]);
+    const result = totalSum([]);
 
     expect(result).toEqual({
       excludingVAT: "0.00 Swedish kronor",
@@ -20,7 +20,7 @@ describe(costSummary.totalSum, () => {
       comment: null,
     };
 
-    const result = costSummary.totalSum([novemberThird]);
+    const result = totalSum([novemberThird]);
 
     expect(result).toEqual({
       excludingVAT: "1000.00 Swedish kronor",
@@ -54,11 +54,7 @@ describe(costSummary.totalSum, () => {
       comment: null,
     };
 
-    const result = costSummary.totalSum([
-      novemberThird,
-      novemberFourth,
-      novemberSixth,
-    ]);
+    const result = totalSum([novemberThird, novemberFourth, novemberSixth]);
 
     expect(result).toEqual({
       excludingVAT: "3514.30 Swedish kronor",
