@@ -1,8 +1,8 @@
-const timeSummary = require("./time-summary");
+import { totalSum, perWeek } from "./time-summary";
 
-describe(timeSummary.totalSum, () => {
+describe(totalSum, () => {
   test("should return zero for zero time entries", () => {
-    const result = timeSummary.totalSum([]);
+    const result = totalSum([]);
 
     expect(result).toEqual(0);
   });
@@ -13,10 +13,11 @@ describe(timeSummary.totalSum, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      cost: 0,
       comment: null,
     };
 
-    const result = timeSummary.totalSum([novemberThird]);
+    const result = totalSum([novemberThird]);
 
     expect(result).toEqual(3.1);
   });
@@ -27,6 +28,7 @@ describe(timeSummary.totalSum, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      cost: 0,
       comment: null,
     };
     const novemberFourth = {
@@ -34,6 +36,7 @@ describe(timeSummary.totalSum, () => {
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
+      cost: 0,
       comment: null,
     };
     const novemberSixth = {
@@ -41,22 +44,19 @@ describe(timeSummary.totalSum, () => {
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.1,
+      cost: 0,
       comment: null,
     };
 
-    const result = timeSummary.totalSum([
-      novemberThird,
-      novemberFourth,
-      novemberSixth,
-    ]);
+    const result = totalSum([novemberThird, novemberFourth, novemberSixth]);
 
     expect(result).toEqual(11.3);
   });
 });
 
-describe(timeSummary.perWeek, () => {
+describe(perWeek, () => {
   test("should return empty object for zero time entries", () => {
-    const result = timeSummary.perWeek([]);
+    const result = perWeek([]);
 
     expect(result).toEqual({});
   });
@@ -67,10 +67,11 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      cost: 0,
       comment: null,
     };
 
-    const result = timeSummary.perWeek([novemberThird]);
+    const result = perWeek([novemberThird]);
 
     expect(result).toEqual({
       w44: 3.1,
@@ -83,6 +84,7 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      cost: 0,
       comment: null,
     };
     const novemberFourth = {
@@ -90,10 +92,11 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
+      cost: 0,
       comment: null,
     };
 
-    const result = timeSummary.perWeek([novemberThird, novemberFourth]);
+    const result = perWeek([novemberThird, novemberFourth]);
 
     expect(result).toEqual({
       w44: 7.2,
@@ -106,6 +109,7 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      cost: 0,
       comment: null,
     };
     const novemberFourth = {
@@ -113,6 +117,7 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
+      cost: 0,
       comment: null,
     };
     const novemberSixth = {
@@ -120,14 +125,11 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.1,
+      cost: 0,
       comment: null,
     };
 
-    const result = timeSummary.perWeek([
-      novemberThird,
-      novemberFourth,
-      novemberSixth,
-    ]);
+    const result = perWeek([novemberThird, novemberFourth, novemberSixth]);
 
     expect(result).toEqual({
       w44: 7.2,
