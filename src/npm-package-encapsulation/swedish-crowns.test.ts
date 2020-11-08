@@ -1,4 +1,4 @@
-const { SEK } = require("./swedish-crowns");
+import { SEK } from "./swedish-crowns";
 
 describe(SEK, () => {
   describe("add", () => {

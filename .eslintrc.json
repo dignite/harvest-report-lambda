@@ -35,7 +35,7 @@
   },
   "overrides": [
     {
-      "files": ["*.test.js"],
+      "files": ["*.test.js", "*.test.ts"],
       "rules": {
         "fp/no-nil": "off",
         "fp/no-unused-expression": "off"
