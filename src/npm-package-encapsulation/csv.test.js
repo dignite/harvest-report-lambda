@@ -14,7 +14,7 @@ describe(csv.csvFromObjectWithBOM, () => {
     const result = csv.csvFromObjectWithBOM(input);
 
     expect(result).toEqual(
-      `${BOM}"one";"two";"three";"pi"\r\n1;2;3;"between 3 and 4"`
+      `${BOM}"one";"two";"three";"pi"\n1;2;3;"between 3 and 4"`
     );
   });
 });
@@ -29,7 +29,7 @@ describe(csv.csvFromObjectWithoutBOM, () => {
 
     const result = csv.csvFromObjectWithoutBOM(input);
 
-    expect(result).toEqual(`"four";"five";"six"\r\ntrue;false;"half a dozen"`);
+    expect(result).toEqual(`"four";"five";"six"\ntrue;false;"half a dozen"`);
   });
 });
 
@@ -44,7 +44,7 @@ describe(csv.csvFromObjectTransposed, () => {
     const result = csv.csvFromObjectTransposed(input);
 
     expect(result).toEqual(
-      `${BOM}"four";true\r\n"five";false\r\n"six";"half a dozen"`
+      `${BOM}"four";true\n"five";false\n"six";"half a dozen"`
     );
   });
 });
