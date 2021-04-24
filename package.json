@@ -8,6 +8,7 @@
     "lint:fix": "prettier \"**/*.*\" --write --loglevel warn && eslint . --fix",
     "pretest": "npm run lint",
     "test": "jest --coverage",
+    "local-invocation": "serverless invoke local --function hours --path ./dummy-event.json",
     "start": "serverless offline start",
     "deploy": "npm run deploy:dev && npm run deploy:prod",
     "deploy:dev": "serverless deploy -v",
