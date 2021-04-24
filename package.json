@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "prettier \"**/!(*.js)\" --check --loglevel warn && eslint .",
     "lint:fix": "prettier \"**/*.*\" --write --loglevel warn && eslint . --fix",
-    "pretest": "npm run lint",
+    "pretest": "npm run lint && npx tsc --noEmit",
     "test": "jest --coverage",
     "local-invocation": "serverless invoke local --function hours",
     "start": "serverless offline start",
