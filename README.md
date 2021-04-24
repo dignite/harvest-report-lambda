@@ -148,7 +148,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors ✒️
 
-- **Daniel Ignat** ([dignite][dignite]) - _Initial work_
+- **Daniel Edholm Ignat** ([dignite][dignite]) - _Initial work_
 
 See also the list of [contributors] who participated in this project.
 
