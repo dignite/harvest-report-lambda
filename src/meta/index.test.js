@@ -1,7 +1,6 @@
 const { hoursMeta } = require("./");
 const mockTimeSummary = require("./time-summary");
 const mockCostSummary = require("./cost-summary");
-const mockServerlessAbsolutePath = require("./serverless-absolute-path");
 
 jest.mock("./time-summary", () => ({
   totalSum: jest.fn(),
@@ -9,9 +8,6 @@ jest.mock("./time-summary", () => ({
 }));
 jest.mock("./cost-summary", () => ({
   totalSum: jest.fn(),
-}));
-jest.mock("./serverless-absolute-path", () => ({
-  resolve: jest.fn(),
 }));
 
 describe(hoursMeta, () => {
@@ -21,50 +17,12 @@ describe(hoursMeta, () => {
     path: "/my-path",
   };
 
-  test("should return status code, endpoint description and csv url", () => {
-    mockServerlessAbsolutePath.resolve.mockImplementation(
-      (event, relativePath) => ({
-        "mockServerlessAbsolutePath.resolve() of": {
-          event,
-          relativePath,
-        },
-      })
-    );
-
+  test("should return status code and endpoint description", () => {
     const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
 
     expect(result).toEqual({
       description:
         "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
-      csvFile: mockServerlessAbsolutePath.resolve(
-        jsonRouteEvent,
-        jsonRouteEvent.path + ".csv"
-      ),
-    });
-  });
-
-  test("should return status code, endpoint description and json url if on csv path", () => {
-    const csvRouteEvent = {
-      path: jsonRouteEvent.path + ".csv",
-    };
-    mockServerlessAbsolutePath.resolve.mockImplementation(
-      (event, relativePath) => ({
-        "mockServerlessAbsolutePath.resolve() of": {
-          event,
-          relativePath,
-        },
-      })
-    );
-
-    const result = hoursMeta(relevantTimeEntries, csvRouteEvent);
-
-    expect(result).toEqual({
-      description:
-        "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
-      jsonFile: mockServerlessAbsolutePath.resolve(
-        csvRouteEvent,
-        jsonRouteEvent.path
-      ),
     });
   });
 
