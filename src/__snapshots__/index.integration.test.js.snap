@@ -2,27 +2,7 @@
 
 exports[`hours integration test with all real modules except those in the folder __mocks__ should return meta data for time entries and relevant time entries per day 1`] = `
 Object {
-  "body": "{\\"meta\\":{\\"description\\":\\"*All* unbilled billable hours, and any non-billable hours logged for the current month.\\",\\"totalUnbilledHours\\":10.7,\\"totalUnbilledHoursPerWeek\\":{\\"w45\\":10.7},\\"unbilledInvoice\\":{\\"excludingVAT\\":\\"2354.00 Swedish kronor\\",\\"includingVAT\\":\\"2942.50 Swedish kronor\\"},\\"csvFile\\":\\"https://example.uri/integration-test/my-path.csv\\"},\\"timeEntriesPerDay\\":[{\\"date\\":\\"2020-11-06\\",\\"name\\":\\"Programmering\\",\\"billableHours\\":8,\\"comment\\":null},{\\"date\\":\\"2020-11-05\\",\\"name\\":\\"Programmering\\",\\"billableHours\\":2.7,\\"comment\\":null}]}",
-  "statusCode": 200,
-}
-`;
-
-exports[`hoursCsv integration test with all real modules except those in the folder __mocks__ should return status code and attachment file name and csv containing meta and per-day entries 1`] = `
-Object {
-  "body": "﻿\\"description\\";\\"*All* unbilled billable hours, and any non-billable hours logged for the current month.\\"
-\\"totalUnbilledHours\\";10.7
-\\"totalUnbilledHoursPerWeek\\";\\"{\\"\\"w45\\"\\":10.7,\\"\\"w29\\"\\":0}\\"
-\\"unbilledInvoice\\";\\"{\\"\\"excludingVAT\\"\\":\\"\\"2354.00 Swedish kronor\\"\\",\\"\\"includingVAT\\"\\":\\"\\"2942.50 Swedish kronor\\"\\"}\\"
-\\"csvFile\\";\\"https://example.uri/integration-test/my-path.csv\\"
-
-\\"date\\";\\"name\\";\\"billableHours\\";\\"comment\\"
-\\"2020-11-06\\";\\"Programmering\\";8;
-\\"2020-11-05\\";\\"Programmering\\";2.7;
-\\"2019-07-17\\";\\"Ledig\\";0;
-\\"2019-07-16\\";\\"Ledig\\";0;",
-  "headers": Object {
-    "Content-Disposition": "attachment; filename=unbilled-hours-2011-11-22.csv",
-  },
+  "body": "{\\"meta\\":{\\"description\\":\\"*All* unbilled billable hours, and any non-billable hours logged for the current month.\\",\\"totalUnbilledHours\\":10.7,\\"totalUnbilledHoursPerWeek\\":{\\"w45\\":10.7},\\"unbilledInvoice\\":{\\"excludingVAT\\":\\"2354.00 Swedish kronor\\",\\"includingVAT\\":\\"2942.50 Swedish kronor\\"}},\\"timeEntriesPerDay\\":[{\\"date\\":\\"2020-11-06\\",\\"name\\":\\"Programmering\\",\\"billableHours\\":8,\\"comment\\":null},{\\"date\\":\\"2020-11-05\\",\\"name\\":\\"Programmering\\",\\"billableHours\\":2.7,\\"comment\\":null}]}",
   "statusCode": 200,
 }
 `;

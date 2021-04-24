@@ -12,8 +12,7 @@
     "unbilledInvoice": {
       "excludingVAT": "2317.00 Swedish kronor",
       "includingVAT": "2896.25 Swedish kronor"
-    },
-    "csvFile": "http://localhost:3000/00000000-0000-0000-0000-000000000000.csv"
+    }
   },
   "timeEntriesPerDay": [
     {

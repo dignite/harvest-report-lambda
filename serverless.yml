@@ -21,15 +21,6 @@ functions:
     environment:
       HARVEST_ACCESS_TOKEN: ${env:HARVEST_ACCESS_TOKEN}
       HARVEST_ACCOUNT_ID: ${env:HARVEST_ACCOUNT_ID}
-  hoursCsv:
-    handler: src/index.hoursCsv
-    events:
-      - http:
-          path: /${env:SECRET_URL_SLUG}.csv
-          method: get
-    environment:
-      HARVEST_ACCESS_TOKEN: ${env:HARVEST_ACCESS_TOKEN}
-      HARVEST_ACCOUNT_ID: ${env:HARVEST_ACCOUNT_ID}
   rootPath:
     handler: src/index.root
     events:
