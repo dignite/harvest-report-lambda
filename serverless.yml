@@ -28,6 +28,22 @@ functions:
           path: /
           method: get
 
+package:
+  exclude:
+    - .github/**
+    - .vscode/**
+    - examples/**
+    - .env.example
+    - .eslintignore
+    - .eslintrc.json
+    - .gitattributes
+    - .prettierignore
+    - .prettierrc.json
+    - CONTRIBUTING.md
+    - "**/*.test.js"
+    - "**/__mocks__/*.*"
+    - "**/__snapshots__/*.*"
+
 plugins:
   - serverless-offline
   - serverless-dotenv-plugin
