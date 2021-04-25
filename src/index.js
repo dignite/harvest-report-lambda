@@ -12,12 +12,12 @@ module.exports.root = async () => {
   };
 };
 
-module.exports.hours = async (event) => {
+module.exports.hours = async () => {
   const relevantTimeEntries = await timeEntries.getRelevantUnbilled();
   return {
     statusCode: 200,
     body: serialize({
-      meta: hoursMeta(relevantTimeEntries, event),
+      meta: hoursMeta(relevantTimeEntries),
       timeEntriesPerDay: timePerDay.merge(relevantTimeEntries),
     }),
   };

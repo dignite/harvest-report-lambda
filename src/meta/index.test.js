@@ -13,12 +13,8 @@ jest.mock("./cost-summary", () => ({
 describe(hoursMeta, () => {
   const relevantTimeEntries = ["fake-time-entry-1", "fake-time-entry-2"];
 
-  const jsonRouteEvent = {
-    path: "/my-path",
-  };
-
   test("should return status code and endpoint description", () => {
-    const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
+    const result = hoursMeta(relevantTimeEntries);
 
     expect(result).toEqual({
       description:
@@ -31,7 +27,7 @@ describe(hoursMeta, () => {
       "mockTimeSummary.totalSum() of": input,
     }));
 
-    const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
+    const result = hoursMeta(relevantTimeEntries);
 
     expect(result).toEqual(
       expect.objectContaining({
@@ -45,7 +41,7 @@ describe(hoursMeta, () => {
       "mockTimeSummary.totalSum() of": input,
     }));
 
-    const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
+    const result = hoursMeta(relevantTimeEntries);
 
     expect(result).toEqual(
       expect.objectContaining({
@@ -59,7 +55,7 @@ describe(hoursMeta, () => {
       "mockCostSummary.totalSum() of": input,
     }));
 
-    const result = hoursMeta(relevantTimeEntries, jsonRouteEvent);
+    const result = hoursMeta(relevantTimeEntries);
 
     expect(result).toEqual(
       expect.objectContaining({
