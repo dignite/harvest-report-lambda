@@ -1,66 +1,69 @@
 const { hoursMeta } = require("./");
-const mockTimeSummary = require("./time-summary");
-const mockCostSummary = require("./cost-summary");
-
-jest.mock("./time-summary", () => ({
-  totalSum: jest.fn(),
-  perWeek: jest.fn(),
-}));
-jest.mock("./cost-summary", () => ({
-  totalSum: jest.fn(),
-}));
 
 describe(hoursMeta, () => {
-  const relevantTimeEntries = ["fake-time-entry-1", "fake-time-entry-2"];
+  const novemberThird = {
+    id: 1,
+    date: "2018-11-03",
+    name: "Programming",
+    billableHours: 3.1,
+    cost: 964.1,
+    comment: null,
+  };
+  const novemberFourth = {
+    id: 2,
+    date: "2018-11-04",
+    name: "Programming",
+    billableHours: 4.1,
+    cost: 1275.1,
+    comment: null,
+  };
+  const novemberSixth = {
+    id: 3,
+    date: "2018-11-06",
+    name: "Programming",
+    billableHours: 4.1,
+    cost: 1275.1,
+    comment: null,
+  };
+  const relevantTimeEntries = [novemberThird, novemberFourth, novemberSixth];
 
   test("should return status code and endpoint description", () => {
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result).toEqual({
-      description:
-        "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
-    });
+    expect(result.description).toEqual(
+      "*All* unbilled billable hours, and any non-billable hours logged for the current month."
+    );
   });
 
   test("should return total unbilled billable hours", () => {
-    mockTimeSummary.totalSum.mockImplementation((input) => ({
-      "mockTimeSummary.totalSum() of": input,
-    }));
-
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result).toEqual(
-      expect.objectContaining({
-        totalUnbilledHours: mockTimeSummary.totalSum(relevantTimeEntries),
-      })
-    );
+    expect(result.totalUnbilledHours).toEqual(11.3);
   });
 
   test("should return total unbilled billable hours per week", () => {
-    mockTimeSummary.totalSum.mockImplementation((input) => ({
-      "mockTimeSummary.totalSum() of": input,
-    }));
-
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result).toEqual(
-      expect.objectContaining({
-        totalUnbilledHoursPerWeek: mockTimeSummary.perWeek(relevantTimeEntries),
-      })
-    );
+    expect(result.totalUnbilledHoursPerWeek).toEqual({ w44: 7.2, w45: 4.1 });
   });
 
   test("should return total unbilled invoice size", () => {
-    mockCostSummary.totalSum.mockImplementation((input) => ({
-      "mockCostSummary.totalSum() of": input,
-    }));
-
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result).toEqual(
-      expect.objectContaining({
-        unbilledInvoice: mockCostSummary.totalSum(relevantTimeEntries),
-      })
-    );
+    expect(result.unbilledInvoice).toEqual({
+      excludingVAT: "3514.30 Swedish kronor",
+      includingVAT: "4392.88 Swedish kronor",
+    });
+  });
+
+  test("should not return anything unexpected", () => {
+    const result = hoursMeta(relevantTimeEntries);
+
+    expect(Object.keys(result)).toEqual([
+      "description",
+      "totalUnbilledHours",
+      "totalUnbilledHoursPerWeek",
+      "unbilledInvoice",
+    ]);
   });
 });
