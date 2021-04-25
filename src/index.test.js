@@ -30,26 +30,21 @@ describe(functions.root, () => {
 });
 
 describe(functions.hours, () => {
-  const event = {
-    path: "/my-path",
-  };
-
   test("should return meta data for time entries", async () => {
     const relevantTimeEntries = ["fakeTimeEntry1", "fakeTimeEntry2"];
     mockTimeEntries.getRelevantUnbilled.mockReturnValue(relevantTimeEntries);
-    mockMeta.hoursMeta.mockImplementation((timeEntries, event) => ({
+    mockMeta.hoursMeta.mockImplementation((timeEntries) => ({
       "hoursMeta() of": {
         timeEntries,
-        event,
       },
     }));
 
-    const result = await functions.hours(event);
+    const result = await functions.hours();
 
     expect(result).toEqual(
       expect.objectContaining({
         body: mockSerializer.serialize({
-          meta: mockMeta.hoursMeta(relevantTimeEntries, event),
+          meta: mockMeta.hoursMeta(relevantTimeEntries),
         }),
         statusCode: 200,
       })
@@ -63,7 +58,7 @@ describe(functions.hours, () => {
       "mockTimePerDay.merge() of": input,
     }));
 
-    const result = await functions.hours(event);
+    const result = await functions.hours();
 
     expect(result).toEqual(
       expect.objectContaining({
