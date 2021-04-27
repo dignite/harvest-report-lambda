@@ -1,4 +1,4 @@
-const { hoursMeta } = require("./");
+import { hoursMeta } from "./";
 
 describe(hoursMeta, () => {
   const novemberThird = {
