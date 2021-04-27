@@ -14,7 +14,7 @@
     "deploy:dev": "serverless deploy -v",
     "deploy:prod": "serverless deploy -v --stage prod",
     "remove-deploys": "serverless remove -v && serverless remove -v --stage prod",
-    "check-all-pull-request-commits": "git rebase origin/master --exec \"npm run test && npm run local-invocation\""
+    "check-all-pull-request-commits": "git rebase origin/main --exec \"npm run test && npm run local-invocation\""
   },
   "author": "Daniel Edholm Ignat",
   "license": "MIT",
