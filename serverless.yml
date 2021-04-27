@@ -16,11 +16,11 @@ functions:
     handler: src/index.hours
     events:
       - http:
-          path: /${env:SECRET_URL_SLUG}
+          path: /${self:custom.dotenvVars.SECRET_URL_SLUG}
           method: get
     environment:
-      HARVEST_ACCESS_TOKEN: ${env:HARVEST_ACCESS_TOKEN}
-      HARVEST_ACCOUNT_ID: ${env:HARVEST_ACCOUNT_ID}
+      HARVEST_ACCESS_TOKEN: ${self:custom.dotenvVars.HARVEST_ACCESS_TOKEN}
+      HARVEST_ACCOUNT_ID: ${self:custom.dotenvVars.HARVEST_ACCOUNT_ID}
   rootPath:
     handler: src/index.root
     events:
@@ -33,6 +33,7 @@ package:
     - .github/**
     - .vscode/**
     - examples/**
+    - .env
     - .env.example
     - .eslintignore
     - .eslintrc.json
@@ -46,4 +47,8 @@ package:
 
 plugins:
   - serverless-offline
-  - serverless-dotenv-plugin
+
+custom:
+  # Do this if you only want to load env vars into the Serverless environment
+  # This will make env vars available here and in any Serverless plugins
+  dotenvVars: ${file(src/load-dotenv-into-serverless-yml.js)}

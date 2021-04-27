@@ -41,7 +41,6 @@
     "mockdate": "^3.0.2",
     "prettier": "2.1.2",
     "serverless": "^2.9.0",
-    "serverless-dotenv-plugin": "^3.1.0",
     "serverless-offline": "^6.8.0"
   },
   "dependencies": {
