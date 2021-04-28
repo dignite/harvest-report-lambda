@@ -2,38 +2,78 @@
 /* eslint-disable fp/no-nil */
 /* eslint-disable fp/no-mutation */
 
-module.exports = class FakeHarvest {
-  constructor(options) {
-    this.options = options;
-    this.timeEntries = {
-      list: () => ({
-        time_entries: [
-          timeEntry1,
-          timeEntry2,
-          timeEntry3,
-          timeEntry4,
-          timeEntry5,
-        ],
-        per_page: 100,
-        total_pages: 1,
-        total_entries: 5,
-        next_page: null,
-        previous_page: null,
-        page: 1,
-        links: {
-          first:
-            "https://api.harvestapp.com/v2/time_entries?page=1&per_page=100&ref=first",
-          next: null,
-          previous: null,
-          last:
-            "https://api.harvestapp.com/v2/time_entries?page=1&per_page=100&ref=last",
-        },
-      }),
-    };
-  }
+import {
+  TimeEntriesPagenationParameters,
+  TimeEntriesPagenationResponse,
+  TimeEntry,
+} from "harvest/dist/models/timeEntries.models";
+
+type PatchedTimeEntry = Omit<
+  TimeEntry,
+  | "external_reference"
+  | "invoice"
+  | "notes"
+  | "locked_reason"
+  | "timer_started_at"
+  | "billable_rate"
+  | "cost_rate"
+> & {
+  rounded_hours: number;
+  external_reference: Pick<TimeEntry, "external_reference"> | null;
+  invoice: Pick<TimeEntry, "invoice"> | null;
+  notes: Pick<TimeEntry, "notes"> | null;
+  locked_reason: Pick<TimeEntry, "locked_reason"> | null;
+  timer_started_at: Pick<TimeEntry, "timer_started_at"> | null;
+  billable_rate: number | null;
+  cost_rate: Pick<TimeEntry, "cost_rate"> | null;
 };
 
-const timeEntry1 = {
+type PatchedTimeEntriesPagenationResponse = Omit<
+  TimeEntriesPagenationResponse,
+  "time_entries"
+> & {
+  time_entries: PatchedTimeEntry[];
+};
+
+export default class FakeHarvest {
+  options: unknown;
+  timeEntries: {
+    list(
+      query?: TimeEntriesPagenationParameters
+    ): Promise<PatchedTimeEntriesPagenationResponse>;
+  };
+  constructor(options: unknown) {
+    this.options = options;
+    this.timeEntries = {
+      list: async () =>
+        Promise.resolve({
+          time_entries: [
+            timeEntry1,
+            timeEntry2,
+            timeEntry3,
+            timeEntry4,
+            timeEntry5,
+          ],
+          per_page: 100,
+          total_pages: 1,
+          total_entries: 5,
+          next_page: null,
+          previous_page: null,
+          page: 1,
+          links: {
+            first:
+              "https://api.harvestapp.com/v2/time_entries?page=1&per_page=100&ref=first",
+            next: null,
+            previous: null,
+            last:
+              "https://api.harvestapp.com/v2/time_entries?page=1&per_page=100&ref=last",
+          },
+        }),
+    };
+  }
+}
+
+const timeEntry1: PatchedTimeEntry = {
   id: 1,
   spent_date: "2020-11-06",
   hours: 3.48,
@@ -94,7 +134,7 @@ const timeEntry1 = {
   external_reference: null,
 };
 
-const timeEntry2 = {
+const timeEntry2: PatchedTimeEntry = {
   id: 2,
   spent_date: "2020-11-06",
   hours: 4.53,
@@ -155,7 +195,7 @@ const timeEntry2 = {
   external_reference: null,
 };
 
-const timeEntry3 = {
+const timeEntry3: PatchedTimeEntry = {
   id: 3,
   spent_date: "2020-11-05",
   hours: 2.7,
@@ -277,7 +317,7 @@ const timeEntry4 = {
   external_reference: null,
 };
 
-const timeEntry5 = {
+const timeEntry5: PatchedTimeEntry = {
   id: 5,
   spent_date: "2019-07-16",
   hours: 8,
