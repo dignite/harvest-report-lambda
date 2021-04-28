@@ -5,7 +5,7 @@ import {
 import { startOfMonth } from "./date";
 import { SEK } from "./npm-package-encapsulation/swedish-crowns";
 
-interface HarvestReportLambdaTimeEntry {
+export interface HarvestReportLambdaTimeEntry {
   id: SimplifiedUnbilledTimeEntry["id"];
   date: SimplifiedUnbilledTimeEntry["date"];
   name: SimplifiedUnbilledTimeEntry["name"];
