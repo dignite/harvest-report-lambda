@@ -1,93 +1,94 @@
-const timePerDay = require("./time-per-day");
+import { merge } from "./time-per-day";
+import { HarvestReportLambdaTimeEntry } from "./time-entries";
 
-describe(timePerDay.merge, () => {
-  test("should throw if not provided time entries", () => {
-    expect(() => timePerDay.merge()).toThrowError(
-      new Error("First argument timeEntries not provided!")
-    );
-  });
-
+describe(merge, () => {
   test("should return distinct time entries as-is without id", () => {
-    const novemberThird = {
+    const novemberThird: HarvestReportLambdaTimeEntry = {
       id: 1,
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null,
+      comment: "",
+      cost: 3,
     };
-    const novemberFourth = {
+    const novemberFourth: HarvestReportLambdaTimeEntry = {
       id: 3,
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
-      comment: null,
+      comment: "",
+      cost: 3,
     };
     const listWithNoDateClashes = [novemberThird, novemberFourth];
     const input = listWithNoDateClashes;
 
-    const result = timePerDay.merge(input);
+    const result = merge(input);
 
     expect(result).toEqual([
       {
         date: "2018-11-03",
         name: "Programming",
         billableHours: 3.1,
-        comment: null,
+        comment: "",
       },
       {
         date: "2018-11-04",
         name: "Programming",
         billableHours: 4.1,
-        comment: null,
+        comment: "",
       },
     ]);
   });
 
   test("should merge morning and afternoon work time entries", () => {
-    const novemberThird = {
+    const novemberThird: HarvestReportLambdaTimeEntry = {
       id: 1,
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null,
+      comment: "",
+      cost: 3,
     };
-    const novemberThirdAfterLunch = {
+    const novemberThirdAfterLunch: HarvestReportLambdaTimeEntry = {
       id: 2,
       date: "2018-11-03",
       name: "Programming",
       billableHours: 5,
-      comment: null,
+      comment: "",
+      cost: 3,
     };
 
-    const result = timePerDay.merge([novemberThird, novemberThirdAfterLunch]);
+    const result = merge([novemberThird, novemberThirdAfterLunch]);
 
     expect(result).toEqual([
       {
         date: "2018-11-03",
         name: "Programming",
         billableHours: 8.1,
-        comment: null,
+        comment: "",
       },
     ]);
   });
 
   test("should merge morning and afternoon vacation time entries", () => {
-    const novemberFifthVacation = {
+    const novemberFifthVacation: HarvestReportLambdaTimeEntry = {
       id: 4,
       date: "2018-11-05",
       name: "Vacation",
       billableHours: 0,
-      comment: null,
+      comment: "",
+      cost: 0,
     };
-    const novemberFifthVacationAfterLunch = {
+    const novemberFifthVacationAfterLunch: HarvestReportLambdaTimeEntry = {
       id: 5,
       date: "2018-11-05",
       name: "Vacation",
       billableHours: 0,
-      comment: null,
+      comment: "",
+      cost: 0,
     };
 
-    const result = timePerDay.merge([
+    const result = merge([
       novemberFifthVacation,
       novemberFifthVacationAfterLunch,
     ]);
@@ -97,59 +98,60 @@ describe(timePerDay.merge, () => {
         date: "2018-11-05",
         name: "Vacation",
         billableHours: 0,
-        comment: null,
+        comment: "",
       },
     ]);
   });
 
   test("should merge half sick day (sick in the afternoon)", () => {
-    const novemberSixth = {
+    const novemberSixth: HarvestReportLambdaTimeEntry = {
       id: 6,
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.1,
-      comment: null,
+      comment: "",
+      cost: 3,
     };
-    const novemberSixthSickAfterLunch = {
+    const novemberSixthSickAfterLunch: HarvestReportLambdaTimeEntry = {
       id: 7,
       date: "2018-11-06",
       name: "Sick",
       billableHours: 0,
-      comment: null,
+      comment: "",
+      cost: 3,
     };
 
-    const result = timePerDay.merge([
-      novemberSixth,
-      novemberSixthSickAfterLunch,
-    ]);
+    const result = merge([novemberSixth, novemberSixthSickAfterLunch]);
 
     expect(result).toEqual([
       {
         date: "2018-11-06",
         name: "Programming + Sick",
         billableHours: 4.1,
-        comment: null,
+        comment: "",
       },
     ]);
   });
 
   test("should merge half sick day (sick in the morning)", () => {
-    const novemberSeventhSickMorning = {
+    const novemberSeventhSickMorning: HarvestReportLambdaTimeEntry = {
       id: 8,
       date: "2018-11-07",
       name: "Sick",
       billableHours: 0,
-      comment: null,
+      comment: "",
+      cost: 0,
     };
-    const novemberSeventhAfterLunch = {
+    const novemberSeventhAfterLunch: HarvestReportLambdaTimeEntry = {
       id: 9,
       date: "2018-11-07",
       name: "Programming",
       billableHours: 5,
-      comment: null,
+      comment: "",
+      cost: 3,
     };
 
-    const result = timePerDay.merge([
+    const result = merge([
       novemberSeventhSickMorning,
       novemberSeventhAfterLunch,
     ]);
@@ -159,7 +161,7 @@ describe(timePerDay.merge, () => {
         date: "2018-11-07",
         name: "Sick + Programming",
         billableHours: 5,
-        comment: null,
+        comment: "",
       },
     ]);
   });

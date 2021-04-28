@@ -7,7 +7,7 @@ describe(hoursMeta, () => {
     name: "Programming",
     billableHours: 3.1,
     cost: 964.1,
-    comment: null,
+    comment: "",
   };
   const novemberFourth = {
     id: 2,
@@ -15,7 +15,7 @@ describe(hoursMeta, () => {
     name: "Programming",
     billableHours: 4.1,
     cost: 1275.1,
-    comment: null,
+    comment: "",
   };
   const novemberSixth = {
     id: 3,
@@ -23,7 +23,7 @@ describe(hoursMeta, () => {
     name: "Programming",
     billableHours: 4.1,
     cost: 1275.1,
-    comment: null,
+    comment: "",
   };
   const relevantTimeEntries = [novemberThird, novemberFourth, novemberSixth];
 

@@ -13,7 +13,7 @@ describe(timeSummary.totalSum, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null,
+      comment: "",
     };
 
     const result = timeSummary.totalSum([novemberThird]);
@@ -27,21 +27,21 @@ describe(timeSummary.totalSum, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null,
+      comment: "",
     };
     const novemberFourth = {
       id: 2,
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
-      comment: null,
+      comment: "",
     };
     const novemberSixth = {
       id: 3,
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.1,
-      comment: null,
+      comment: "",
     };
 
     const result = timeSummary.totalSum([
@@ -67,7 +67,7 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null,
+      comment: "",
     };
 
     const result = timeSummary.perWeek([novemberThird]);
@@ -83,14 +83,14 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null,
+      comment: "",
     };
     const novemberFourth = {
       id: 2,
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
-      comment: null,
+      comment: "",
     };
 
     const result = timeSummary.perWeek([novemberThird, novemberFourth]);
@@ -106,21 +106,21 @@ describe(timeSummary.perWeek, () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
-      comment: null,
+      comment: "",
     };
     const novemberFourth = {
       id: 2,
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
-      comment: null,
+      comment: "",
     };
     const novemberSixth = {
       id: 3,
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.1,
-      comment: null,
+      comment: "",
     };
 
     const result = timeSummary.perWeek([
