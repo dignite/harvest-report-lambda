@@ -30,6 +30,7 @@ functions:
 
 package:
   exclude:
+    - .build/**
     - .github/**
     - .vscode/**
     - examples/**
