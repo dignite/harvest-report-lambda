@@ -2,7 +2,7 @@
 
 exports[`hours integration test with all real modules except those in the folder __mocks__ should return meta data for time entries and relevant time entries per day 1`] = `
 Object {
-  "body": "{\\"meta\\":{\\"description\\":\\"*All* unbilled billable hours, and any non-billable hours logged for the current month.\\",\\"totalUnbilledHours\\":10.7,\\"totalUnbilledHoursPerWeek\\":{\\"w45\\":10.7},\\"unbilledInvoice\\":{\\"excludingVAT\\":\\"2354.00 Swedish kronor\\",\\"includingVAT\\":\\"2942.50 Swedish kronor\\"}},\\"timeEntriesPerDay\\":[{\\"date\\":\\"2020-11-06\\",\\"name\\":\\"Programmering\\",\\"billableHours\\":8,\\"comment\\":null},{\\"date\\":\\"2020-11-05\\",\\"name\\":\\"Programmering\\",\\"billableHours\\":2.7,\\"comment\\":null}]}",
+  "body": "{\\"meta\\":{\\"description\\":\\"*All* unbilled billable hours, and any non-billable hours logged for the current month.\\",\\"totalUnbilledHours\\":10.7,\\"totalUnbilledHoursPerWeek\\":{\\"w45\\":10.7},\\"unbilledInvoice\\":{\\"excludingVAT\\":\\"2354.00 Swedish kronor\\",\\"includingVAT\\":\\"2942.50 Swedish kronor\\"}},\\"timeEntriesPerDay\\":[{\\"date\\":\\"2020-11-06\\",\\"name\\":\\"Programmering\\",\\"billableHours\\":8},{\\"date\\":\\"2020-11-05\\",\\"name\\":\\"Programmering\\",\\"billableHours\\":2.7}]}",
   "statusCode": 200,
 }
 `;

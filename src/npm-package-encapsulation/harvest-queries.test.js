@@ -1,67 +1,15 @@
-const timeEntries = require("./time-entries");
-const mockHarvestApi = require("./npm-package-encapsulation/authenticated-harvest");
+const { getUnbilledTimeEntries } = require("./harvest-queries");
+const mockHarvestApi = require("./authenticated-harvest");
 const { when } = require("jest-when");
 
-jest.mock("./npm-package-encapsulation/authenticated-harvest", () => ({
+jest.mock("./authenticated-harvest", () => ({
   timeEntries: {
     list: jest.fn(),
   },
 }));
 
-jest.mock("./date", () => ({
-  startOfMonth: () => Date.parse("2018-11-01"),
-}));
-
-describe(timeEntries.getRelevantUnbilled, () => {
-  test("should return all unbilled billable hours", async () => {
-    setupReturnTimeEntries(
-      unbilledBillableDecember,
-      billedBillableFebruary,
-      unbilledBillableJanuary
-    );
-
-    const result = await timeEntries.getRelevantUnbilled();
-
-    const expected = [
-      {
-        id: 1,
-        date: "2018-11-04",
-        name: "Programming",
-        billableHours: 4.1,
-        cost: 548.17,
-      },
-      {
-        id: 4,
-        date: "2018-01-01",
-        name: "Programming",
-        billableHours: 7.0,
-        cost: 935.9,
-      },
-    ];
-    expect(result).toEqual(expect.arrayContaining(expected));
-  });
-
-  test("should return non-billable hours from the current month", async () => {
-    setupReturnTimeEntries(
-      unbilledUnbillableDecember,
-      unbilledUnbillableJanuary
-    );
-
-    const result = await timeEntries.getRelevantUnbilled();
-
-    const expected = [
-      {
-        id: 2,
-        date: "2018-11-03",
-        name: "Vacation",
-        billableHours: 0,
-        cost: 0,
-      },
-    ];
-    expect(result).toEqual(expect.arrayContaining(expected));
-  });
-
-  test("should not return anything but unbilled billable hours and non-billable hours from the current month", async () => {
+describe(getUnbilledTimeEntries, () => {
+  test("should return all billable but unbilled and non-billable hours", async () => {
     setupReturnTimeEntries(
       unbilledBillableDecember,
       unbilledUnbillableDecember,
@@ -70,11 +18,57 @@ describe(timeEntries.getRelevantUnbilled, () => {
       unbilledUnbillableJanuary
     );
 
-    const result = await timeEntries.getRelevantUnbilled();
-    const actualIds = result.map((timeEntry) => timeEntry.id);
+    const result = await getUnbilledTimeEntries();
 
-    const expectedIds = [1, 2, 4];
-    expect(actualIds).toEqual(expectedIds);
+    const expected = [
+      {
+        billable: true,
+        billableRate: 133.7,
+        date: "2018-11-04",
+        hours: 4.12,
+        id: 1,
+        isBilled: false,
+        name: "Programming",
+      },
+      {
+        billable: false,
+        billableRate: 0,
+        comment: "Umeå",
+        date: "2018-11-03",
+        hours: 8,
+        id: 2,
+        isBilled: false,
+        name: "Vacation",
+      },
+      {
+        billable: true,
+        billableRate: 133.7,
+        date: "2018-02-01",
+        hours: 7.01,
+        id: 3,
+        isBilled: true,
+        name: "Programming",
+      },
+      {
+        billable: true,
+        billableRate: 133.7,
+        date: "2018-01-01",
+        hours: 7.01,
+        id: 4,
+        isBilled: false,
+        name: "Programming",
+      },
+      {
+        billable: false,
+        billableRate: 0,
+        date: "2018-01-01",
+        hours: 6,
+        id: 5,
+        isBilled: false,
+        name: "Vacation",
+      },
+    ];
+    expect(result).toEqual(expect.arrayContaining(expected));
   });
 
   const setupReturnTimeEntries = (...entries) =>
@@ -107,7 +101,7 @@ describe(timeEntries.getRelevantUnbilled, () => {
     billable: false,
     billable_rate: null,
     hours: 8,
-    notes: null,
+    notes: "Umeå",
   };
 
   const billedBillableFebruary = {

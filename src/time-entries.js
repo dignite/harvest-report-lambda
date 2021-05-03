@@ -1,37 +1,35 @@
-const harvest = require("./npm-package-encapsulation/authenticated-harvest");
+const {
+  getUnbilledTimeEntries,
+} = require("./npm-package-encapsulation/harvest-queries");
 const { startOfMonth } = require("./date");
 const { SEK } = require("./npm-package-encapsulation/swedish-crowns");
 
 const getRelevantUnbilled = async () => {
-  const timeEntriesResponse = await harvest.timeEntries.list({
-    is_billed: "false",
-  });
-  const unbilledTimeEntries = timeEntriesResponse.time_entries.filter(
-    isNotBilled
-  );
+  const timeEntries = await getUnbilledTimeEntries();
+  const unbilledTimeEntries = timeEntries.filter(isNotBilled);
   const relevantUnbilledEntries = unbilledTimeEntries.filter(
     fromThisMonthUnlessBillable
   );
-  const mappedTimeEntries = relevantUnbilledEntries.map((timeEntry) => {
+  const timeEntriesWithCost = relevantUnbilledEntries.map((timeEntry) => {
     const billableHours =
-      timeEntry.billable && timeEntry.billable_rate
+      timeEntry.billable && timeEntry.billableRate
         ? roundToNearestSixMinutes(timeEntry.hours)
         : 0;
     return {
       id: timeEntry.id,
-      date: timeEntry.spent_date,
-      name: timeEntry.task.name,
+      date: timeEntry.date,
+      name: timeEntry.name,
       billableHours,
-      cost: SEK(billableHours).multiply(timeEntry.billable_rate).getAmount(),
-      comment: timeEntry.notes,
+      cost: SEK(billableHours).multiply(timeEntry.billableRate).getAmount(),
+      comment: timeEntry.comment,
     };
   });
-  return mappedTimeEntries;
+  return timeEntriesWithCost;
 };
 
-const isNotBilled = (timeEntry) => !timeEntry.is_billed;
+const isNotBilled = (timeEntry) => !timeEntry.isBilled;
 const fromThisMonthUnlessBillable = (timeEntry) =>
-  timeEntry.billable || Date.parse(timeEntry.spent_date) >= startOfMonth();
+  timeEntry.billable || Date.parse(timeEntry.date) >= startOfMonth();
 const roundToNearestSixMinutes = (hours) => Math.round(hours * 10) / 10;
 
 module.exports.getRelevantUnbilled = getRelevantUnbilled;
