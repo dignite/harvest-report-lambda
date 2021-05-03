@@ -1,12 +1,9 @@
 const timeEntries = require("./time-entries");
-const mockHarvestApi = require("./npm-package-encapsulation/authenticated-harvest");
-const { when } = require("jest-when");
+const {
+  getUnbilledTimeEntries,
+} = require("./npm-package-encapsulation/harvest-queries");
 
-jest.mock("./npm-package-encapsulation/authenticated-harvest", () => ({
-  timeEntries: {
-    list: jest.fn(),
-  },
-}));
+jest.mock("./npm-package-encapsulation/harvest-queries");
 
 jest.mock("./date", () => ({
   startOfMonth: () => Date.parse("2018-11-01"),
@@ -24,18 +21,18 @@ describe(timeEntries.getRelevantUnbilled, () => {
 
     const expected = [
       {
-        id: 1,
-        date: "2018-11-04",
-        name: "Programming",
         billableHours: 4.1,
         cost: 548.17,
+        date: "2018-11-04",
+        id: 1,
+        name: "Programming",
       },
       {
-        id: 4,
-        date: "2018-01-01",
-        name: "Programming",
         billableHours: 7.0,
         cost: 935.9,
+        date: "2018-01-01",
+        id: 4,
+        name: "Programming",
       },
     ];
     expect(result).toEqual(expect.arrayContaining(expected));
@@ -51,11 +48,12 @@ describe(timeEntries.getRelevantUnbilled, () => {
 
     const expected = [
       {
-        id: 2,
-        date: "2018-11-03",
-        name: "Vacation",
         billableHours: 0,
+        comment: "Umeå",
         cost: 0,
+        date: "2018-11-03",
+        id: 2,
+        name: "Vacation",
       },
     ];
     expect(result).toEqual(expect.arrayContaining(expected));
@@ -78,74 +76,56 @@ describe(timeEntries.getRelevantUnbilled, () => {
   });
 
   const setupReturnTimeEntries = (...entries) =>
-    when(mockHarvestApi.timeEntries.list)
-      .calledWith({ is_billed: "false" })
-      .mockReturnValue({
-        time_entries: entries,
-      });
+    getUnbilledTimeEntries.mockReturnValue(entries);
 
   const unbilledBillableDecember = {
-    id: 1,
-    spent_date: "2018-11-04",
-    task: {
-      name: "Programming",
-    },
-    is_billed: false,
     billable: true,
-    billable_rate: 133.7,
+    billableRate: 133.7,
+    date: "2018-11-04",
     hours: 4.12,
-    notes: null,
+    id: 1,
+    isBilled: false,
+    name: "Programming",
   };
 
   const unbilledUnbillableDecember = {
-    id: 2,
-    spent_date: "2018-11-03",
-    task: {
-      name: "Vacation",
-    },
-    is_billed: false,
     billable: false,
-    billable_rate: null,
+    billableRate: null,
+    comment: "Umeå",
+    date: "2018-11-03",
     hours: 8,
-    notes: null,
+    id: 2,
+    isBilled: false,
+    name: "Vacation",
   };
 
   const billedBillableFebruary = {
-    id: 3,
-    spent_date: "2018-02-01",
-    task: {
-      name: "Programming",
-    },
-    is_billed: true,
     billable: true,
-    billable_rate: 133.7,
+    billableRate: 133.7,
+    date: "2018-02-01",
     hours: 7.01,
-    notes: null,
+    id: 3,
+    isBilled: true,
+    name: "Programming",
   };
 
   const unbilledBillableJanuary = {
-    id: 4,
-    spent_date: "2018-01-01",
-    task: {
-      name: "Programming",
-    },
-    is_billed: false,
     billable: true,
-    billable_rate: 133.7,
+    billableRate: 133.7,
+    date: "2018-01-01",
     hours: 7.01,
-    notes: null,
+    id: 4,
+    isBilled: false,
+    name: "Programming",
   };
 
   const unbilledUnbillableJanuary = {
-    id: 5,
-    spent_date: "2018-01-01",
-    task: {
-      name: "Vacation",
-    },
-    is_billed: false,
     billable: false,
-    billable_rate: null,
+    billableRate: null,
+    date: "2018-01-01",
     hours: 6,
-    notes: null,
+    id: 5,
+    isBilled: false,
+    name: "Vacation",
   };
 });
