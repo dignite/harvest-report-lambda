@@ -3,44 +3,18 @@
 /* eslint-disable fp/no-mutation */
 
 import {
-  TimeEntriesPagenationParameters,
-  TimeEntriesPagenationResponse,
-  TimeEntry,
-} from "harvest/dist/models/timeEntries.models";
-
-type PatchedTimeEntry = Omit<
-  TimeEntry,
-  | "external_reference"
-  | "invoice"
-  | "notes"
-  | "locked_reason"
-  | "timer_started_at"
-  | "billable_rate"
-  | "cost_rate"
-> & {
-  rounded_hours: number;
-  external_reference: Pick<TimeEntry, "external_reference"> | null;
-  invoice: Pick<TimeEntry, "invoice"> | null;
-  notes: Pick<TimeEntry, "notes"> | null;
-  locked_reason: Pick<TimeEntry, "locked_reason"> | null;
-  timer_started_at: Pick<TimeEntry, "timer_started_at"> | null;
-  billable_rate: number | null;
-  cost_rate: Pick<TimeEntry, "cost_rate"> | null;
-};
-
-type PatchedTimeEntriesPagenationResponse = Omit<
-  TimeEntriesPagenationResponse,
-  "time_entries"
-> & {
-  time_entries: PatchedTimeEntry[];
-};
+  components,
+  paths,
+} from "../npm-package-encapsulation/harvest-v2-types";
 
 export default class FakeHarvest {
   options: unknown;
   timeEntries: {
     list(
-      query?: TimeEntriesPagenationParameters
-    ): Promise<PatchedTimeEntriesPagenationResponse>;
+      query?: paths["/time_entries"]["get"]["parameters"]["query"]
+    ): Promise<
+      paths["/time_entries"]["get"]["responses"]["200"]["content"]["application/json"]
+    >;
   };
   constructor(options: unknown) {
     this.options = options;
@@ -73,7 +47,7 @@ export default class FakeHarvest {
   }
 }
 
-const timeEntry1: PatchedTimeEntry = {
+const timeEntry1: components["schemas"]["TimeEntry"] = {
   id: 1,
   spent_date: "2020-11-06",
   hours: 3.48,
@@ -100,12 +74,10 @@ const timeEntry1: PatchedTimeEntry = {
   client: {
     id: 98989898,
     name: "Acme AB",
-    currency: "SEK",
   },
   project: {
     id: 98989899,
     name: "Acme Project X",
-    code: "",
   },
   task: {
     id: 9323435,
@@ -134,7 +106,7 @@ const timeEntry1: PatchedTimeEntry = {
   external_reference: null,
 };
 
-const timeEntry2: PatchedTimeEntry = {
+const timeEntry2: components["schemas"]["TimeEntry"] = {
   id: 2,
   spent_date: "2020-11-06",
   hours: 4.53,
@@ -161,12 +133,10 @@ const timeEntry2: PatchedTimeEntry = {
   client: {
     id: 98989898,
     name: "Acme AB",
-    currency: "SEK",
   },
   project: {
     id: 98989899,
     name: "Acme Project X",
-    code: "",
   },
   task: {
     id: 9323435,
@@ -195,7 +165,7 @@ const timeEntry2: PatchedTimeEntry = {
   external_reference: null,
 };
 
-const timeEntry3: PatchedTimeEntry = {
+const timeEntry3: components["schemas"]["TimeEntry"] = {
   id: 3,
   spent_date: "2020-11-05",
   hours: 2.7,
@@ -222,12 +192,10 @@ const timeEntry3: PatchedTimeEntry = {
   client: {
     id: 98989898,
     name: "Acme AB",
-    currency: "SEK",
   },
   project: {
     id: 98989899,
     name: "Acme Project X",
-    code: "",
   },
   task: {
     id: 9323435,
@@ -256,7 +224,7 @@ const timeEntry3: PatchedTimeEntry = {
   external_reference: null,
 };
 
-const timeEntry4 = {
+const timeEntry4: components["schemas"]["TimeEntry"] = {
   id: 4,
   spent_date: "2019-07-17",
   hours: 8,
@@ -283,12 +251,10 @@ const timeEntry4 = {
   client: {
     id: 98989898,
     name: "Acme AB",
-    currency: "SEK",
   },
   project: {
     id: 98989899,
     name: "Acme Project X",
-    code: "",
   },
   task: {
     id: 9560167,
@@ -317,7 +283,7 @@ const timeEntry4 = {
   external_reference: null,
 };
 
-const timeEntry5: PatchedTimeEntry = {
+const timeEntry5: components["schemas"]["TimeEntry"] = {
   id: 5,
   spent_date: "2019-07-16",
   hours: 8,
@@ -344,12 +310,10 @@ const timeEntry5: PatchedTimeEntry = {
   client: {
     id: 98989898,
     name: "Acme AB",
-    currency: "SEK",
   },
   project: {
     id: 98989899,
     name: "Acme Project X",
-    code: "",
   },
   task: {
     id: 9560167,
