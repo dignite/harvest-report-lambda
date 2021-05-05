@@ -1,1 +1,1 @@
-module.exports = process.env;
+module.exports = (key) => process.env[key];
