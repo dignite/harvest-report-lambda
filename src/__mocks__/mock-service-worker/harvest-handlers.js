@@ -1,37 +1,62 @@
-/* eslint-disable fp/no-this */
 /* eslint-disable fp/no-nil */
-/* eslint-disable fp/no-mutation */
 
-module.exports.default = class FakeHarvest {
-  constructor(options) {
-    this.options = options;
-    this.timeEntries = {
-      list: () => ({
-        time_entries: [
-          timeEntry1,
-          timeEntry2,
-          timeEntry3,
-          timeEntry4,
-          timeEntry5,
-        ],
-        per_page: 100,
-        total_pages: 1,
-        total_entries: 5,
-        next_page: null,
-        previous_page: null,
-        page: 1,
-        links: {
-          first:
-            "https://api.harvestapp.com/v2/time_entries?page=1&per_page=100&ref=first",
-          next: null,
-          previous: null,
-          last:
-            "https://api.harvestapp.com/v2/time_entries?page=1&per_page=100&ref=last",
-        },
-      }),
+const { rest } = require("msw");
+
+module.exports.prepareHandlers = (config) => [
+  rest.get("https://api.harvestapp.com/v2/time_entries", (req, res, ctx) => {
+    const { userAgent, accessToken, accountId } = config;
+    const expected = {
+      userAgent,
+      authorization: `Bearer ${accessToken}`,
+      accountId,
     };
-  }
-};
+    const actual = {
+      userAgent: req.headers.get("user-agent"),
+      authorization: req.headers.get("authorization"),
+      accountId: req.headers.get("Harvest-Account-Id"),
+    };
+
+    const correctUserAgent =
+      !userAgent || expected.userAgent === actual.userAgent;
+    const correctAccessToken =
+      !accessToken || expected.authorization === actual.authorization;
+    const correctAccountId =
+      !accountId || expected.accountId === actual.accountId;
+    const correctConfig =
+      correctUserAgent && correctAccessToken && correctAccountId;
+
+    return correctConfig
+      ? res(
+          ctx.json({
+            time_entries: [
+              timeEntry1,
+              timeEntry2,
+              timeEntry3,
+              timeEntry4,
+              timeEntry5,
+            ],
+            per_page: 100,
+            total_pages: 1,
+            total_entries: 5,
+            next_page: null,
+            previous_page: null,
+            page: 1,
+            links: {
+              first:
+                "https://api.harvestapp.com/v2/time_entries?page=1&per_page=100&ref=first",
+              next: null,
+              previous: null,
+              last:
+                "https://api.harvestapp.com/v2/time_entries?page=1&per_page=100&ref=last",
+            },
+          })
+        )
+      : res(
+          ctx.status(401),
+          ctx.json({ error: "Incorrect harvest config", expected, actual, req })
+        );
+  }),
+];
 
 const timeEntry1 = {
   id: 1,

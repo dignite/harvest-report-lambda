@@ -27,7 +27,10 @@
         "statements": 100
       }
     },
-    "verbose": true
+    "verbose": true,
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setup-tests.js"
+    ]
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

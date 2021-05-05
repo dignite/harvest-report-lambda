@@ -35,12 +35,6 @@
         "fp/no-nil": "off",
         "fp/no-unused-expression": "off"
       }
-    },
-    {
-      "files": ["**/__mocks__/*.js"],
-      "rules": {
-        "fp/no-proxy": "off"
-      }
     }
   ],
   "parserOptions": {

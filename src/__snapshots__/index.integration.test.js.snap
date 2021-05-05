@@ -1,8 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`hours integration test with all real modules except those in the folder __mocks__ should return meta data for time entries and relevant time entries per day 1`] = `
+exports[`hours integration test mostly real modules should return meta data for time entries and relevant time entries per day 1`] = `
 Object {
-  "body": "{\\"meta\\":{\\"description\\":\\"*All* unbilled billable hours, and any non-billable hours logged for the current month.\\",\\"totalUnbilledHours\\":10.7,\\"totalUnbilledHoursPerWeek\\":{\\"w45\\":10.7},\\"unbilledInvoice\\":{\\"excludingVAT\\":\\"2354.00 Swedish kronor\\",\\"includingVAT\\":\\"2942.50 Swedish kronor\\"}},\\"timeEntriesPerDay\\":[{\\"date\\":\\"2020-11-06\\",\\"name\\":\\"Programmering\\",\\"billableHours\\":8},{\\"date\\":\\"2020-11-05\\",\\"name\\":\\"Programmering\\",\\"billableHours\\":2.7}]}",
+  "body": Object {
+    "serialize() of": Object {
+      "meta": Object {
+        "description": "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
+        "totalUnbilledHours": 10.7,
+        "totalUnbilledHoursPerWeek": Object {
+          "w45": 10.7,
+        },
+        "unbilledInvoice": Object {
+          "excludingVAT": "2354.00 Swedish kronor",
+          "includingVAT": "2942.50 Swedish kronor",
+        },
+      },
+      "timeEntriesPerDay": Array [
+        Object {
+          "billableHours": 8,
+          "comment": undefined,
+          "date": "2020-11-06",
+          "name": "Programmering",
+        },
+        Object {
+          "billableHours": 2.7,
+          "comment": undefined,
+          "date": "2020-11-05",
+          "name": "Programmering",
+        },
+      ],
+    },
+  },
   "statusCode": 200,
 }
 `;

@@ -7,7 +7,7 @@ jest.mock("harvest", () => ({
   })),
 }));
 
-jest.mock("../process-env");
+jest.mock("../process-env", () => (key) => `Value from process.env.${key}`);
 
 describe("authenticatedHarvest", () => {
   test("should return instance of harvest api wrapper", () => {
