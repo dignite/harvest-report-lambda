@@ -2,18 +2,25 @@
 
 const { rest } = require("msw");
 
-module.exports.prepareHandlers = (config) => [
+module.exports.prepareGetTimeEntriesSuccess = (config, customTimeEntries) =>
   rest.get("https://api.harvestapp.com/v2/time_entries", (req, res, ctx) => {
-    const { userAgent, accessToken, accountId } = config;
+    const {
+      userAgent,
+      accessToken,
+      accountId,
+      isBilledQueryParameter,
+    } = config;
     const expected = {
       userAgent,
       authorization: `Bearer ${accessToken}`,
       accountId,
+      isBilledQueryParameter,
     };
     const actual = {
       userAgent: req.headers.get("user-agent"),
       authorization: req.headers.get("authorization"),
       accountId: req.headers.get("Harvest-Account-Id"),
+      isBilledQueryParameter: req.url.searchParams.get("is_billed"),
     };
 
     const correctUserAgent =
@@ -22,19 +29,22 @@ module.exports.prepareHandlers = (config) => [
       !accessToken || expected.authorization === actual.authorization;
     const correctAccountId =
       !accountId || expected.accountId === actual.accountId;
+    const correctIsBilledQueryParameter =
+      isBilledQueryParameter === undefined ||
+      expected.isBilledQueryParameter === actual.isBilledQueryParameter;
     const correctConfig =
-      correctUserAgent && correctAccessToken && correctAccountId;
+      correctUserAgent &&
+      correctAccessToken &&
+      correctAccountId &&
+      correctIsBilledQueryParameter;
 
     return correctConfig
       ? res(
           ctx.json({
-            time_entries: [
-              timeEntry1,
-              timeEntry2,
-              timeEntry3,
-              timeEntry4,
-              timeEntry5,
-            ],
+            time_entries:
+              customTimeEntries !== undefined
+                ? customTimeEntries
+                : [timeEntry1, timeEntry2, timeEntry3, timeEntry4, timeEntry5],
             per_page: 100,
             total_pages: 1,
             total_entries: 5,
@@ -55,8 +65,17 @@ module.exports.prepareHandlers = (config) => [
           ctx.status(401),
           ctx.json({ error: "Incorrect harvest config", expected, actual, req })
         );
-  }),
-];
+  });
+
+module.exports.getTimeEntriesError = rest.get(
+  "https://api.harvestapp.com/v2/time_entries",
+  (req, res, ctx) => {
+    return res(
+      ctx.status(401),
+      ctx.json({ error: "Error getting time entries, bad request" })
+    );
+  }
+);
 
 const timeEntry1 = {
   id: 1,
