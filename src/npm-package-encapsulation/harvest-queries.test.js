@@ -87,7 +87,7 @@ describe(getUnbilledTimeEntries, () => {
     server.resetHandlers(getTimeEntriesError);
 
     await expect(getUnbilledTimeEntries()).rejects.toThrow(
-      'Error getting time entries: 401 Unauthorized, {"error":"Error getting time entries, bad request"}'
+      'Error getting time entries: 401 Unauthorized, {"message":"Error getting time entries, bad request"}'
     );
   });
 

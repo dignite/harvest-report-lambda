@@ -1,8 +1,19 @@
 /* eslint-disable fp/no-nil */
 
-const { rest } = require("msw");
+import { rest } from "msw";
+import { components, paths } from "../../harvest-v2-types";
 
-module.exports.prepareGetTimeEntriesSuccess = (config, customTimeEntries) =>
+interface PrepareGetTimeEntriesSuccessConfig {
+  userAgent: string;
+  accessToken: string;
+  accountId: string;
+  isBilledQueryParameter: string;
+}
+
+export const prepareGetTimeEntriesSuccess = (
+  config: PrepareGetTimeEntriesSuccessConfig,
+  customTimeEntries: components["schemas"]["TimeEntry"][]
+): ReturnType<typeof rest.get> =>
   rest.get("https://api.harvestapp.com/v2/time_entries", (req, res, ctx) => {
     const {
       userAgent,
@@ -40,7 +51,9 @@ module.exports.prepareGetTimeEntriesSuccess = (config, customTimeEntries) =>
 
     return correctConfig
       ? res(
-          ctx.json({
+          ctx.json<
+            paths["/time_entries"]["get"]["responses"]["200"]["content"]["application/json"]
+          >({
             time_entries:
               customTimeEntries !== undefined
                 ? customTimeEntries
@@ -67,12 +80,16 @@ module.exports.prepareGetTimeEntriesSuccess = (config, customTimeEntries) =>
         );
   });
 
-module.exports.getTimeEntriesError = rest.get(
+export const getTimeEntriesError = rest.get(
   "https://api.harvestapp.com/v2/time_entries",
-  (req, res, ctx) => {
+  (_req, res, ctx) => {
     return res(
       ctx.status(401),
-      ctx.json({ error: "Error getting time entries, bad request" })
+      ctx.json<
+        paths["/time_entries"]["get"]["responses"]["default"]["content"]["application/json"]
+      >({
+        message: "Error getting time entries, bad request",
+      })
     );
   }
 );
