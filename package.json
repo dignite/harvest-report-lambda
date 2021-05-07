@@ -32,7 +32,7 @@
       "<rootDir>/.build/"
     ],
     "setupFilesAfterEnv": [
-      "<rootDir>/src/setup-tests.js"
+      "<rootDir>/src/setup-tests.ts"
     ],
     "verbose": true
   },
