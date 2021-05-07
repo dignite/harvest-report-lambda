@@ -1,21 +1,31 @@
 const { getUnbilledTimeEntries } = require("./harvest-queries");
-const mockHarvestApi = require("./authenticated-harvest");
-const { when } = require("jest-when");
+const { server } = require("../__mocks__/mock-service-worker/server");
+const {
+  prepareGetTimeEntriesSuccess,
+  getTimeEntriesError,
+} = require("../__mocks__/mock-service-worker/harvest-handlers");
 
-jest.mock("./authenticated-harvest", () => ({
-  timeEntries: {
-    list: jest.fn(),
-  },
-}));
+jest.mock("../process-env", () => (key) => `Value from process.env.${key}`);
 
 describe(getUnbilledTimeEntries, () => {
   test("should return all billable but unbilled and non-billable hours", async () => {
-    setupReturnTimeEntries(
-      unbilledBillableDecember,
-      unbilledUnbillableDecember,
-      billedBillableFebruary,
-      unbilledBillableJanuary,
-      unbilledUnbillableJanuary
+    server.resetHandlers(
+      prepareGetTimeEntriesSuccess(
+        {
+          userAgent:
+            "harvest-report-lambda (Value from process.env.USER_AGENT_EMAIL)",
+          accessToken: "Value from process.env.HARVEST_ACCESS_TOKEN",
+          accountId: "Value from process.env.HARVEST_ACCOUNT_ID",
+          isBilledQueryParameter: "false",
+        },
+        [
+          unbilledBillableDecember,
+          unbilledUnbillableDecember,
+          billedBillableFebruary,
+          unbilledBillableJanuary,
+          unbilledUnbillableJanuary,
+        ]
+      )
     );
 
     const result = await getUnbilledTimeEntries();
@@ -71,12 +81,13 @@ describe(getUnbilledTimeEntries, () => {
     expect(result).toEqual(expect.arrayContaining(expected));
   });
 
-  const setupReturnTimeEntries = (...entries) =>
-    when(mockHarvestApi.timeEntries.list)
-      .calledWith({ is_billed: "false" })
-      .mockReturnValue({
-        time_entries: entries,
-      });
+  test("should return all billable but unbilled and non-billable hours", async () => {
+    server.resetHandlers(getTimeEntriesError);
+
+    await expect(getUnbilledTimeEntries()).rejects.toThrow(
+      'Error getting time entries: 401 Unauthorized, {"error":"Error getting time entries, bad request"}'
+    );
+  });
 
   const unbilledBillableDecember = {
     id: 1,
