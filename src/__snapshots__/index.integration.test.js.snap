@@ -18,13 +18,13 @@ Object {
       "timeEntriesPerDay": Array [
         Object {
           "billableHours": 8,
-          "comment": undefined,
+          "comment": "None",
           "date": "2020-11-06",
           "name": "Programmering",
         },
         Object {
           "billableHours": 2.7,
-          "comment": undefined,
+          "comment": "None",
           "date": "2020-11-05",
           "name": "Programmering",
         },

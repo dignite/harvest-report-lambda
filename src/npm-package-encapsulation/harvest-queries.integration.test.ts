@@ -1,11 +1,11 @@
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 dotenv.config();
 
-const { getUnbilledTimeEntries } = require("./harvest-queries");
+import { getUnbilledTimeEntries } from "./harvest-queries";
 
-const { get } = require("../process-env");
+import { get } from "../process-env";
 
-const testIfAllDefined = (...args) =>
+const testIfAllDefined = (...args: string[]) =>
   args.some((key) => get(key) === undefined) ? test.skip : test;
 
 const testIfEnvSetup = testIfAllDefined(

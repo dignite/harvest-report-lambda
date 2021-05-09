@@ -1,12 +1,12 @@
-const { getUnbilledTimeEntries } = require("./harvest-queries");
-const { server } = require("../__mocks__/mock-service-worker/server");
-const {
+import { getUnbilledTimeEntries } from "./harvest-queries";
+import { server } from "../__mocks__/mock-service-worker/server";
+import {
   prepareGetTimeEntriesSuccess,
   getTimeEntriesError,
-} = require("../__mocks__/mock-service-worker/harvest-handlers");
+} from "../__mocks__/mock-service-worker/harvest-handlers";
 
 jest.mock("../process-env", () => ({
-  get: (key) => `Value from process.env.${key}`,
+  get: (key: string) => `Value from process.env.${key}`,
 }));
 
 describe(getUnbilledTimeEntries, () => {
@@ -26,6 +26,8 @@ describe(getUnbilledTimeEntries, () => {
           billedBillableFebruary,
           unbilledBillableJanuary,
           unbilledUnbillableJanuary,
+          unbilledUnbillableNoTaskJanuary,
+          unbilledUnbillableNoTaskNameJanuary,
         ]
       )
     );
@@ -36,6 +38,7 @@ describe(getUnbilledTimeEntries, () => {
       {
         billable: true,
         billableRate: 133.7,
+        comment: "None",
         date: "2018-11-04",
         hours: 4.12,
         id: 1,
@@ -55,6 +58,7 @@ describe(getUnbilledTimeEntries, () => {
       {
         billable: true,
         billableRate: 133.7,
+        comment: "None",
         date: "2018-02-01",
         hours: 7.01,
         id: 3,
@@ -64,6 +68,7 @@ describe(getUnbilledTimeEntries, () => {
       {
         billable: true,
         billableRate: 133.7,
+        comment: "None",
         date: "2018-01-01",
         hours: 7.01,
         id: 4,
@@ -73,11 +78,32 @@ describe(getUnbilledTimeEntries, () => {
       {
         billable: false,
         billableRate: 0,
+        comment: "None",
         date: "2018-01-01",
         hours: 6,
         id: 5,
         isBilled: false,
         name: "Vacation",
+      },
+      {
+        billable: false,
+        billableRate: 0,
+        comment: "None",
+        date: "2018-01-02",
+        hours: 6,
+        id: 6,
+        isBilled: false,
+        name: "Unnamed",
+      },
+      {
+        billable: false,
+        billableRate: 0,
+        comment: "None",
+        date: "2018-01-03",
+        hours: 6,
+        id: 7,
+        isBilled: false,
+        name: "Unnamed",
       },
     ];
     expect(result).toEqual(expect.arrayContaining(expected));
@@ -148,6 +174,30 @@ describe(getUnbilledTimeEntries, () => {
     spent_date: "2018-01-01",
     task: {
       name: "Vacation",
+    },
+    is_billed: false,
+    billable: false,
+    billable_rate: null,
+    hours: 6,
+    notes: null,
+  };
+
+  const unbilledUnbillableNoTaskJanuary = {
+    id: 6,
+    spent_date: "2018-01-02",
+    task: null,
+    is_billed: false,
+    billable: false,
+    billable_rate: null,
+    hours: 6,
+    notes: null,
+  };
+
+  const unbilledUnbillableNoTaskNameJanuary = {
+    id: 7,
+    spent_date: "2018-01-03",
+    task: {
+      name: null,
     },
     is_billed: false,
     billable: false,
