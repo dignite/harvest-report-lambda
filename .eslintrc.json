@@ -1,6 +1,10 @@
 {
-  "extends": ["eslint:recommended", "prettier"],
-  "plugins": ["fp", "prefer-arrow", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["fp", "prefer-arrow", "prettier", "@typescript-eslint"],
   "rules": {
     "prettier/prettier": "error",
     "no-var": "error",
@@ -35,8 +39,15 @@
         "fp/no-nil": "off",
         "fp/no-unused-expression": "off"
       }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
     }
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 8
   },
