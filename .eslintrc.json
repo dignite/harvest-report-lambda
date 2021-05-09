@@ -6,6 +6,7 @@
   ],
   "plugins": ["fp", "prefer-arrow", "prettier", "@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "error",
     "prettier/prettier": "error",
     "no-var": "error",
     "prefer-arrow/prefer-arrow-functions": [
@@ -43,6 +44,7 @@
     {
       "files": ["*.js", "*.jsx"],
       "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-var-requires": "off"
       }
     }
