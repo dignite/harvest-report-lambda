@@ -28,6 +28,7 @@ describe(getUnbilledTimeEntries, () => {
           unbilledUnbillableJanuary,
           unbilledUnbillableNoTaskJanuary,
           unbilledUnbillableNoTaskNameJanuary,
+          unbilledUnbillableNoDate,
         ]
       )
     );
@@ -196,6 +197,19 @@ describe(getUnbilledTimeEntries, () => {
   const unbilledUnbillableNoTaskNameJanuary = {
     id: 7,
     spent_date: "2018-01-03",
+    task: {
+      name: null,
+    },
+    is_billed: false,
+    billable: false,
+    billable_rate: null,
+    hours: 6,
+    notes: null,
+  };
+
+  const unbilledUnbillableNoDate = {
+    id: 7,
+    spent_date: null,
     task: {
       name: null,
     },
