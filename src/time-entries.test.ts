@@ -81,59 +81,59 @@ describe(getRelevantUnbilled, () => {
 
   const setupReturnTimeEntries = (...entries: SimplifiedUnbilledTimeEntry[]) =>
     mocked(getUnbilledTimeEntries).mockResolvedValue(entries);
-
-  const unbilledBillableDecember: SimplifiedUnbilledTimeEntry = {
-    billable: true,
-    billableRate: 133.7,
-    comment: "",
-    date: "2018-11-04",
-    hours: 4.12,
-    id: 1,
-    isBilled: false,
-    name: "Programming",
-  };
-
-  const unbilledUnbillableDecember: SimplifiedUnbilledTimeEntry = {
-    billable: false,
-    billableRate: 0,
-    comment: "Umeå",
-    date: "2018-11-03",
-    hours: 8,
-    id: 2,
-    isBilled: false,
-    name: "Vacation",
-  };
-
-  const billedBillableFebruary: SimplifiedUnbilledTimeEntry = {
-    billable: true,
-    billableRate: 133.7,
-    comment: "",
-    date: "2018-02-01",
-    hours: 7.01,
-    id: 3,
-    isBilled: true,
-    name: "Programming",
-  };
-
-  const unbilledBillableJanuary: SimplifiedUnbilledTimeEntry = {
-    billable: true,
-    billableRate: 133.7,
-    comment: "",
-    date: "2018-01-01",
-    hours: 7.01,
-    id: 4,
-    isBilled: false,
-    name: "Programming",
-  };
-
-  const unbilledUnbillableJanuary: SimplifiedUnbilledTimeEntry = {
-    billable: false,
-    billableRate: 0,
-    comment: "",
-    date: "2018-01-01",
-    hours: 6,
-    id: 5,
-    isBilled: false,
-    name: "Vacation",
-  };
 });
+
+const unbilledBillableDecember: SimplifiedUnbilledTimeEntry = {
+  billable: true,
+  billableRate: 133.7,
+  comment: "",
+  date: "2018-11-04",
+  hours: 4.12,
+  id: 1,
+  isBilled: false,
+  name: "Programming",
+};
+
+const unbilledUnbillableDecember: SimplifiedUnbilledTimeEntry = {
+  billable: false,
+  billableRate: 0,
+  comment: "Umeå",
+  date: "2018-11-03",
+  hours: 8,
+  id: 2,
+  isBilled: false,
+  name: "Vacation",
+};
+
+const billedBillableFebruary: SimplifiedUnbilledTimeEntry = {
+  billable: true,
+  billableRate: 133.7,
+  comment: "",
+  date: "2018-02-01",
+  hours: 7.01,
+  id: 3,
+  isBilled: true,
+  name: "Programming",
+};
+
+const unbilledBillableJanuary: SimplifiedUnbilledTimeEntry = {
+  billable: true,
+  billableRate: 133.7,
+  comment: "",
+  date: "2018-01-01",
+  hours: 7.01,
+  id: 4,
+  isBilled: false,
+  name: "Programming",
+};
+
+const unbilledUnbillableJanuary: SimplifiedUnbilledTimeEntry = {
+  billable: false,
+  billableRate: 0,
+  comment: "",
+  date: "2018-01-01",
+  hours: 6,
+  id: 5,
+  isBilled: false,
+  name: "Vacation",
+};

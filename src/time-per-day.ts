@@ -1,7 +1,7 @@
 import groupBy from "lodash.groupby";
 import { HarvestReportLambdaTimeEntry } from "./time-entries";
 
-type EntireDayTimeEntryWithoutCost = Omit<
+export type EntireDayTimeEntryWithoutCost = Omit<
   HarvestReportLambdaTimeEntry,
   "id" | "cost"
 >;
