@@ -12,7 +12,7 @@ interface PrepareGetTimeEntriesSuccessConfig {
 
 export const prepareGetTimeEntriesSuccess = (
   config: PrepareGetTimeEntriesSuccessConfig,
-  customTimeEntries: components["schemas"]["TimeEntry"][]
+  customTimeEntries?: components["schemas"]["TimeEntry"][]
 ): ReturnType<typeof rest.get> =>
   rest.get("https://api.harvestapp.com/v2/time_entries", (req, res, ctx) => {
     const {
