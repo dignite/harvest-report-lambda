@@ -11,22 +11,21 @@ const formatCurrency = new Intl.NumberFormat("sv-SE", {
   currency: "SEK",
 }).format;
 
-export const SEK = (amount: number): SEKInstance => ({
-  add: (sekToAdd: SEKInstance) => {
-    return SEK(
-      sekToAdd.getAmount() + parseInt((amount * 100).toFixed(0), 10) / 100
-    );
-  },
-  addVAT: (vat: number) => {
-    const withVAT =
-      (parseInt((amount * 100).toFixed(0), 10) / 100) * ((100 + vat) / 100);
-    return SEK(withVAT);
-  },
-  multiply: (multiplier: number) => {
-    const multiplied =
-      (parseInt((amount * 100).toFixed(0), 10) / 100) * multiplier;
-    return SEK(multiplied);
-  },
-  getAmount: () => parseInt((amount * 100).toFixed(0), 10) / 100,
-  toString: () => formatCurrency(parseInt((amount * 100).toFixed(0), 10) / 100),
-});
+export const SEK = (amount: number): SEKInstance => {
+  const amountWithWholeCents = parseInt((amount * 100).toFixed(0), 10) / 100;
+  return {
+    add: (sekToAdd: SEKInstance) => {
+      return SEK(sekToAdd.getAmount() + amountWithWholeCents);
+    },
+    addVAT: (vat: number) => {
+      const withVAT = amountWithWholeCents * ((100 + vat) / 100);
+      return SEK(withVAT);
+    },
+    multiply: (multiplier: number) => {
+      const multiplied = amountWithWholeCents * multiplier;
+      return SEK(multiplied);
+    },
+    getAmount: () => amountWithWholeCents,
+    toString: () => formatCurrency(amountWithWholeCents),
+  };
+};
