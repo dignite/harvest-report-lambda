@@ -6,7 +6,7 @@
     "outDir": ".build",
     "rootDir": "./",
     "sourceMap": true,
-    "allowJs": true,
+    "allowJs": false,
     "strict": true,
     "noUnusedLocals": true /* Report errors on unused locals. */,
     "noUnusedParameters": true /* Report errors on unused parameters. */,
