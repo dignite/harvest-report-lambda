@@ -1,5 +1,7 @@
 import { hoursMeta } from "./";
 
+const nonBreakingSpace = String.fromCharCode(160);
+
 describe(hoursMeta, () => {
   const novemberThird = {
     id: 1,
@@ -51,8 +53,8 @@ describe(hoursMeta, () => {
     const result = hoursMeta(relevantTimeEntries);
 
     expect(result.unbilledInvoice).toEqual({
-      excludingVAT: "3514.30 Swedish kronor",
-      includingVAT: "4392.88 Swedish kronor",
+      excludingVAT: `3${nonBreakingSpace}514,30${nonBreakingSpace}kr`,
+      includingVAT: `4${nonBreakingSpace}392,88${nonBreakingSpace}kr`,
     });
   });
 
