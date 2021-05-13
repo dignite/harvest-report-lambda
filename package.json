@@ -72,12 +72,10 @@
   },
   "dependencies": {
     "@types/date-fns": "^2.6.0",
-    "@types/dinero.js": "^1.6.5",
     "@types/json2csv": "^5.0.1",
     "@types/lodash.groupby": "^4.6.6",
     "@types/lodash.mapvalues": "^4.6.6",
     "date-fns": "^2.21.1",
-    "dinero.js": "^1.8.1",
     "lodash.groupby": "^4.6.0",
     "lodash.mapvalues": "^4.6.0",
     "node-fetch": "^2.6.1"

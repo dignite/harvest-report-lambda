@@ -140,7 +140,6 @@ npm run remove-deploys
 
 - [Serverless][serverless-link] - The most widely-adopted toolkit for building serverless applications
 - [node-fetch][node-fetch] - A light-weight module that brings window.fetch to Node.js, for consuming the Harvest API
-- [Dinero.js][dinero] - A library for working with monetary values in JavaScript
 
 ## Contributing 💗
 
@@ -170,6 +169,5 @@ This project is licensed under the MIT License - see the [LICENSE] file for deta
 [harvest]: https://www.getharvest.com/
 [aws]: https://aws.amazon.com/
 [node-fetch]: https://github.com/node-fetch/node-fetch
-[dinero]: https://sarahdayan.github.io/dinero.js/
 [dignite]: https://github.com/dignite
 [hours-json-example]: ./examples/hours.json
