@@ -18,6 +18,11 @@ const dineroFromAmount = (amount: number) =>
     currency: "SEK",
   });
 
+const formatCurrency = new Intl.NumberFormat("sv-SE", {
+  style: "currency",
+  currency: "SEK",
+}).format;
+
 const encapsulateDineroAsSEK = (
   dineroInstance: DineroFactory.Dinero
 ): SEKInstance => ({
@@ -35,5 +40,5 @@ const encapsulateDineroAsSEK = (
     return encapsulateDineroAsSEK(multiplied);
   },
   getAmount: () => dineroInstance.getAmount() / 100,
-  toString: () => dineroInstance.toFormat("0.00 dollar"),
+  toString: () => formatCurrency(dineroInstance.getAmount() / 100),
 });

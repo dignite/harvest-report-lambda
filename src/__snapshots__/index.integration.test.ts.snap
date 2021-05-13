@@ -11,8 +11,8 @@ Object {
           "w45": 10.7,
         },
         "unbilledInvoice": Object {
-          "excludingVAT": "2354.00 Swedish kronor",
-          "includingVAT": "2942.50 Swedish kronor",
+          "excludingVAT": "2 354,00 kr",
+          "includingVAT": "2 942,50 kr",
         },
       },
       "timeEntriesPerDay": Array [
