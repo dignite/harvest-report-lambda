@@ -4,7 +4,7 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "lint": "prettier \"**/!(*.js)\" --check --loglevel warn && eslint . && npm run check-typescript-type-coverage",
+    "lint": "prettier . \"!**/*.{js,jsx,ts,tsx}\"  --check --loglevel warn && eslint . && npm run check-typescript-type-coverage",
     "lint:fix": "prettier \"**/*.*\" --write --loglevel warn && eslint . --fix && npm run check-typescript-type-coverage",
     "check-typescript-type-coverage": "typescript-coverage-report --threshold=100 --strict",
     "pretest": "npm run lint && npx tsc --noEmit",
