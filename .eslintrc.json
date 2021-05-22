@@ -3,6 +3,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:fp/recommended",
+    "plugin:jest/all",
     "prettier"
   ],
   "plugins": ["fp", "prefer-arrow", "prettier", "@typescript-eslint"],
@@ -22,7 +23,19 @@
       {
         "commonjs": true
       }
-    ]
+    ],
+
+    /* Violations of "plugin:jest/all", to be fixed */
+    "jest/prefer-strict-equal": "off",
+    "jest/prefer-expect-assertions": "off",
+    "jest/consistent-test-it": "off",
+    "jest/valid-title": "off",
+    "jest/no-hooks": "off",
+    "jest/no-identical-title": "off",
+    "jest/no-mocks-import": "off",
+    "jest/prefer-to-be-undefined": "off",
+    "jest/no-standalone-expect": "off",
+    "jest/require-top-level-describe": "off"
   },
   "overrides": [
     {
