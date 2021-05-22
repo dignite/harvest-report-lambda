@@ -13,11 +13,11 @@ jest.mock("./date", () => ({
 
 describe(getRelevantUnbilled, () => {
   test("should return all unbilled billable hours", async () => {
-    setupReturnTimeEntries(
+    setupReturnTimeEntries([
       unbilledBillableDecember,
       billedBillableFebruary,
-      unbilledBillableJanuary
-    );
+      unbilledBillableJanuary,
+    ]);
 
     const result = await getRelevantUnbilled();
 
@@ -43,10 +43,10 @@ describe(getRelevantUnbilled, () => {
   });
 
   test("should return non-billable hours from the current month", async () => {
-    setupReturnTimeEntries(
+    setupReturnTimeEntries([
       unbilledUnbillableDecember,
-      unbilledUnbillableJanuary
-    );
+      unbilledUnbillableJanuary,
+    ]);
 
     const result = await getRelevantUnbilled();
 
@@ -64,13 +64,13 @@ describe(getRelevantUnbilled, () => {
   });
 
   test("should not return anything but unbilled billable hours and non-billable hours from the current month", async () => {
-    setupReturnTimeEntries(
+    setupReturnTimeEntries([
       unbilledBillableDecember,
       unbilledUnbillableDecember,
       billedBillableFebruary,
       unbilledBillableJanuary,
-      unbilledUnbillableJanuary
-    );
+      unbilledUnbillableJanuary,
+    ]);
 
     const result = await getRelevantUnbilled();
     const actualIds = result.map((timeEntry) => timeEntry.id);
@@ -79,7 +79,7 @@ describe(getRelevantUnbilled, () => {
     expect(actualIds).toEqual(expectedIds);
   });
 
-  const setupReturnTimeEntries = (...entries: SimplifiedUnbilledTimeEntry[]) =>
+  const setupReturnTimeEntries = (entries: SimplifiedUnbilledTimeEntry[]) =>
     mocked(getUnbilledTimeEntries).mockResolvedValue(entries);
 });
 

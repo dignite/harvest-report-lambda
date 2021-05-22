@@ -24,7 +24,6 @@
       }
     ],
     /* Rules violated when activating "plugin:fp/recommended", to be fixed */
-    "fp/no-rest-parameters": "warn",
     "fp/no-throw": "warn"
   },
   "overrides": [
