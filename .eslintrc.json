@@ -22,9 +22,7 @@
       {
         "commonjs": true
       }
-    ],
-    /* Rules violated when activating "plugin:fp/recommended", to be fixed */
-    "fp/no-throw": "warn"
+    ]
   },
   "overrides": [
     {

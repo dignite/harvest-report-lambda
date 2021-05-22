@@ -31,10 +31,12 @@ export const getUnbilledTimeEntries = async (): Promise<
   );
 
   if (!res.ok) {
-    throw new Error(
-      `Error getting time entries: ${res.status} ${
-        res.statusText
-      }, ${await res.text()}`
+    return Promise.reject(
+      new Error(
+        `Error getting time entries: ${res.status} ${
+          res.statusText
+        }, ${await res.text()}`
+      )
     );
   }
   const json: paths["/time_entries"]["get"]["responses"]["200"]["content"]["application/json"] = await res.json();
