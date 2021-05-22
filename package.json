@@ -76,6 +76,7 @@
     "@types/lodash.groupby": "^4.6.6",
     "@types/lodash.mapvalues": "^4.6.6",
     "date-fns": "^2.25.0",
+    "eslint-plugin-jest": "^24.3.6",
     "lodash.groupby": "^4.6.0",
     "lodash.mapvalues": "^4.6.0",
     "node-fetch": "^2.6.5"
