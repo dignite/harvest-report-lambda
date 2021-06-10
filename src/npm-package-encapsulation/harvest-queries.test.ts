@@ -111,7 +111,7 @@ describe("getUnbilledTimeEntries function", () => {
     expect(result).toStrictEqual(expect.arrayContaining(expected));
   });
 
-  it("should return all billable but unbilled and non-billable hours", async () => {
+  it("should reject with error from harvest", async () => {
     expect.assertions(1);
     server.resetHandlers(getTimeEntriesError);
 

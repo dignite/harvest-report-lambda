@@ -3,7 +3,7 @@ import { SEK } from "./swedish-crowns";
 const nonBreakingSpace = String.fromCharCode(160);
 
 describe("the SEK function", () => {
-  describe("add", () => {
+  describe("toString function", () => {
     it("should print 13.37 nicely", () => {
       expect.assertions(1);
       const thirteenThirtySeven = SEK(13.37);
@@ -42,7 +42,7 @@ describe("the SEK function", () => {
       );
     });
   });
-  describe("add", () => {
+  describe("add function", () => {
     it("should add 13.37 + 2.03", () => {
       expect.assertions(1);
       const sum = SEK(13.37).add(SEK(2.03));
@@ -51,7 +51,7 @@ describe("the SEK function", () => {
     });
   });
 
-  describe("addVAT", () => {
+  describe("addVAT function", () => {
     it("should add 6% VAT", () => {
       expect.assertions(1);
       const result = SEK(100).addVAT(6);
@@ -67,7 +67,7 @@ describe("the SEK function", () => {
     });
   });
 
-  describe("multiply", () => {
+  describe("multiply function", () => {
     it("should multiply by 4.1", () => {
       expect.assertions(1);
       const result = SEK(3.33).multiply(4.1);
