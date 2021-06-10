@@ -11,6 +11,7 @@ jest.mock("../process-env", () => ({
 
 describe(getUnbilledTimeEntries, () => {
   test("should return all billable but unbilled and non-billable hours", async () => {
+    expect.assertions(1);
     server.resetHandlers(
       prepareGetTimeEntriesSuccess(
         {
@@ -111,6 +112,7 @@ describe(getUnbilledTimeEntries, () => {
   });
 
   test("should return all billable but unbilled and non-billable hours", async () => {
+    expect.assertions(1);
     server.resetHandlers(getTimeEntriesError);
 
     await expect(getUnbilledTimeEntries()).rejects.toThrow(

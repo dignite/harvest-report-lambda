@@ -2,12 +2,14 @@ import { totalSum, perWeek } from "./time-summary";
 
 describe(totalSum, () => {
   test("should return zero for zero time entries", () => {
+    expect.assertions(1);
     const result = totalSum([]);
 
     expect(result).toStrictEqual(0);
   });
 
   test("should return hours from single time entry", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -23,6 +25,7 @@ describe(totalSum, () => {
   });
 
   test("should return sum from collection of time entries", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -56,12 +59,14 @@ describe(totalSum, () => {
 
 describe(perWeek, () => {
   test("should return empty object for zero time entries", () => {
+    expect.assertions(1);
     const result = perWeek([]);
 
     expect(result).toStrictEqual({});
   });
 
   test("should return weekly hours from single time entry", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -79,6 +84,7 @@ describe(perWeek, () => {
   });
 
   test("should return weekly sum from collection of same-week time entries", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -104,6 +110,7 @@ describe(perWeek, () => {
   });
 
   test("should return weekly sum from collection of spread out time entries", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
