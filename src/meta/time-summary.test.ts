@@ -1,6 +1,6 @@
 import { totalSum, perWeek } from "./time-summary";
 
-describe(totalSum, () => {
+describe("totalSum function", () => {
   it("should return zero for zero time entries", () => {
     expect.assertions(1);
     const result = totalSum([]);
@@ -57,7 +57,7 @@ describe(totalSum, () => {
   });
 });
 
-describe(perWeek, () => {
+describe("perWeek function", () => {
   it("should return empty object for zero time entries", () => {
     expect.assertions(1);
     const result = perWeek([]);

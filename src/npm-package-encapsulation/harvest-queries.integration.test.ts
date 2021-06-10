@@ -14,7 +14,7 @@ const testIfEnvSetup = testIfAllDefined([
   "USER_AGENT_EMAIL",
 ]);
 
-describe(getUnbilledTimeEntries, () => {
+describe("getUnbilledTimeEntries function", () => {
   testIfEnvSetup(
     "should return all billable but unbilled and non-billable hours",
     async () => {
