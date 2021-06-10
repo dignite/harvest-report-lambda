@@ -11,7 +11,7 @@ jest.mock("./date", () => ({
   startOfLastMonth: () => Date.parse("2018-10-01"),
 }));
 
-describe(getRelevantUnbilled, () => {
+describe("getRelevantUnbilled function", () => {
   it("should return all unbilled billable hours", async () => {
     expect.assertions(1);
     setupReturnTimeEntries([

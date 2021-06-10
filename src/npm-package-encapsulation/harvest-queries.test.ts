@@ -9,7 +9,7 @@ jest.mock("../process-env", () => ({
   get: (key: string) => `Value from process.env.${key}`,
 }));
 
-describe(getUnbilledTimeEntries, () => {
+describe("getUnbilledTimeEntries function", () => {
   it("should return all billable but unbilled and non-billable hours", async () => {
     expect.assertions(1);
     server.resetHandlers(

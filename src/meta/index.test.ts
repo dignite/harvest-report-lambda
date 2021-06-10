@@ -2,7 +2,7 @@ import { hoursMeta } from "./";
 
 const nonBreakingSpace = String.fromCharCode(160);
 
-describe(hoursMeta, () => {
+describe("hoursMeta function", () => {
   const novemberThird = {
     id: 1,
     date: "2018-11-03",

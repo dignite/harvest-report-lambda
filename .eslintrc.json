@@ -26,7 +26,6 @@
     ],
 
     /* Violations of "plugin:jest/all", to be fixed */
-    "jest/valid-title": "off",
     "jest/no-hooks": "off",
     "jest/no-identical-title": "off",
     "jest/no-mocks-import": "off",

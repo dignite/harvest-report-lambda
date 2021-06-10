@@ -2,7 +2,7 @@ import { SEK } from "./swedish-crowns";
 
 const nonBreakingSpace = String.fromCharCode(160);
 
-describe(SEK, () => {
+describe("the SEK function", () => {
   describe("add", () => {
     it("should print 13.37 nicely", () => {
       expect.assertions(1);

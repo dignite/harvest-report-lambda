@@ -1,7 +1,7 @@
 import { merge } from "./time-per-day";
 import { HarvestReportLambdaTimeEntry } from "./time-entries";
 
-describe(merge, () => {
+describe("merge function", () => {
   it("should return distinct time entries as-is without id", () => {
     expect.assertions(1);
     const novemberThird: HarvestReportLambdaTimeEntry = {
