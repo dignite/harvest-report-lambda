@@ -39,7 +39,7 @@ describe(getRelevantUnbilled, () => {
         name: "Programming",
       },
     ];
-    expect(result).toEqual(expect.arrayContaining(expected));
+    expect(result).toStrictEqual(expect.arrayContaining(expected));
   });
 
   test("should return non-billable hours from the current month and last month", async () => {
@@ -69,7 +69,7 @@ describe(getRelevantUnbilled, () => {
         name: "Vacation",
       },
     ];
-    expect(result).toEqual(expect.arrayContaining(expected));
+    expect(result).toStrictEqual(expect.arrayContaining(expected));
   });
 
   test("should not return anything but unbilled billable hours and non-billable hours from the current month", async () => {
@@ -85,7 +85,7 @@ describe(getRelevantUnbilled, () => {
     const actualIds = result.map((timeEntry) => timeEntry.id);
 
     const expectedIds = [1, 2, 4];
-    expect(actualIds).toEqual(expectedIds);
+    expect(actualIds).toStrictEqual(expectedIds);
   });
 
   const setupReturnTimeEntries = (entries: SimplifiedUnbilledTimeEntry[]) =>

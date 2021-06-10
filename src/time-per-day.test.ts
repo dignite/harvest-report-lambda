@@ -24,7 +24,7 @@ describe(merge, () => {
 
     const result = merge(input);
 
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         date: "2018-11-03",
         name: "Programming",
@@ -60,7 +60,7 @@ describe(merge, () => {
 
     const result = merge([novemberThird, novemberThirdAfterLunch]);
 
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         date: "2018-11-03",
         name: "Programming",
@@ -93,7 +93,7 @@ describe(merge, () => {
       novemberFifthVacationAfterLunch,
     ]);
 
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         date: "2018-11-05",
         name: "Vacation",
@@ -123,7 +123,7 @@ describe(merge, () => {
 
     const result = merge([novemberSixth, novemberSixthSickAfterLunch]);
 
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         date: "2018-11-06",
         name: "Programming + Sick",
@@ -156,7 +156,7 @@ describe(merge, () => {
       novemberSeventhAfterLunch,
     ]);
 
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         date: "2018-11-07",
         name: "Sick + Programming",
