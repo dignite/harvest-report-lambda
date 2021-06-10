@@ -3,6 +3,7 @@ import { HarvestReportLambdaTimeEntry } from "./time-entries";
 
 describe(merge, () => {
   test("should return distinct time entries as-is without id", () => {
+    expect.assertions(1);
     const novemberThird: HarvestReportLambdaTimeEntry = {
       id: 1,
       date: "2018-11-03",
@@ -41,6 +42,7 @@ describe(merge, () => {
   });
 
   test("should merge morning and afternoon work time entries", () => {
+    expect.assertions(1);
     const novemberThird: HarvestReportLambdaTimeEntry = {
       id: 1,
       date: "2018-11-03",
@@ -71,6 +73,7 @@ describe(merge, () => {
   });
 
   test("should merge morning and afternoon vacation time entries", () => {
+    expect.assertions(1);
     const novemberFifthVacation: HarvestReportLambdaTimeEntry = {
       id: 4,
       date: "2018-11-05",
@@ -104,6 +107,7 @@ describe(merge, () => {
   });
 
   test("should merge half sick day (sick in the afternoon)", () => {
+    expect.assertions(1);
     const novemberSixth: HarvestReportLambdaTimeEntry = {
       id: 6,
       date: "2018-11-06",
@@ -134,6 +138,7 @@ describe(merge, () => {
   });
 
   test("should merge half sick day (sick in the morning)", () => {
+    expect.assertions(1);
     const novemberSeventhSickMorning: HarvestReportLambdaTimeEntry = {
       id: 8,
       date: "2018-11-07",

@@ -4,6 +4,7 @@ import MockDate from "mockdate";
 describe("date", () => {
   describe(startOfLastMonth, () => {
     test("should find September 1st", () => {
+      expect.assertions(1);
       MockDate.set(new Date("2018-10-17"));
 
       expect(startOfLastMonth()).toStrictEqual(
@@ -11,6 +12,7 @@ describe("date", () => {
       );
     });
     test("should find October 1st", () => {
+      expect.assertions(1);
       MockDate.set(new Date("2018-11-01"));
 
       expect(startOfLastMonth()).toStrictEqual(
@@ -19,6 +21,7 @@ describe("date", () => {
     });
 
     test("should find December 1st", () => {
+      expect.assertions(1);
       MockDate.set(new Date("2019-01-11"));
 
       expect(startOfLastMonth()).toStrictEqual(

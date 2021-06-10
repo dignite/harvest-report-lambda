@@ -13,6 +13,7 @@ jest.mock("./serializer", () => ({
 
 describe(`hours integration test mostly real modules`, () => {
   test("should return meta data for time entries and relevant time entries per day", async () => {
+    expect.assertions(1);
     server.resetHandlers(
       prepareGetTimeEntriesSuccess({
         userAgent:

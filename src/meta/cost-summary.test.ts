@@ -4,6 +4,7 @@ const nonBreakingSpace = String.fromCharCode(160);
 
 describe(totalSum, () => {
   test("should return zero for zero time entries", () => {
+    expect.assertions(1);
     const result = totalSum([]);
 
     expect(result).toStrictEqual({
@@ -13,6 +14,7 @@ describe(totalSum, () => {
   });
 
   test("should return cost from single time entry", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -31,6 +33,7 @@ describe(totalSum, () => {
   });
 
   test("should return cost from collection of time entries", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",

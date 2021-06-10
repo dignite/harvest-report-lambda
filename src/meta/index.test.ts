@@ -30,6 +30,7 @@ describe(hoursMeta, () => {
   const relevantTimeEntries = [novemberThird, novemberFourth, novemberSixth];
 
   test("should return status code and endpoint description", () => {
+    expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
     expect(result.description).toStrictEqual(
@@ -38,12 +39,14 @@ describe(hoursMeta, () => {
   });
 
   test("should return total unbilled billable hours", () => {
+    expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
     expect(result.totalUnbilledHours).toStrictEqual(11.3);
   });
 
   test("should return total unbilled billable hours per week", () => {
+    expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
     expect(result.totalUnbilledHoursPerWeek).toStrictEqual({
@@ -53,6 +56,7 @@ describe(hoursMeta, () => {
   });
 
   test("should return total unbilled invoice size", () => {
+    expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
     expect(result.unbilledInvoice).toStrictEqual({
@@ -62,6 +66,7 @@ describe(hoursMeta, () => {
   });
 
   test("should not return anything unexpected", () => {
+    expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
     expect(Object.keys(result)).toStrictEqual([
