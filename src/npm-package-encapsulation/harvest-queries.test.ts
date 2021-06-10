@@ -107,7 +107,7 @@ describe(getUnbilledTimeEntries, () => {
         name: "Unnamed",
       },
     ];
-    expect(result).toEqual(expect.arrayContaining(expected));
+    expect(result).toStrictEqual(expect.arrayContaining(expected));
   });
 
   test("should return all billable but unbilled and non-billable hours", async () => {

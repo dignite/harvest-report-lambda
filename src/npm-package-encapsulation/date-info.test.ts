@@ -5,6 +5,6 @@ jest.mock("date-fns/getISOWeek");
 
 describe(getWeekNumber, () => {
   test("should be alias for date-fns/getISOWeek", () => {
-    expect(getWeekNumber).toEqual(mockGetISOWeek);
+    expect(getWeekNumber).toStrictEqual(mockGetISOWeek);
   });
 });

@@ -6,7 +6,7 @@ describe(totalSum, () => {
   test("should return zero for zero time entries", () => {
     const result = totalSum([]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       excludingVAT: `0,00${nonBreakingSpace}kr`,
       includingVAT: `0,00${nonBreakingSpace}kr`,
     });
@@ -24,7 +24,7 @@ describe(totalSum, () => {
 
     const result = totalSum([novemberThird]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       excludingVAT: `1${nonBreakingSpace}000,00${nonBreakingSpace}kr`,
       includingVAT: `1${nonBreakingSpace}250,00${nonBreakingSpace}kr`,
     });
@@ -58,7 +58,7 @@ describe(totalSum, () => {
 
     const result = totalSum([novemberThird, novemberFourth, novemberSixth]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       excludingVAT: `3${nonBreakingSpace}514,30${nonBreakingSpace}kr`,
       includingVAT: `4${nonBreakingSpace}392,88${nonBreakingSpace}kr`,
     });

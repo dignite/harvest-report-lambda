@@ -4,7 +4,7 @@ describe(totalSum, () => {
   test("should return zero for zero time entries", () => {
     const result = totalSum([]);
 
-    expect(result).toEqual(0);
+    expect(result).toStrictEqual(0);
   });
 
   test("should return hours from single time entry", () => {
@@ -19,7 +19,7 @@ describe(totalSum, () => {
 
     const result = totalSum([novemberThird]);
 
-    expect(result).toEqual(3.1);
+    expect(result).toStrictEqual(3.1);
   });
 
   test("should return sum from collection of time entries", () => {
@@ -50,7 +50,7 @@ describe(totalSum, () => {
 
     const result = totalSum([novemberThird, novemberFourth, novemberSixth]);
 
-    expect(result).toEqual(11.3);
+    expect(result).toStrictEqual(11.3);
   });
 });
 
@@ -58,7 +58,7 @@ describe(perWeek, () => {
   test("should return empty object for zero time entries", () => {
     const result = perWeek([]);
 
-    expect(result).toEqual({});
+    expect(result).toStrictEqual({});
   });
 
   test("should return weekly hours from single time entry", () => {
@@ -73,7 +73,7 @@ describe(perWeek, () => {
 
     const result = perWeek([novemberThird]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       w44: 3.1,
     });
   });
@@ -98,7 +98,7 @@ describe(perWeek, () => {
 
     const result = perWeek([novemberThird, novemberFourth]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       w44: 7.2,
     });
   });
@@ -131,7 +131,7 @@ describe(perWeek, () => {
 
     const result = perWeek([novemberThird, novemberFourth, novemberSixth]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       w44: 7.2,
       w45: 4.1,
     });
