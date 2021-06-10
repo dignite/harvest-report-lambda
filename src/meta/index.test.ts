@@ -29,7 +29,7 @@ describe(hoursMeta, () => {
   };
   const relevantTimeEntries = [novemberThird, novemberFourth, novemberSixth];
 
-  test("should return status code and endpoint description", () => {
+  it("should return status code and endpoint description", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
@@ -38,14 +38,14 @@ describe(hoursMeta, () => {
     );
   });
 
-  test("should return total unbilled billable hours", () => {
+  it("should return total unbilled billable hours", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
     expect(result.totalUnbilledHours).toStrictEqual(11.3);
   });
 
-  test("should return total unbilled billable hours per week", () => {
+  it("should return total unbilled billable hours per week", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
@@ -55,7 +55,7 @@ describe(hoursMeta, () => {
     });
   });
 
-  test("should return total unbilled invoice size", () => {
+  it("should return total unbilled invoice size", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
@@ -65,7 +65,7 @@ describe(hoursMeta, () => {
     });
   });
 
-  test("should not return anything unexpected", () => {
+  it("should not return anything unexpected", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 

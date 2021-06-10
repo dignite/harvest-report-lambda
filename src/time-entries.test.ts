@@ -12,7 +12,7 @@ jest.mock("./date", () => ({
 }));
 
 describe(getRelevantUnbilled, () => {
-  test("should return all unbilled billable hours", async () => {
+  it("should return all unbilled billable hours", async () => {
     expect.assertions(1);
     setupReturnTimeEntries([
       unbilledBillableDecember,
@@ -43,7 +43,7 @@ describe(getRelevantUnbilled, () => {
     expect(result).toStrictEqual(expect.arrayContaining(expected));
   });
 
-  test("should return non-billable hours from the current month and last month", async () => {
+  it("should return non-billable hours from the current month and last month", async () => {
     expect.assertions(1);
     setupReturnTimeEntries([
       unbilledUnbillableNovember,
@@ -74,7 +74,7 @@ describe(getRelevantUnbilled, () => {
     expect(result).toStrictEqual(expect.arrayContaining(expected));
   });
 
-  test("should not return anything but unbilled billable hours and non-billable hours from the current month", async () => {
+  it("should not return anything but unbilled billable hours and non-billable hours from the current month", async () => {
     expect.assertions(1);
     setupReturnTimeEntries([
       unbilledBillableDecember,

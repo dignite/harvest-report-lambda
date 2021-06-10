@@ -4,7 +4,7 @@ const nonBreakingSpace = String.fromCharCode(160);
 
 describe(SEK, () => {
   describe("add", () => {
-    test("should print 13.37 nicely", () => {
+    it("should print 13.37 nicely", () => {
       expect.assertions(1);
       const thirteenThirtySeven = SEK(13.37);
 
@@ -13,7 +13,7 @@ describe(SEK, () => {
       expect(result).toStrictEqual(`13,37${nonBreakingSpace}kr`);
     });
 
-    test("should print 3.3333333 nicely", () => {
+    it("should print 3.3333333 nicely", () => {
       expect.assertions(1);
       const oneThirdOfTen = SEK(3.3333333);
 
@@ -22,7 +22,7 @@ describe(SEK, () => {
       expect(result).toStrictEqual(`3,33${nonBreakingSpace}kr`);
     });
 
-    test("should print 2.03 nicely", () => {
+    it("should print 2.03 nicely", () => {
       expect.assertions(1);
       const twoOhThree = SEK(2.03);
 
@@ -31,7 +31,7 @@ describe(SEK, () => {
       expect(result).toStrictEqual(`2,03${nonBreakingSpace}kr`);
     });
 
-    test("should print 1000202.03 nicely", () => {
+    it("should print 1000202.03 nicely", () => {
       expect.assertions(1);
       const twoOhThree = SEK(1000202.03);
 
@@ -43,7 +43,7 @@ describe(SEK, () => {
     });
   });
   describe("add", () => {
-    test("should add 13.37 + 2.03", () => {
+    it("should add 13.37 + 2.03", () => {
       expect.assertions(1);
       const sum = SEK(13.37).add(SEK(2.03));
 
@@ -52,14 +52,14 @@ describe(SEK, () => {
   });
 
   describe("addVAT", () => {
-    test("should add 6% VAT", () => {
+    it("should add 6% VAT", () => {
       expect.assertions(1);
       const result = SEK(100).addVAT(6);
 
       expect(result.toString()).toStrictEqual(`106,00${nonBreakingSpace}kr`);
     });
 
-    test("should add 25% VAT", () => {
+    it("should add 25% VAT", () => {
       expect.assertions(1);
       const result = SEK(100).addVAT(25);
 
@@ -68,7 +68,7 @@ describe(SEK, () => {
   });
 
   describe("multiply", () => {
-    test("should multiply by 4.1", () => {
+    it("should multiply by 4.1", () => {
       expect.assertions(1);
       const result = SEK(3.33).multiply(4.1);
 
