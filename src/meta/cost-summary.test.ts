@@ -3,7 +3,7 @@ import { totalSum } from "./cost-summary";
 const nonBreakingSpace = String.fromCharCode(160);
 
 describe(totalSum, () => {
-  test("should return zero for zero time entries", () => {
+  it("should return zero for zero time entries", () => {
     expect.assertions(1);
     const result = totalSum([]);
 
@@ -13,7 +13,7 @@ describe(totalSum, () => {
     });
   });
 
-  test("should return cost from single time entry", () => {
+  it("should return cost from single time entry", () => {
     expect.assertions(1);
     const novemberThird = {
       id: 1,
@@ -32,7 +32,7 @@ describe(totalSum, () => {
     });
   });
 
-  test("should return cost from collection of time entries", () => {
+  it("should return cost from collection of time entries", () => {
     expect.assertions(1);
     const novemberThird = {
       id: 1,

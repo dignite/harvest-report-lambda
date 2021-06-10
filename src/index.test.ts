@@ -13,7 +13,7 @@ jest.mock("./serializer");
 jest.mock("./date");
 
 describe(root, () => {
-  test("should return status code not found", async () => {
+  it("should return status code not found", async () => {
     expect.assertions(1);
     const result = await root();
 
@@ -29,7 +29,7 @@ describe(root, () => {
 });
 
 describe(hours, () => {
-  test("should return serialized meta data and time entries", async () => {
+  it("should return serialized meta data and time entries", async () => {
     expect.assertions(1);
     const relevantTimeEntries = [
       {

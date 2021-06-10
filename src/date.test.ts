@@ -3,7 +3,7 @@ import MockDate from "mockdate";
 
 describe("date", () => {
   describe(startOfLastMonth, () => {
-    test("should find September 1st", () => {
+    it("should find September 1st", () => {
       expect.assertions(1);
       MockDate.set(new Date("2018-10-17"));
 
@@ -11,7 +11,7 @@ describe("date", () => {
         new Date("2018-09-01T00:00:00.000Z")
       );
     });
-    test("should find October 1st", () => {
+    it("should find October 1st", () => {
       expect.assertions(1);
       MockDate.set(new Date("2018-11-01"));
 
@@ -20,7 +20,7 @@ describe("date", () => {
       );
     });
 
-    test("should find December 1st", () => {
+    it("should find December 1st", () => {
       expect.assertions(1);
       MockDate.set(new Date("2019-01-11"));
 
