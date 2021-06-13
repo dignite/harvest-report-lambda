@@ -26,7 +26,6 @@
     ],
 
     /* Violations of "plugin:jest/all", to be fixed */
-    "jest/no-hooks": "off",
     "jest/prefer-to-be-undefined": "off",
     "jest/no-standalone-expect": "off",
     "jest/require-top-level-describe": "off"
