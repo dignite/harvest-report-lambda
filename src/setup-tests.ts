@@ -1,6 +1,6 @@
 /* eslint-disable fp/no-unused-expression */
 
-import { server } from "./__mocks__/mock-service-worker/server";
+import { server } from "./mock-service-worker/server";
 
 beforeAll(() => {
   // Enable the mocking in tests.
