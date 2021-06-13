@@ -1,9 +1,9 @@
 import { getUnbilledTimeEntries } from "./harvest-queries";
-import { server } from "../__mocks__/mock-service-worker/server";
+import { server } from "../mock-service-worker/server";
 import {
   prepareGetTimeEntriesSuccess,
   getTimeEntriesError,
-} from "../__mocks__/mock-service-worker/harvest-handlers";
+} from "../mock-service-worker/harvest-handlers";
 
 jest.mock("../process-env", () => ({
   get: (key: string) => `Value from process.env.${key}`,

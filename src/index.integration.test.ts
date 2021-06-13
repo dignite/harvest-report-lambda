@@ -1,6 +1,6 @@
 import { hours } from "./";
-import { server } from "./__mocks__/mock-service-worker/server";
-import { prepareGetTimeEntriesSuccess } from "./__mocks__/mock-service-worker/harvest-handlers";
+import { server } from "./mock-service-worker/server";
+import { prepareGetTimeEntriesSuccess } from "./mock-service-worker/harvest-handlers";
 
 jest.mock("./process-env", () => ({
   get: (key: string) => `Value from process.env.${key}`,
