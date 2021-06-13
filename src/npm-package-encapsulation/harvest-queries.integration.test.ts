@@ -5,22 +5,25 @@ import { getUnbilledTimeEntries } from "./harvest-queries";
 
 import { get } from "../process-env";
 
-const testIfAllDefined = (args: string[]) =>
-  args.some((key) => get(key) === undefined) ? test.skip : test;
+const areAllDefined = (args: string[]) =>
+  args.every((key) => get(key) !== undefined);
 
-const testIfEnvSetup = testIfAllDefined([
+const isTestEnvSetup = areAllDefined([
   "HARVEST_ACCESS_TOKEN",
   "HARVEST_ACCOUNT_ID",
   "USER_AGENT_EMAIL",
 ]);
 
 describe("getUnbilledTimeEntries function", () => {
-  testIfEnvSetup(
-    "should return all billable but unbilled and non-billable hours",
-    async () => {
-      const result = await getUnbilledTimeEntries();
+  isTestEnvSetup
+    ? it("should return all billable but unbilled and non-billable hours", async () => {
+        expect.assertions(1);
 
-      expect(result.length).toBeGreaterThan(0);
-    }
-  );
+        const result = await getUnbilledTimeEntries();
+
+        expect(result.length).toBeGreaterThan(0);
+      })
+    : it.todo(
+        "should return all billable but unbilled and non-billable hours (not tested due to missing environment variables)"
+      );
 });
