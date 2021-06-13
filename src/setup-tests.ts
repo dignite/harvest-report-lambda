@@ -1,4 +1,4 @@
-/* eslint-disable fp/no-unused-expression, jest/no-hooks */
+/* eslint-disable fp/no-unused-expression, jest/no-hooks, jest/require-top-level-describe */
 
 import { server } from "./mock-service-worker/server";
 
