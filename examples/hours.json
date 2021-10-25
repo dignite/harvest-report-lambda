@@ -122,6 +122,12 @@
       "name": "Development + Leave of Absense",
       "billableHours": 6.1,
       "comment": ""
+    },
+    {
+      "date": "2018-11-05",
+      "name": "Leave of Absense",
+      "billableHours": 0,
+      "comment": ""
     }
   ]
 }
