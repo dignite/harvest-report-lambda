@@ -8,7 +8,7 @@ import { mocked } from "ts-jest/utils";
 jest.mock("./npm-package-encapsulation/harvest-queries");
 
 jest.mock("./date", () => ({
-  startOfMonth: () => Date.parse("2018-11-01"),
+  startOfLastMonth: () => Date.parse("2018-10-01"),
 }));
 
 describe(getRelevantUnbilled, () => {
@@ -42,9 +42,10 @@ describe(getRelevantUnbilled, () => {
     expect(result).toEqual(expect.arrayContaining(expected));
   });
 
-  test("should return non-billable hours from the current month", async () => {
+  test("should return non-billable hours from the current month and last month", async () => {
     setupReturnTimeEntries([
-      unbilledUnbillableDecember,
+      unbilledUnbillableNovember,
+      unbilledUnbillableOctober,
       unbilledUnbillableJanuary,
     ]);
 
@@ -59,6 +60,14 @@ describe(getRelevantUnbilled, () => {
         id: 2,
         name: "Vacation",
       },
+      {
+        billableHours: 0,
+        comment: "Uppsala",
+        cost: 0,
+        date: "2018-10-01",
+        id: 6,
+        name: "Vacation",
+      },
     ];
     expect(result).toEqual(expect.arrayContaining(expected));
   });
@@ -66,7 +75,7 @@ describe(getRelevantUnbilled, () => {
   test("should not return anything but unbilled billable hours and non-billable hours from the current month", async () => {
     setupReturnTimeEntries([
       unbilledBillableDecember,
-      unbilledUnbillableDecember,
+      unbilledUnbillableNovember,
       billedBillableFebruary,
       unbilledBillableJanuary,
       unbilledUnbillableJanuary,
@@ -94,7 +103,7 @@ const unbilledBillableDecember: SimplifiedUnbilledTimeEntry = {
   name: "Programming",
 };
 
-const unbilledUnbillableDecember: SimplifiedUnbilledTimeEntry = {
+const unbilledUnbillableNovember: SimplifiedUnbilledTimeEntry = {
   billable: false,
   billableRate: 0,
   comment: "Umeå",
@@ -134,6 +143,17 @@ const unbilledUnbillableJanuary: SimplifiedUnbilledTimeEntry = {
   date: "2018-01-01",
   hours: 6,
   id: 5,
+  isBilled: false,
+  name: "Vacation",
+};
+
+const unbilledUnbillableOctober: SimplifiedUnbilledTimeEntry = {
+  billable: false,
+  billableRate: 0,
+  comment: "Uppsala",
+  date: "2018-10-01",
+  hours: 8,
+  id: 6,
   isBilled: false,
   name: "Vacation",
 };

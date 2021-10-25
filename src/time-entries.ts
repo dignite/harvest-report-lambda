@@ -2,7 +2,7 @@ import {
   getUnbilledTimeEntries,
   SimplifiedUnbilledTimeEntry,
 } from "./npm-package-encapsulation/harvest-queries";
-import { startOfMonth } from "./date";
+import { startOfLastMonth } from "./date";
 import { SEK } from "./npm-package-encapsulation/swedish-crowns";
 
 export interface HarvestReportLambdaTimeEntry {
@@ -20,7 +20,7 @@ export const getRelevantUnbilled = async (): Promise<
   const timeEntries = await getUnbilledTimeEntries();
   const unbilledTimeEntries = timeEntries.filter(isNotBilled);
   const relevantUnbilledEntries = unbilledTimeEntries.filter(
-    fromThisMonthUnlessBillable
+    fromThisAndLastMonthUnlessBillable
   );
   const timeEntriesWithCost = relevantUnbilledEntries.map((timeEntry) => {
     const billableHours =
@@ -41,7 +41,10 @@ export const getRelevantUnbilled = async (): Promise<
 
 const isNotBilled = (timeEntry: SimplifiedUnbilledTimeEntry) =>
   !timeEntry.isBilled;
-const fromThisMonthUnlessBillable = (timeEntry: SimplifiedUnbilledTimeEntry) =>
+const fromThisAndLastMonthUnlessBillable = (
+  timeEntry: SimplifiedUnbilledTimeEntry
+) =>
   timeEntry.billable ||
-  (timeEntry.date && new Date(Date.parse(timeEntry.date)) >= startOfMonth());
+  (timeEntry.date &&
+    new Date(Date.parse(timeEntry.date)) >= startOfLastMonth());
 const roundToNearestSixMinutes = (hours: number) => Math.round(hours * 10) / 10;
