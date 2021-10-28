@@ -12,6 +12,12 @@ provider:
   region: eu-west-1
 
 functions:
+  root:
+    handler: src/index.root
+    events:
+      - http:
+          path: /
+          method: get
   frontend:
     handler: src/index.frontend
     events:
@@ -27,13 +33,6 @@ functions:
     environment:
       HARVEST_ACCESS_TOKEN: ${self:custom.dotenvVars.HARVEST_ACCESS_TOKEN}
       HARVEST_ACCOUNT_ID: ${self:custom.dotenvVars.HARVEST_ACCOUNT_ID}
-  rootPath:
-    handler: src/index.root
-    events:
-      - http:
-          path: /
-          method: get
-
 package:
   exclude:
     - .build/**
