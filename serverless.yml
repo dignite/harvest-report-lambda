@@ -12,11 +12,17 @@ provider:
   region: eu-west-1
 
 functions:
+  frontend:
+    handler: src/index.frontend
+    events:
+      - http:
+          path: /${self:custom.dotenvVars.SECRET_URL_SLUG}
+          method: get
   hours:
     handler: src/index.hours
     events:
       - http:
-          path: /${self:custom.dotenvVars.SECRET_URL_SLUG}
+          path: /${self:custom.dotenvVars.SECRET_URL_SLUG}/api/hours
           method: get
     environment:
       HARVEST_ACCESS_TOKEN: ${self:custom.dotenvVars.HARVEST_ACCESS_TOKEN}
