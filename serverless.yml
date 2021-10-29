@@ -18,6 +18,7 @@ functions:
       - http:
           path: /${self:custom.dotenvVars.SECRET_URL_SLUG}
           method: get
+          cors: true
     environment:
       HARVEST_ACCESS_TOKEN: ${self:custom.dotenvVars.HARVEST_ACCESS_TOKEN}
       HARVEST_ACCOUNT_ID: ${self:custom.dotenvVars.HARVEST_ACCOUNT_ID}
@@ -27,6 +28,7 @@ functions:
       - http:
           path: /
           method: get
+          cors: true
 
 package:
   exclude:
