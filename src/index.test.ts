@@ -18,6 +18,10 @@ describe(root, () => {
 
     expect(result).toEqual({
       statusCode: 404,
+      headers: {
+        "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Origin": "*",
+      },
       body: "Not Found",
     });
   });
@@ -87,6 +91,10 @@ describe(hours, () => {
 
     expect(result).toEqual({
       body: mockSerializedBody,
+      headers: {
+        "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Origin": "*",
+      },
       statusCode: 200,
     });
   });
