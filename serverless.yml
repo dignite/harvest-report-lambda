@@ -5,6 +5,7 @@
 #    docs.serverless.com
 
 service: harvest-report-lambda
+variablesResolutionMode: 20210326
 
 provider:
   name: aws
