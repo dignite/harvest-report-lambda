@@ -12,9 +12,9 @@
     "local-invocation": "serverless invoke local --function hours",
     "start": "serverless offline start",
     "deploy": "npm run deploy:dev && npm run deploy:prod",
-    "deploy:dev": "serverless deploy -v",
-    "deploy:prod": "serverless deploy -v --stage prod",
-    "remove-deploys": "serverless remove -v && serverless remove -v --stage prod",
+    "deploy:dev": "serverless deploy --verbose",
+    "deploy:prod": "serverless deploy --verbose --stage prod",
+    "remove-deploys": "serverless remove --verbose && serverless remove --verbose --stage prod",
     "check-all-pull-request-commits": "git rebase origin/main --exec \"npm run test && npm run local-invocation\""
   },
   "author": "Daniel Edholm Ignat",
