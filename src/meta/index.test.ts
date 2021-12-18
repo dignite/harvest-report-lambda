@@ -33,7 +33,7 @@ describe("hoursMeta function", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result.description).toStrictEqual(
+    expect(result.description).toBe(
       "*All* unbilled billable hours, and any non-billable hours logged for the current month."
     );
   });
@@ -42,7 +42,7 @@ describe("hoursMeta function", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result.totalUnbilledHours).toStrictEqual(11.3);
+    expect(result.totalUnbilledHours).toBe(11.3);
   });
 
   it("should return total unbilled billable hours per week", () => {

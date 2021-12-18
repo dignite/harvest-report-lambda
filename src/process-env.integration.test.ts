@@ -8,6 +8,6 @@ describe("procces-env wrapper", () => {
 
   it("should return NODE_ENV test", () => {
     expect.assertions(1);
-    expect(get("NODE_ENV")).toStrictEqual("test");
+    expect(get("NODE_ENV")).toBe("test");
   });
 });
