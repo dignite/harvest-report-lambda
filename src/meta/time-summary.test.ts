@@ -5,7 +5,7 @@ describe("totalSum function", () => {
     expect.assertions(1);
     const result = totalSum([]);
 
-    expect(result).toStrictEqual(0);
+    expect(result).toBe(0);
   });
 
   it("should return hours from single time entry", () => {
@@ -21,7 +21,7 @@ describe("totalSum function", () => {
 
     const result = totalSum([novemberThird]);
 
-    expect(result).toStrictEqual(3.1);
+    expect(result).toBe(3.1);
   });
 
   it("should return sum from collection of time entries", () => {
@@ -53,7 +53,7 @@ describe("totalSum function", () => {
 
     const result = totalSum([novemberThird, novemberFourth, novemberSixth]);
 
-    expect(result).toStrictEqual(11.3);
+    expect(result).toBe(11.3);
   });
 });
 
