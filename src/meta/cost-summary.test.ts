@@ -2,17 +2,19 @@ import { totalSum } from "./cost-summary";
 
 const nonBreakingSpace = String.fromCharCode(160);
 
-describe(totalSum, () => {
-  test("should return zero for zero time entries", () => {
+describe("totalSum function", () => {
+  it("should return zero for zero time entries", () => {
+    expect.assertions(1);
     const result = totalSum([]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       excludingVAT: `0,00${nonBreakingSpace}kr`,
       includingVAT: `0,00${nonBreakingSpace}kr`,
     });
   });
 
-  test("should return cost from single time entry", () => {
+  it("should return cost from single time entry", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -24,13 +26,14 @@ describe(totalSum, () => {
 
     const result = totalSum([novemberThird]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       excludingVAT: `1${nonBreakingSpace}000,00${nonBreakingSpace}kr`,
       includingVAT: `1${nonBreakingSpace}250,00${nonBreakingSpace}kr`,
     });
   });
 
-  test("should return cost from collection of time entries", () => {
+  it("should return cost from collection of time entries", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -58,7 +61,7 @@ describe(totalSum, () => {
 
     const result = totalSum([novemberThird, novemberFourth, novemberSixth]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       excludingVAT: `3${nonBreakingSpace}514,30${nonBreakingSpace}kr`,
       includingVAT: `4${nonBreakingSpace}392,88${nonBreakingSpace}kr`,
     });

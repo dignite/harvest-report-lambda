@@ -1,8 +1,9 @@
 import { merge } from "./time-per-day";
 import { HarvestReportLambdaTimeEntry } from "./time-entries";
 
-describe(merge, () => {
-  test("should return distinct time entries as-is without id", () => {
+describe("merge function", () => {
+  it("should return distinct time entries as-is without id", () => {
+    expect.assertions(1);
     const novemberThird: HarvestReportLambdaTimeEntry = {
       id: 1,
       date: "2018-11-03",
@@ -24,7 +25,7 @@ describe(merge, () => {
 
     const result = merge(input);
 
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         date: "2018-11-03",
         name: "Programming",
@@ -40,7 +41,8 @@ describe(merge, () => {
     ]);
   });
 
-  test("should merge morning and afternoon work time entries", () => {
+  it("should merge morning and afternoon work time entries", () => {
+    expect.assertions(1);
     const novemberThird: HarvestReportLambdaTimeEntry = {
       id: 1,
       date: "2018-11-03",
@@ -60,7 +62,7 @@ describe(merge, () => {
 
     const result = merge([novemberThird, novemberThirdAfterLunch]);
 
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         date: "2018-11-03",
         name: "Programming",
@@ -70,7 +72,8 @@ describe(merge, () => {
     ]);
   });
 
-  test("should merge morning and afternoon vacation time entries", () => {
+  it("should merge morning and afternoon vacation time entries", () => {
+    expect.assertions(1);
     const novemberFifthVacation: HarvestReportLambdaTimeEntry = {
       id: 4,
       date: "2018-11-05",
@@ -93,7 +96,7 @@ describe(merge, () => {
       novemberFifthVacationAfterLunch,
     ]);
 
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         date: "2018-11-05",
         name: "Vacation",
@@ -103,7 +106,8 @@ describe(merge, () => {
     ]);
   });
 
-  test("should merge half sick day (sick in the afternoon)", () => {
+  it("should merge half sick day (sick in the afternoon)", () => {
+    expect.assertions(1);
     const novemberSixth: HarvestReportLambdaTimeEntry = {
       id: 6,
       date: "2018-11-06",
@@ -123,7 +127,7 @@ describe(merge, () => {
 
     const result = merge([novemberSixth, novemberSixthSickAfterLunch]);
 
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         date: "2018-11-06",
         name: "Programming + Sick",
@@ -133,7 +137,8 @@ describe(merge, () => {
     ]);
   });
 
-  test("should merge half sick day (sick in the morning)", () => {
+  it("should merge half sick day (sick in the morning)", () => {
+    expect.assertions(1);
     const novemberSeventhSickMorning: HarvestReportLambdaTimeEntry = {
       id: 8,
       date: "2018-11-07",
@@ -156,7 +161,7 @@ describe(merge, () => {
       novemberSeventhAfterLunch,
     ]);
 
-    expect(result).toEqual([
+    expect(result).toStrictEqual([
       {
         date: "2018-11-07",
         name: "Sick + Programming",

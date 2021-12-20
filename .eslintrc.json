@@ -3,6 +3,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:fp/recommended",
+    "plugin:jest/all",
     "prettier"
   ],
   "plugins": ["fp", "prefer-arrow", "prettier", "@typescript-eslint"],

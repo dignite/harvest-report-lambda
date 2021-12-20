@@ -2,7 +2,7 @@ import { hoursMeta } from "./";
 
 const nonBreakingSpace = String.fromCharCode(160);
 
-describe(hoursMeta, () => {
+describe("hoursMeta function", () => {
   const novemberThird = {
     id: 1,
     date: "2018-11-03",
@@ -29,39 +29,47 @@ describe(hoursMeta, () => {
   };
   const relevantTimeEntries = [novemberThird, novemberFourth, novemberSixth];
 
-  test("should return status code and endpoint description", () => {
+  it("should return status code and endpoint description", () => {
+    expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result.description).toEqual(
+    expect(result.description).toBe(
       "*All* unbilled billable hours, and any non-billable hours logged for the current month."
     );
   });
 
-  test("should return total unbilled billable hours", () => {
+  it("should return total unbilled billable hours", () => {
+    expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result.totalUnbilledHours).toEqual(11.3);
+    expect(result.totalUnbilledHours).toBe(11.3);
   });
 
-  test("should return total unbilled billable hours per week", () => {
+  it("should return total unbilled billable hours per week", () => {
+    expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result.totalUnbilledHoursPerWeek).toEqual({ w44: 7.2, w45: 4.1 });
+    expect(result.totalUnbilledHoursPerWeek).toStrictEqual({
+      w44: 7.2,
+      w45: 4.1,
+    });
   });
 
-  test("should return total unbilled invoice size", () => {
+  it("should return total unbilled invoice size", () => {
+    expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result.unbilledInvoice).toEqual({
+    expect(result.unbilledInvoice).toStrictEqual({
       excludingVAT: `3${nonBreakingSpace}514,30${nonBreakingSpace}kr`,
       includingVAT: `4${nonBreakingSpace}392,88${nonBreakingSpace}kr`,
     });
   });
 
-  test("should not return anything unexpected", () => {
+  it("should not return anything unexpected", () => {
+    expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(Object.keys(result)).toEqual([
+    expect(Object.keys(result)).toStrictEqual([
       "description",
       "totalUnbilledHours",
       "totalUnbilledHoursPerWeek",

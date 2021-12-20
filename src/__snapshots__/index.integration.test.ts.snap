@@ -31,6 +31,10 @@ Object {
       ],
     },
   },
+  "headers": Object {
+    "Access-Control-Allow-Credentials": true,
+    "Access-Control-Allow-Origin": "*",
+  },
   "statusCode": 200,
 }
 `;

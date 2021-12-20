@@ -1,7 +1,7 @@
 /* eslint-disable fp/no-nil */
 
 import { rest } from "msw";
-import { components, paths } from "../../harvest-v2-types";
+import { components, paths } from "../harvest-v2-types";
 
 interface PrepareGetTimeEntriesSuccessConfig {
   userAgent: string;
@@ -74,7 +74,8 @@ export const prepareGetTimeEntriesSuccess = (
             },
           })
         )
-      : res(
+      : /* istanbul ignore next */
+        /* This is here to catch programmer errors */ res(
           ctx.status(401),
           ctx.json({ error: "Incorrect harvest config", expected, actual, req })
         );

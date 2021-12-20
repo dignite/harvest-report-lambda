@@ -5,11 +5,13 @@
 #    docs.serverless.com
 
 service: harvest-report-lambda
+variablesResolutionMode: 20210326
 
 provider:
   name: aws
   runtime: nodejs14.x
   region: eu-west-1
+  lambdaHashingVersion: 20201221
 
 functions:
   hours:
@@ -18,6 +20,7 @@ functions:
       - http:
           path: /${self:custom.dotenvVars.SECRET_URL_SLUG}
           method: get
+          cors: true
     environment:
       HARVEST_ACCESS_TOKEN: ${self:custom.dotenvVars.HARVEST_ACCESS_TOKEN}
       HARVEST_ACCOUNT_ID: ${self:custom.dotenvVars.HARVEST_ACCOUNT_ID}
@@ -27,6 +30,7 @@ functions:
       - http:
           path: /
           method: get
+          cors: true
 
 package:
   exclude:

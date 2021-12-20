@@ -1,6 +1,6 @@
 import { hours } from "./";
-import { server } from "./__mocks__/mock-service-worker/server";
-import { prepareGetTimeEntriesSuccess } from "./__mocks__/mock-service-worker/harvest-handlers";
+import { server } from "./mock-service-worker/server";
+import { prepareGetTimeEntriesSuccess } from "./mock-service-worker/harvest-handlers";
 
 jest.mock("./process-env", () => ({
   get: (key: string) => `Value from process.env.${key}`,
@@ -12,7 +12,8 @@ jest.mock("./serializer", () => ({
 }));
 
 describe(`hours integration test mostly real modules`, () => {
-  test("should return meta data for time entries and relevant time entries per day", async () => {
+  it("should return meta data for time entries and relevant time entries per day", async () => {
+    expect.assertions(1);
     server.resetHandlers(
       prepareGetTimeEntriesSuccess({
         userAgent:

@@ -1,13 +1,15 @@
 import { totalSum, perWeek } from "./time-summary";
 
-describe(totalSum, () => {
-  test("should return zero for zero time entries", () => {
+describe("totalSum function", () => {
+  it("should return zero for zero time entries", () => {
+    expect.assertions(1);
     const result = totalSum([]);
 
-    expect(result).toEqual(0);
+    expect(result).toBe(0);
   });
 
-  test("should return hours from single time entry", () => {
+  it("should return hours from single time entry", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -19,10 +21,11 @@ describe(totalSum, () => {
 
     const result = totalSum([novemberThird]);
 
-    expect(result).toEqual(3.1);
+    expect(result).toBe(3.1);
   });
 
-  test("should return sum from collection of time entries", () => {
+  it("should return sum from collection of time entries", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -50,18 +53,20 @@ describe(totalSum, () => {
 
     const result = totalSum([novemberThird, novemberFourth, novemberSixth]);
 
-    expect(result).toEqual(11.3);
+    expect(result).toBe(11.3);
   });
 });
 
-describe(perWeek, () => {
-  test("should return empty object for zero time entries", () => {
+describe("perWeek function", () => {
+  it("should return empty object for zero time entries", () => {
+    expect.assertions(1);
     const result = perWeek([]);
 
-    expect(result).toEqual({});
+    expect(result).toStrictEqual({});
   });
 
-  test("should return weekly hours from single time entry", () => {
+  it("should return weekly hours from single time entry", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -73,12 +78,13 @@ describe(perWeek, () => {
 
     const result = perWeek([novemberThird]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       w44: 3.1,
     });
   });
 
-  test("should return weekly sum from collection of same-week time entries", () => {
+  it("should return weekly sum from collection of same-week time entries", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -98,12 +104,13 @@ describe(perWeek, () => {
 
     const result = perWeek([novemberThird, novemberFourth]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       w44: 7.2,
     });
   });
 
-  test("should return weekly sum from collection of spread out time entries", () => {
+  it("should return weekly sum from collection of spread out time entries", () => {
+    expect.assertions(1);
     const novemberThird = {
       id: 1,
       date: "2018-11-03",
@@ -131,7 +138,7 @@ describe(perWeek, () => {
 
     const result = perWeek([novemberThird, novemberFourth, novemberSixth]);
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       w44: 7.2,
       w45: 4.1,
     });

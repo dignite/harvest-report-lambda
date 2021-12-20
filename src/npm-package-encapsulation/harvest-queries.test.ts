@@ -1,16 +1,17 @@
 import { getUnbilledTimeEntries } from "./harvest-queries";
-import { server } from "../__mocks__/mock-service-worker/server";
+import { server } from "../mock-service-worker/server";
 import {
   prepareGetTimeEntriesSuccess,
   getTimeEntriesError,
-} from "../__mocks__/mock-service-worker/harvest-handlers";
+} from "../mock-service-worker/harvest-handlers";
 
 jest.mock("../process-env", () => ({
   get: (key: string) => `Value from process.env.${key}`,
 }));
 
-describe(getUnbilledTimeEntries, () => {
-  test("should return all billable but unbilled and non-billable hours", async () => {
+describe("getUnbilledTimeEntries function", () => {
+  it("should return all billable but unbilled and non-billable hours", async () => {
+    expect.assertions(1);
     server.resetHandlers(
       prepareGetTimeEntriesSuccess(
         {
@@ -107,10 +108,11 @@ describe(getUnbilledTimeEntries, () => {
         name: "Unnamed",
       },
     ];
-    expect(result).toEqual(expect.arrayContaining(expected));
+    expect(result).toStrictEqual(expect.arrayContaining(expected));
   });
 
-  test("should return all billable but unbilled and non-billable hours", async () => {
+  it("should reject with error from harvest", async () => {
+    expect.assertions(1);
     server.resetHandlers(getTimeEntriesError);
 
     await expect(getUnbilledTimeEntries()).rejects.toThrow(

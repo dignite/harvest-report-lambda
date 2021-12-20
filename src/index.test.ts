@@ -12,19 +12,25 @@ jest.mock("./meta");
 jest.mock("./serializer");
 jest.mock("./date");
 
-describe(root, () => {
-  test("should return status code not found", async () => {
+describe("root function", () => {
+  it("should return status code not found", async () => {
+    expect.assertions(1);
     const result = await root();
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       statusCode: 404,
+      headers: {
+        "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Origin": "*",
+      },
       body: "Not Found",
     });
   });
 });
 
-describe(hours, () => {
-  test("should return serialized meta data and time entries", async () => {
+describe("hours function", () => {
+  it("should return serialized meta data and time entries", async () => {
+    expect.assertions(1);
     const relevantTimeEntries = [
       {
         billableHours: 4.1,
@@ -85,8 +91,12 @@ describe(hours, () => {
 
     const result = await hours();
 
-    expect(result).toEqual({
+    expect(result).toStrictEqual({
       body: mockSerializedBody,
+      headers: {
+        "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Origin": "*",
+      },
       statusCode: 200,
     });
   });
