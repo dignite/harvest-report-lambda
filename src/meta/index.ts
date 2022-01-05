@@ -1,4 +1,4 @@
-import { totalSum, perWeek } from "./time-summary";
+import { totalSum, perWeek, perMonth } from "./time-summary";
 import { totalSum as totalCostSum } from "./cost-summary";
 import { HarvestReportLambdaTimeEntry } from "../time-entries";
 
@@ -18,5 +18,22 @@ export const hoursMeta = (
     totalUnbilledHours: totalSum(relevantTimeEntries),
     totalUnbilledHoursPerWeek: perWeek(relevantTimeEntries),
     unbilledInvoice: totalCostSum(relevantTimeEntries),
+  };
+};
+
+interface MonthByMonthMeta {
+  timePerWeekPerMonth: {
+    [x: string]: ReturnType<typeof perWeek>;
+  }[];
+}
+
+export const monthByMonthMeta = (
+  relevantTimeEntries: HarvestReportLambdaTimeEntry[]
+): MonthByMonthMeta => {
+  const groupedByMonth = perMonth(relevantTimeEntries);
+  return {
+    timePerWeekPerMonth: Object.keys(groupedByMonth).map((month) => ({
+      [month]: perWeek(groupedByMonth[month]),
+    })),
   };
 };

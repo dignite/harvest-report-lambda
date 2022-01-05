@@ -1,5 +1,6 @@
 import {
   getUnbilledTimeEntries,
+  getTimeEntriesForYear,
   SimplifiedUnbilledTimeEntry,
 } from "./npm-package-encapsulation/harvest-queries";
 import { startOfLastMonth } from "./date";
@@ -23,6 +24,27 @@ export const getRelevantUnbilled = async (): Promise<
     fromThisAndLastMonthUnlessBillable
   );
   const timeEntriesWithCost = relevantUnbilledEntries.map((timeEntry) => {
+    const billableHours =
+      timeEntry.billable && timeEntry.billableRate && timeEntry.hours
+        ? roundToNearestSixMinutes(timeEntry.hours)
+        : 0;
+    return {
+      id: timeEntry.id,
+      date: timeEntry.date,
+      name: timeEntry.name,
+      billableHours,
+      cost: SEK(billableHours).multiply(timeEntry.billableRate).getAmount(),
+      comment: timeEntry.comment,
+    };
+  });
+  return timeEntriesWithCost;
+};
+
+export const getYear = async (
+  year: number
+): Promise<HarvestReportLambdaTimeEntry[]> => {
+  const timeEntries = await getTimeEntriesForYear(year);
+  const timeEntriesWithCost = timeEntries.map((timeEntry) => {
     const billableHours =
       timeEntry.billable && timeEntry.billableRate && timeEntry.hours
         ? roundToNearestSixMinutes(timeEntry.hours)

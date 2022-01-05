@@ -1,4 +1,7 @@
-import { getWeekNumber } from "../npm-package-encapsulation/date-info";
+import {
+  getWeekNumber,
+  getMonthName,
+} from "../npm-package-encapsulation/date-info";
 import groupBy from "lodash.groupby";
 import mapValues from "lodash.mapvalues";
 import { HarvestReportLambdaTimeEntry } from "../time-entries";
@@ -28,6 +31,21 @@ export const perWeek = (
   const hoursByWeek = groupBy(hoursWithWeekNumber, "week");
 
   return mapValues(hoursByWeek, totalSum);
+};
+
+type TimeEntriesPerMonth = Record<string, HarvestReportLambdaTimeEntry[]>;
+
+export const perMonth = (
+  timeEntries: HarvestReportLambdaTimeEntry[]
+): TimeEntriesPerMonth => {
+  const hoursWithMonth = timeEntries.map((timeEntry) => ({
+    ...timeEntry,
+    month: getMonthName(new Date(Date.parse(timeEntry.date))),
+  }));
+
+  const hoursByMonth = groupBy(hoursWithMonth, "month");
+
+  return hoursByMonth;
 };
 
 const sumPreservingOneDecimal = (value1: number, value2: number) =>
