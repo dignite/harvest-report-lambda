@@ -1,8 +1,8 @@
 # Harvest Report Lambda
 
-<img src="https://www.getharvest.com/assets/press/harvest-logo-capsule-9b74927af1c93319c7d6c47ee89d4c2d442f569492c82899b203dd3bdeaa81a4.png" height="100px" align="right" />
-
 Serverless framework functions to expose time reporting data to clients as JSON ([Example][hours-json-example]). Currently this project assumes invoicing in swedish crowns.
+
+<img src="https://f.hubspotusercontent10.net/hubfs/19495563/about/harvest-logo-black-thumb.png" height="64px" align="right" />
 
 [![AWS Lambda - Serverless][serverless-badge]][serverless-link] [![MIT][mit-badge]][license]
 
