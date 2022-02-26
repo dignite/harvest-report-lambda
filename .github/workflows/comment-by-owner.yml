@@ -1,0 +1,12 @@
+on: issue_comment
+
+jobs:
+  pr_commented:
+    name: PR comment
+    if: github.event.issue.pull_request && github.event.comment.user.login == github.event.repository.owner.login
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo A comment on PR $NUMBER
+        env:
+          NUMBER: ${{ github.event.issue.number }}
