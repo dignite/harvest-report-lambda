@@ -3,10 +3,12 @@ on: issue_comment
 jobs:
   pr_commented:
     name: PR comment
-    if: github.event.issue.pull_request && github.event.comment.user.login == github.event.repository.owner.login
+    if: github.event.issue.pull_request
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo A comment on PR $NUMBER
+          echo A comment on PR $NUMBER by $COMMENT_USER where repository owned by $REPOSITORY_OWNER_USER
         env:
           NUMBER: ${{ github.event.issue.number }}
+          COMMENT_USER: ${{ github.event.comment.user.login }}
+          REPOSITORY_OWNER_USER: ${{ github.event.repository.owner.login }}
