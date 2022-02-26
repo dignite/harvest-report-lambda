@@ -10,7 +10,6 @@ jspm_packages
 
 # Test artifacts
 coverage
-coverage-ts
 
 # Build artifacts
 .build
