@@ -37,3 +37,18 @@ export const hours = async (): Promise<ServerlessLambdaResponse> => {
     }),
   };
 };
+
+export const unbilledInvoice = async (): Promise<ServerlessLambdaResponse> => {
+  const relevantTimeEntries = await getRelevantUnbilled();
+  return {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
+    body: serialize({
+      totalUnbilledExcludingVAT: hoursMeta(relevantTimeEntries).unbilledInvoice
+        .excludingVAT,
+    }),
+  };
+};
