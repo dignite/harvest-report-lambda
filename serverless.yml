@@ -14,6 +14,16 @@ provider:
   lambdaHashingVersion: 20201221
 
 functions:
+  unbilledInvoice:
+    handler: src/index.unbilledInvoice
+    events:
+      - http:
+          path: /${self:custom.dotenvVars.SECRET_URL_SLUG}/unbilled-invoice
+          method: get
+          cors: true
+    environment:
+      HARVEST_ACCESS_TOKEN: ${self:custom.dotenvVars.HARVEST_ACCESS_TOKEN}
+      HARVEST_ACCOUNT_ID: ${self:custom.dotenvVars.HARVEST_ACCOUNT_ID}
   hours:
     handler: src/index.hours
     events:

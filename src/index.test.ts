@@ -1,4 +1,4 @@
-import { root, hours } from "./";
+import { root, hours, unbilledInvoice } from "./";
 import { getRelevantUnbilled } from "./time-entries";
 import { merge } from "./time-per-day";
 import { hoursMeta } from "./meta";
@@ -90,6 +90,67 @@ describe("hours function", () => {
       .mockReturnValue(mockSerializedBody);
 
     const result = await hours();
+
+    expect(result).toStrictEqual({
+      body: mockSerializedBody,
+      headers: {
+        "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Origin": "*",
+      },
+      statusCode: 200,
+    });
+  });
+});
+
+describe("unbilledInvoice function", () => {
+  it("should return serialized total unbilled invoice excluding VAT", async () => {
+    expect.assertions(1);
+    const relevantTimeEntries = [
+      {
+        billableHours: 4.1,
+        comment: "",
+        cost: 548.17,
+        date: "2018-11-04",
+        id: 1,
+        name: "Programming",
+      },
+      {
+        billableHours: 7.0,
+        comment: "",
+        cost: 935.9,
+        date: "2018-01-01",
+        id: 4,
+        name: "Programming",
+      },
+    ];
+    mocked(getRelevantUnbilled).mockResolvedValue(relevantTimeEntries);
+
+    const meta: ReturnType<typeof hoursMeta> = {
+      description:
+        "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
+      totalUnbilledHours: 1,
+      totalUnbilledHoursPerWeek: {
+        w1: 1,
+      },
+      unbilledInvoice: {
+        excludingVAT: "100 SEK",
+        includingVAT: "125 SEK",
+      },
+    };
+    when(mocked(hoursMeta))
+      .calledWith(relevantTimeEntries)
+      .mockReturnValue(meta);
+
+    const mockSerializedBody = `Serialized ${Date.now()}`;
+    when(mocked(serialize))
+      .calledWith(
+        expect.objectContaining({
+          totalUnbilledExcludingVAT: meta.unbilledInvoice.excludingVAT,
+        })
+      )
+      .mockReturnValue(mockSerializedBody);
+
+    const result = await unbilledInvoice();
 
     expect(result).toStrictEqual({
       body: mockSerializedBody,
