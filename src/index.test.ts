@@ -53,7 +53,7 @@ describe("hours function", () => {
 
     const meta: ReturnType<typeof hoursMeta> = {
       description:
-        "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
+        "All unbilled billable and non-billable hours for the current month.",
       totalUnbilledHours: 1,
       totalUnbilledHoursPerWeek: {
         w1: 1,
@@ -127,7 +127,7 @@ describe("unbilledInvoice function", () => {
 
     const meta: ReturnType<typeof hoursMeta> = {
       description:
-        "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
+        "All unbilled billable and non-billable hours for the current month.",
       totalUnbilledHours: 1,
       totalUnbilledHoursPerWeek: {
         w1: 1,

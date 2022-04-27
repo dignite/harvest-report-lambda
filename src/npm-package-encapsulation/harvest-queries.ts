@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import { get } from "../process-env";
 import { paths, components } from "../harvest-v2-types";
+import { startOfMonth, lastDayOfMonth } from "../date";
 
 export interface SimplifiedUnbilledTimeEntry {
   billable: components["schemas"]["TimeEntry"]["billable"];
@@ -18,8 +19,22 @@ type NonNullable<T> = Exclude<T, null | undefined>;
 export const getTimeEntriesForMonth = async (): Promise<
   SimplifiedUnbilledTimeEntry[]
 > => {
+  const from = startOfMonth();
+  const formattedFromDate =
+    from.getFullYear() +
+    "-" +
+    ("0" + (from.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + from.getDate()).slice(-2);
+  const to = lastDayOfMonth();
+  const formattedToDate =
+    to.getFullYear() +
+    "-" +
+    ("0" + (to.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + to.getDate()).slice(-2);
   const res = await fetch(
-    "https://api.harvestapp.com/v2/time_entries?is_billed=false",
+    `https://api.harvestapp.com/v2/time_entries?is_billed=false&from=${formattedFromDate}&to=${formattedToDate}`,
     {
       method: "get",
       headers: {

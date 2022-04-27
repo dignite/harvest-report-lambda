@@ -8,6 +8,8 @@ interface PrepareGetTimeEntriesSuccessConfig {
   accessToken: string;
   accountId: string;
   isBilledQueryParameter: string;
+  isFromQueryParameter: string;
+  isToQueryParameter: string;
 }
 
 export const prepareGetTimeEntriesSuccess = (
@@ -20,18 +22,24 @@ export const prepareGetTimeEntriesSuccess = (
       accessToken,
       accountId,
       isBilledQueryParameter,
+      isFromQueryParameter,
+      isToQueryParameter,
     } = config;
     const expected = {
       userAgent,
       authorization: `Bearer ${accessToken}`,
       accountId,
       isBilledQueryParameter,
+      isFromQueryParameter,
+      isToQueryParameter,
     };
     const actual = {
       userAgent: req.headers.get("user-agent"),
       authorization: req.headers.get("authorization"),
       accountId: req.headers.get("Harvest-Account-Id"),
       isBilledQueryParameter: req.url.searchParams.get("is_billed"),
+      isFromQueryParameter: req.url.searchParams.get("from"),
+      isToQueryParameter: req.url.searchParams.get("to"),
     };
 
     const correctUserAgent =
@@ -49,6 +57,8 @@ export const prepareGetTimeEntriesSuccess = (
       correctAccountId &&
       correctIsBilledQueryParameter;
 
+    const exampleEntriesNovember2020 = [timeEntry1, timeEntry2, timeEntry3];
+
     return correctConfig
       ? res(
           ctx.json<
@@ -57,7 +67,7 @@ export const prepareGetTimeEntriesSuccess = (
             time_entries:
               customTimeEntries !== undefined
                 ? customTimeEntries
-                : [timeEntry1, timeEntry2, timeEntry3, timeEntry4, timeEntry5],
+                : exampleEntriesNovember2020,
             per_page: 100,
             total_pages: 1,
             total_entries: 5,
@@ -268,128 +278,6 @@ const timeEntry3 = {
   task_assignment: {
     id: 221049853,
     billable: true,
-    is_active: true,
-    created_at: "2019-03-17T19:58:26Z",
-    updated_at: "2019-03-17T19:58:26Z",
-    hourly_rate: 220,
-    budget: null,
-  },
-  invoice: null,
-  external_reference: null,
-};
-
-const timeEntry4 = {
-  id: 4,
-  spent_date: "2019-07-17",
-  hours: 8,
-  rounded_hours: 8,
-  notes: null,
-  is_locked: false,
-  locked_reason: null,
-  is_closed: false,
-  is_billed: false,
-  timer_started_at: null,
-  started_time: "9:00",
-  ended_time: "17:00",
-  is_running: false,
-  billable: false,
-  budgeted: false,
-  billable_rate: null,
-  cost_rate: null,
-  created_at: "2019-07-31T10:52:56Z",
-  updated_at: "2019-07-31T10:52:54Z",
-  user: {
-    id: 2016459,
-    name: "Daniel Edholm Ignat",
-  },
-  client: {
-    id: 98989898,
-    name: "Acme AB",
-    currency: "SEK",
-  },
-  project: {
-    id: 98989899,
-    name: "Acme Project X",
-    code: "",
-  },
-  task: {
-    id: 9560167,
-    name: "Ledig",
-  },
-  user_assignment: {
-    id: 192953862,
-    is_project_manager: true,
-    is_active: true,
-    use_default_rates: true,
-    budget: null,
-    created_at: "2019-03-17T19:58:26Z",
-    updated_at: "2019-03-17T19:58:26Z",
-    hourly_rate: 220,
-  },
-  task_assignment: {
-    id: 221049852,
-    billable: false,
-    is_active: true,
-    created_at: "2019-03-17T19:58:26Z",
-    updated_at: "2019-03-17T19:58:26Z",
-    hourly_rate: 220,
-    budget: null,
-  },
-  invoice: null,
-  external_reference: null,
-};
-
-const timeEntry5 = {
-  id: 5,
-  spent_date: "2019-07-16",
-  hours: 8,
-  rounded_hours: 8,
-  notes: null,
-  is_locked: false,
-  locked_reason: null,
-  is_closed: false,
-  is_billed: false,
-  timer_started_at: null,
-  started_time: "9:00",
-  ended_time: "17:00",
-  is_running: false,
-  billable: false,
-  budgeted: false,
-  billable_rate: null,
-  cost_rate: null,
-  created_at: "2019-07-31T10:52:48Z",
-  updated_at: "2019-07-31T10:52:45Z",
-  user: {
-    id: 2016459,
-    name: "Daniel Edholm Ignat",
-  },
-  client: {
-    id: 98989898,
-    name: "Acme AB",
-    currency: "SEK",
-  },
-  project: {
-    id: 98989899,
-    name: "Acme Project X",
-    code: "",
-  },
-  task: {
-    id: 9560167,
-    name: "Ledig",
-  },
-  user_assignment: {
-    id: 192953862,
-    is_project_manager: true,
-    is_active: true,
-    use_default_rates: true,
-    budget: null,
-    created_at: "2019-03-17T19:58:26Z",
-    updated_at: "2019-03-17T19:58:26Z",
-    hourly_rate: 220,
-  },
-  task_assignment: {
-    id: 221049852,
-    billable: false,
     is_active: true,
     created_at: "2019-03-17T19:58:26Z",
     updated_at: "2019-03-17T19:58:26Z",
