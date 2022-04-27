@@ -38,7 +38,7 @@ describe("getTimeEntriesForMonth function", () => {
       )
     );
 
-    const result = await getTimeEntriesForMonth();
+    const result = await getTimeEntriesForMonth(new Date(), new Date());
 
     const expected = [
       {
@@ -89,7 +89,9 @@ describe("getTimeEntriesForMonth function", () => {
     expect.assertions(1);
     server.resetHandlers(getTimeEntriesError);
 
-    await expect(getTimeEntriesForMonth()).rejects.toThrow(
+    await expect(
+      getTimeEntriesForMonth(new Date(), new Date())
+    ).rejects.toThrow(
       'Error getting time entries: 401 Unauthorized, {"message":"Error getting time entries, bad request"}'
     );
   });

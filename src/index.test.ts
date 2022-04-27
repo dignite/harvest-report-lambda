@@ -1,5 +1,5 @@
 import { root, hours, unbilledInvoice } from "./";
-import { getRelevantUnbilled } from "./time-entries";
+import { get } from "./time-entries";
 import { merge } from "./time-per-day";
 import { hoursMeta } from "./meta";
 import { serialize } from "./serializer";
@@ -49,7 +49,7 @@ describe("hours function", () => {
         name: "Programming",
       },
     ];
-    mocked(getRelevantUnbilled).mockResolvedValue(relevantTimeEntries);
+    mocked(get).mockResolvedValue(relevantTimeEntries);
 
     const meta: ReturnType<typeof hoursMeta> = {
       description:
@@ -123,7 +123,7 @@ describe("unbilledInvoice function", () => {
         name: "Programming",
       },
     ];
-    mocked(getRelevantUnbilled).mockResolvedValue(relevantTimeEntries);
+    mocked(get).mockResolvedValue(relevantTimeEntries);
 
     const meta: ReturnType<typeof hoursMeta> = {
       description:
