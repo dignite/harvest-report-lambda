@@ -1,6 +1,6 @@
 import { getRelevantUnbilled } from "./time-entries";
 import {
-  getUnbilledTimeEntries,
+  getTimeEntriesForMonth,
   SimplifiedUnbilledTimeEntry,
 } from "./npm-package-encapsulation/harvest-queries";
 import { mocked } from "ts-jest/utils";
@@ -92,7 +92,7 @@ describe("getRelevantUnbilled function", () => {
   });
 
   const setupReturnTimeEntries = (entries: SimplifiedUnbilledTimeEntry[]) =>
-    mocked(getUnbilledTimeEntries).mockResolvedValue(entries);
+    mocked(getTimeEntriesForMonth).mockResolvedValue(entries);
 });
 
 const unbilledBillableDecember: SimplifiedUnbilledTimeEntry = {

@@ -1,4 +1,4 @@
-import { getUnbilledTimeEntries } from "./harvest-queries";
+import { getTimeEntriesForMonth } from "./harvest-queries";
 import { server } from "../mock-service-worker/server";
 import {
   prepareGetTimeEntriesSuccess,
@@ -9,7 +9,7 @@ jest.mock("../process-env", () => ({
   get: (key: string) => `Value from process.env.${key}`,
 }));
 
-describe("getUnbilledTimeEntries function", () => {
+describe("getTimeEntriesForMonth function", () => {
   it("should return all billable but unbilled and non-billable hours", async () => {
     expect.assertions(1);
     server.resetHandlers(
@@ -34,7 +34,7 @@ describe("getUnbilledTimeEntries function", () => {
       )
     );
 
-    const result = await getUnbilledTimeEntries();
+    const result = await getTimeEntriesForMonth();
 
     const expected = [
       {
@@ -115,7 +115,7 @@ describe("getUnbilledTimeEntries function", () => {
     expect.assertions(1);
     server.resetHandlers(getTimeEntriesError);
 
-    await expect(getUnbilledTimeEntries()).rejects.toThrow(
+    await expect(getTimeEntriesForMonth()).rejects.toThrow(
       'Error getting time entries: 401 Unauthorized, {"message":"Error getting time entries, bad request"}'
     );
   });
