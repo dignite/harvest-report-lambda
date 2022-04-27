@@ -1,4 +1,4 @@
-import { getRelevantUnbilled } from "./time-entries";
+import { get } from "./time-entries";
 import { merge } from "./time-per-day";
 import { hoursMeta } from "./meta";
 import { serialize } from "./serializer";
@@ -24,7 +24,7 @@ export const root = async (): Promise<ServerlessLambdaResponse> => {
 };
 
 export const hours = async (): Promise<ServerlessLambdaResponse> => {
-  const relevantTimeEntries = await getRelevantUnbilled();
+  const relevantTimeEntries = await get();
   return {
     statusCode: 200,
     headers: {
@@ -39,7 +39,7 @@ export const hours = async (): Promise<ServerlessLambdaResponse> => {
 };
 
 export const unbilledInvoice = async (): Promise<ServerlessLambdaResponse> => {
-  const relevantTimeEntries = await getRelevantUnbilled();
+  const relevantTimeEntries = await get();
   return {
     statusCode: 200,
     headers: {
