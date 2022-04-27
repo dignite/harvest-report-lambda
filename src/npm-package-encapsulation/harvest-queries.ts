@@ -15,7 +15,7 @@ export interface SimplifiedUnbilledTimeEntry {
 
 type NonNullable<T> = Exclude<T, null | undefined>;
 
-export const getUnbilledTimeEntries = async (): Promise<
+export const getTimeEntriesForMonth = async (): Promise<
   SimplifiedUnbilledTimeEntry[]
 > => {
   const res = await fetch(

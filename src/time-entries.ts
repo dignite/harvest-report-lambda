@@ -1,5 +1,5 @@
 import {
-  getUnbilledTimeEntries,
+  getTimeEntriesForMonth,
   SimplifiedUnbilledTimeEntry,
 } from "./npm-package-encapsulation/harvest-queries";
 import { startOfLastMonth } from "./date";
@@ -17,7 +17,7 @@ export interface HarvestReportLambdaTimeEntry {
 export const getRelevantUnbilled = async (): Promise<
   HarvestReportLambdaTimeEntry[]
 > => {
-  const timeEntries = await getUnbilledTimeEntries();
+  const timeEntries = await getTimeEntriesForMonth();
   const unbilledTimeEntries = timeEntries.filter(isNotBilled);
   const relevantUnbilledEntries = unbilledTimeEntries.filter(
     fromThisAndLastMonthUnlessBillable
