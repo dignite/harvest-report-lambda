@@ -34,7 +34,7 @@ describe("hoursMeta function", () => {
     const result = hoursMeta(relevantTimeEntries);
 
     expect(result.description).toBe(
-      "*All* unbilled billable hours, and any non-billable hours logged for the current month."
+      "All unbilled billable and non-billable hours for the current month."
     );
   });
 

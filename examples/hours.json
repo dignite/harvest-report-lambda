@@ -1,6 +1,6 @@
 {
   "meta": {
-    "description": "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
+    "description": "All unbilled billable and non-billable hours for the current month.",
     "totalUnbilledHours": 6.1,
     "totalUnbilledHoursPerWeek": {
       "w3": 0,
