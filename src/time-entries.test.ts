@@ -8,11 +8,6 @@ import { when } from "jest-when";
 
 jest.mock("./npm-package-encapsulation/harvest-queries");
 
-jest.mock("./date", () => ({
-  startOfMonth: () => new Date(Date.parse("2018-11-01")),
-  lastDayOfMonth: () => new Date(Date.parse("2018-11-30")),
-}));
-
 describe("get function", () => {
   it("should return all hours", async () => {
     expect.assertions(1);
@@ -24,8 +19,10 @@ describe("get function", () => {
       unbilledUnbillableNovember7,
       unbilledUnbillableNovember8,
     ]);
+    const startOfMonth = new Date(Date.parse("2018-11-01"));
+    const lastDayOfMonth = new Date(Date.parse("2018-11-30"));
 
-    const result = await get();
+    const result = await get(startOfMonth, lastDayOfMonth);
 
     const expected = [
       {

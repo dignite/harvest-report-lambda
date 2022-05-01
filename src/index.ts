@@ -2,6 +2,7 @@ import { get } from "./time-entries";
 import { merge } from "./time-per-day";
 import { hoursMeta } from "./meta";
 import { serialize } from "./serializer";
+import { startOfMonth, lastDayOfMonth } from "./date";
 
 interface ServerlessLambdaResponse {
   statusCode: 404 | 200;
@@ -24,7 +25,7 @@ export const root = async (): Promise<ServerlessLambdaResponse> => {
 };
 
 export const hours = async (): Promise<ServerlessLambdaResponse> => {
-  const relevantTimeEntries = await get();
+  const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
   return {
     statusCode: 200,
     headers: {
@@ -39,7 +40,7 @@ export const hours = async (): Promise<ServerlessLambdaResponse> => {
 };
 
 export const unbilledInvoice = async (): Promise<ServerlessLambdaResponse> => {
-  const relevantTimeEntries = await get();
+  const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
   return {
     statusCode: 200,
     headers: {

@@ -5,12 +5,16 @@ import { hoursMeta } from "./meta";
 import { serialize } from "./serializer";
 import { mocked } from "ts-jest/utils";
 import { when } from "jest-when";
+import { startOfMonth, lastDayOfMonth } from "./date";
 
 jest.mock("./time-entries");
 jest.mock("./time-per-day");
 jest.mock("./meta");
 jest.mock("./serializer");
-jest.mock("./date");
+jest.mock("./date", () => ({
+  startOfMonth: () => new Date(Date.parse("2018-11-01")),
+  lastDayOfMonth: () => new Date(Date.parse("2018-11-30")),
+}));
 
 describe("root function", () => {
   it("should return status code not found", async () => {
@@ -44,16 +48,18 @@ describe("hours function", () => {
         billableHours: 7.0,
         comment: "",
         cost: 935.9,
-        date: "2018-01-01",
+        date: "2018-11-04",
         id: 4,
         name: "Programming",
       },
     ];
-    mocked(get).mockResolvedValue(relevantTimeEntries);
+    when(get)
+      .calledWith(startOfMonth(), lastDayOfMonth())
+      .mockResolvedValue(relevantTimeEntries);
 
     const meta: ReturnType<typeof hoursMeta> = {
       description: "All hours for the current month.",
-      totalUnbilledHours: 1,
+      totalUnbilledHours: 11.1,
       totalUnbilledHoursPerWeek: {
         w1: 1,
       },
@@ -68,9 +74,9 @@ describe("hours function", () => {
 
     const timeEntriesPerDay: ReturnType<typeof merge> = [
       {
-        date: "2018-01-03",
+        date: "2018-01-04",
         name: "Programming",
-        billableHours: 1,
+        billableHours: 11.1,
         comment: "",
       },
     ];
@@ -117,16 +123,18 @@ describe("unbilledInvoice function", () => {
         billableHours: 7.0,
         comment: "",
         cost: 935.9,
-        date: "2018-01-01",
+        date: "2018-01-04",
         id: 4,
         name: "Programming",
       },
     ];
-    mocked(get).mockResolvedValue(relevantTimeEntries);
+    when(get)
+      .calledWith(startOfMonth(), lastDayOfMonth())
+      .mockResolvedValue(relevantTimeEntries);
 
     const meta: ReturnType<typeof hoursMeta> = {
       description: "All hours for the current month.",
-      totalUnbilledHours: 1,
+      totalUnbilledHours: 11.1,
       totalUnbilledHoursPerWeek: {
         w1: 1,
       },

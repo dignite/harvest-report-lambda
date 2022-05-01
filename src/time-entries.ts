@@ -2,7 +2,6 @@ import {
   getTimeEntriesForMonth,
   SimplifiedUnbilledTimeEntry,
 } from "./npm-package-encapsulation/harvest-queries";
-import { startOfMonth, lastDayOfMonth } from "./date";
 import { SEK } from "./npm-package-encapsulation/swedish-crowns";
 
 export interface HarvestReportLambdaTimeEntry {
@@ -14,10 +13,13 @@ export interface HarvestReportLambdaTimeEntry {
   comment: SimplifiedUnbilledTimeEntry["comment"];
 }
 
-export const get = async (): Promise<HarvestReportLambdaTimeEntry[]> => {
+export const get = async (
+  startOfMonth: Date,
+  lastDayOfMonth: Date
+): Promise<HarvestReportLambdaTimeEntry[]> => {
   const timeEntries = await getTimeEntriesForMonth(
-    startOfMonth(),
-    lastDayOfMonth()
+    startOfMonth,
+    lastDayOfMonth
   );
   const timeEntriesWithCost = timeEntries.map((timeEntry) => {
     const billableHours =
