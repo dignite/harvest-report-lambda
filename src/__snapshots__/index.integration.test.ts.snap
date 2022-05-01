@@ -5,7 +5,7 @@ Object {
   "body": Object {
     "serialize() of": Object {
       "meta": Object {
-        "description": "All unbilled billable and non-billable hours for the current month.",
+        "description": "All hours for the current month.",
         "totalUnbilledHours": 10.7,
         "totalUnbilledHoursPerWeek": Object {
           "w45": 10.7,

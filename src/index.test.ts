@@ -52,8 +52,7 @@ describe("hours function", () => {
     mocked(get).mockResolvedValue(relevantTimeEntries);
 
     const meta: ReturnType<typeof hoursMeta> = {
-      description:
-        "All unbilled billable and non-billable hours for the current month.",
+      description: "All hours for the current month.",
       totalUnbilledHours: 1,
       totalUnbilledHoursPerWeek: {
         w1: 1,
@@ -126,8 +125,7 @@ describe("unbilledInvoice function", () => {
     mocked(get).mockResolvedValue(relevantTimeEntries);
 
     const meta: ReturnType<typeof hoursMeta> = {
-      description:
-        "All unbilled billable and non-billable hours for the current month.",
+      description: "All hours for the current month.",
       totalUnbilledHours: 1,
       totalUnbilledHoursPerWeek: {
         w1: 1,

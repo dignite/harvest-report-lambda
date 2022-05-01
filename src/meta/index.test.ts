@@ -33,9 +33,7 @@ describe("hoursMeta function", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result.description).toBe(
-      "All unbilled billable and non-billable hours for the current month."
-    );
+    expect(result.description).toBe("All hours for the current month.");
   });
 
   it("should return total unbilled billable hours", () => {
