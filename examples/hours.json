@@ -1,15 +1,15 @@
 {
   "meta": {
     "description": "All hours for the current month.",
-    "totalUnbilledHours": 6.1,
-    "totalUnbilledHoursPerWeek": {
+    "totalBillableHours": 6.1,
+    "totalBillableHoursPerWeek": {
       "w3": 0,
       "w52": 0,
       "w51": 0,
       "w50": 0,
       "w49": 6.1
     },
-    "unbilledInvoice": {
+    "invoice": {
       "excludingVAT": "2317.00 Swedish kronor",
       "includingVAT": "2896.25 Swedish kronor"
     }

@@ -34,12 +34,11 @@ export const hours = async (): Promise<ServerlessLambdaResponse> => {
     },
     body: serialize({
       meta: hoursMeta(relevantTimeEntries),
-      timeEntriesPerDay: merge(relevantTimeEntries),
     }),
   };
 };
 
-export const unbilledInvoice = async (): Promise<ServerlessLambdaResponse> => {
+export const hoursPerDay = async (): Promise<ServerlessLambdaResponse> => {
   const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
   return {
     statusCode: 200,
@@ -48,8 +47,21 @@ export const unbilledInvoice = async (): Promise<ServerlessLambdaResponse> => {
       "Access-Control-Allow-Credentials": true,
     },
     body: serialize({
-      totalUnbilledExcludingVAT: hoursMeta(relevantTimeEntries).unbilledInvoice
-        .excludingVAT,
+      timeEntriesPerDay: merge(relevantTimeEntries),
+    }),
+  };
+};
+
+export const invoice = async (): Promise<ServerlessLambdaResponse> => {
+  const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
+  return {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
+    body: serialize({
+      totalExcludingVAT: hoursMeta(relevantTimeEntries).invoice.excludingVAT,
     }),
   };
 };

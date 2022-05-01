@@ -4,9 +4,9 @@ import { HarvestReportLambdaTimeEntry } from "../time-entries";
 
 interface Meta {
   description: "All hours for the current month.";
-  totalUnbilledHours: ReturnType<typeof totalSum>;
-  totalUnbilledHoursPerWeek: ReturnType<typeof perWeek>;
-  unbilledInvoice: ReturnType<typeof totalCostSum>;
+  totalBillableHours: ReturnType<typeof totalSum>;
+  totalBillableHoursPerWeek: ReturnType<typeof perWeek>;
+  invoice: ReturnType<typeof totalCostSum>;
 }
 
 export const hoursMeta = (
@@ -14,8 +14,8 @@ export const hoursMeta = (
 ): Meta => {
   return {
     description: "All hours for the current month.",
-    totalUnbilledHours: totalSum(relevantTimeEntries),
-    totalUnbilledHoursPerWeek: perWeek(relevantTimeEntries),
-    unbilledInvoice: totalCostSum(relevantTimeEntries),
+    totalBillableHours: totalSum(relevantTimeEntries),
+    totalBillableHoursPerWeek: perWeek(relevantTimeEntries),
+    invoice: totalCostSum(relevantTimeEntries),
   };
 };

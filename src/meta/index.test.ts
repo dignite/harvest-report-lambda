@@ -40,14 +40,14 @@ describe("hoursMeta function", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result.totalUnbilledHours).toBe(11.3);
+    expect(result.totalBillableHours).toBe(11.3);
   });
 
   it("should return total unbilled billable hours per week", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result.totalUnbilledHoursPerWeek).toStrictEqual({
+    expect(result.totalBillableHoursPerWeek).toStrictEqual({
       w44: 7.2,
       w45: 4.1,
     });
@@ -57,7 +57,7 @@ describe("hoursMeta function", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(result.unbilledInvoice).toStrictEqual({
+    expect(result.invoice).toStrictEqual({
       excludingVAT: `3${nonBreakingSpace}514,30${nonBreakingSpace}kr`,
       includingVAT: `4${nonBreakingSpace}392,88${nonBreakingSpace}kr`,
     });
@@ -69,9 +69,9 @@ describe("hoursMeta function", () => {
 
     expect(Object.keys(result)).toStrictEqual([
       "description",
-      "totalUnbilledHours",
-      "totalUnbilledHoursPerWeek",
-      "unbilledInvoice",
+      "totalBillableHours",
+      "totalBillableHoursPerWeek",
+      "invoice",
     ]);
   });
 });
