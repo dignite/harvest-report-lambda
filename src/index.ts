@@ -44,20 +44,6 @@ export const hours = async (
   };
 };
 
-export const hoursForCurrentMonth = async (): Promise<ServerlessLambdaResponse> => {
-  const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
-  return {
-    statusCode: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true,
-    },
-    body: serialize({
-      meta: hoursMeta(relevantTimeEntries),
-    }),
-  };
-};
-
 export const hoursPerDayForCurrentMonth = async (): Promise<ServerlessLambdaResponse> => {
   const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
   return {
