@@ -1,4 +1,4 @@
-import { hours, hoursPerDay } from "./";
+import { hoursForCurrentMonth, hoursPerDayForCurrentMonth } from "./";
 import { server } from "./mock-service-worker/server";
 import { prepareGetTimeEntriesSuccess } from "./mock-service-worker/harvest-handlers";
 import { lastDayOfMonth, startOfMonth } from "./date";
@@ -12,7 +12,7 @@ jest.mock("./serializer", () => ({
   }),
 }));
 
-describe(`hours integration test mostly real modules`, () => {
+describe(`hoursForCurrentMonth integration test mostly real modules`, () => {
   it("should return meta data for time entries", async () => {
     expect.assertions(1);
     const from = startOfMonth();
@@ -41,13 +41,13 @@ describe(`hours integration test mostly real modules`, () => {
       })
     );
 
-    const result = await hours();
+    const result = await hoursForCurrentMonth();
 
     expect(result).toMatchSnapshot();
   });
 });
 
-describe(`hoursPerDay integration test mostly real modules`, () => {
+describe(`hoursPerDayForCurrentMonth integration test mostly real modules`, () => {
   it("should return relevant time entries per day", async () => {
     expect.assertions(1);
     const from = startOfMonth();
@@ -76,7 +76,7 @@ describe(`hoursPerDay integration test mostly real modules`, () => {
       })
     );
 
-    const result = await hoursPerDay();
+    const result = await hoursPerDayForCurrentMonth();
 
     expect(result).toMatchSnapshot();
   });

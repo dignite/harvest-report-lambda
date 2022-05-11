@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`hours integration test mostly real modules should return meta data for time entries 1`] = `
+exports[`hoursForCurrentMonth integration test mostly real modules should return meta data for time entries 1`] = `
 Object {
   "body": Object {
     "serialize() of": Object {
@@ -25,7 +25,7 @@ Object {
 }
 `;
 
-exports[`hoursPerDay integration test mostly real modules should return relevant time entries per day 1`] = `
+exports[`hoursPerDayForCurrentMonth integration test mostly real modules should return relevant time entries per day 1`] = `
 Object {
   "body": Object {
     "serialize() of": Object {
