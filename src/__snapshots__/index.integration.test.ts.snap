@@ -4,16 +4,9 @@ exports[`hours integration test mostly real modules should return meta data for 
 Object {
   "body": Object {
     "serialize() of": Object {
-      "meta": Object {
-        "description": "All hours for the current month.",
-        "invoice": Object {
-          "excludingVAT": "2 354,00 kr",
-          "includingVAT": "2 942,50 kr",
-        },
-        "totalBillableHours": 10.7,
-        "totalBillableHoursPerWeek": Object {
-          "w45": 10.7,
-        },
+      "totalBillableHours": 10.7,
+      "totalBillableHoursPerWeek": Object {
+        "w45": 10.7,
       },
     },
   },
