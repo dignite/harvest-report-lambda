@@ -21,7 +21,6 @@ export const prepareGetTimeEntriesSuccess = (
       userAgent,
       accessToken,
       accountId,
-      isBilledQueryParameter,
       isFromQueryParameter,
       isToQueryParameter,
     } = config;
@@ -29,7 +28,6 @@ export const prepareGetTimeEntriesSuccess = (
       userAgent,
       authorization: `Bearer ${accessToken}`,
       accountId,
-      isBilledQueryParameter,
       isFromQueryParameter,
       isToQueryParameter,
     };
@@ -37,7 +35,6 @@ export const prepareGetTimeEntriesSuccess = (
       userAgent: req.headers.get("user-agent"),
       authorization: req.headers.get("authorization"),
       accountId: req.headers.get("Harvest-Account-Id"),
-      isBilledQueryParameter: req.url.searchParams.get("is_billed"),
       isFromQueryParameter: req.url.searchParams.get("from"),
       isToQueryParameter: req.url.searchParams.get("to"),
     };
@@ -48,14 +45,8 @@ export const prepareGetTimeEntriesSuccess = (
       !accessToken || expected.authorization === actual.authorization;
     const correctAccountId =
       !accountId || expected.accountId === actual.accountId;
-    const correctIsBilledQueryParameter =
-      isBilledQueryParameter === undefined ||
-      expected.isBilledQueryParameter === actual.isBilledQueryParameter;
     const correctConfig =
-      correctUserAgent &&
-      correctAccessToken &&
-      correctAccountId &&
-      correctIsBilledQueryParameter;
+      correctUserAgent && correctAccessToken && correctAccountId;
 
     const exampleEntriesNovember2020 = [timeEntry1, timeEntry2, timeEntry3];
 

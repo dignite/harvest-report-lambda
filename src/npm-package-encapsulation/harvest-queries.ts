@@ -32,7 +32,7 @@ export const getTimeEntriesForMonth = async (
     "-" +
     ("0" + to.getDate()).slice(-2);
   const res = await fetch(
-    `https://api.harvestapp.com/v2/time_entries?is_billed=false&from=${formattedFromDate}&to=${formattedToDate}`,
+    `https://api.harvestapp.com/v2/time_entries?from=${formattedFromDate}&to=${formattedToDate}`,
     {
       method: "get",
       headers: {
