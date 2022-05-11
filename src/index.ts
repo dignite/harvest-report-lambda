@@ -24,7 +24,7 @@ export const root = async (): Promise<ServerlessLambdaResponse> => {
   };
 };
 
-export const hours = async (): Promise<ServerlessLambdaResponse> => {
+export const hoursForCurrentMonth = async (): Promise<ServerlessLambdaResponse> => {
   const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
   return {
     statusCode: 200,
@@ -38,7 +38,7 @@ export const hours = async (): Promise<ServerlessLambdaResponse> => {
   };
 };
 
-export const hoursPerDay = async (): Promise<ServerlessLambdaResponse> => {
+export const hoursPerDayForCurrentMonth = async (): Promise<ServerlessLambdaResponse> => {
   const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
   return {
     statusCode: 200,
@@ -52,7 +52,7 @@ export const hoursPerDay = async (): Promise<ServerlessLambdaResponse> => {
   };
 };
 
-export const invoice = async (): Promise<ServerlessLambdaResponse> => {
+export const invoiceForCurrentMonth = async (): Promise<ServerlessLambdaResponse> => {
   const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
   return {
     statusCode: 200,

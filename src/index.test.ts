@@ -1,4 +1,9 @@
-import { root, hours, hoursPerDay, invoice } from "./";
+import {
+  root,
+  hoursForCurrentMonth,
+  hoursPerDayForCurrentMonth,
+  invoiceForCurrentMonth,
+} from "./";
 import { get } from "./time-entries";
 import { merge } from "./time-per-day";
 import { hoursMeta } from "./meta";
@@ -32,7 +37,7 @@ describe("root function", () => {
   });
 });
 
-describe("hours function", () => {
+describe("hoursForCurrentMonth function", () => {
   it("should return serialized meta data and time entries", async () => {
     expect.assertions(1);
     const relevantTimeEntries = [
@@ -81,7 +86,7 @@ describe("hours function", () => {
       )
       .mockReturnValue(mockSerializedBody);
 
-    const result = await hours();
+    const result = await hoursForCurrentMonth();
 
     expect(result).toStrictEqual({
       body: mockSerializedBody,
@@ -94,7 +99,7 @@ describe("hours function", () => {
   });
 });
 
-describe("hoursPerDay function", () => {
+describe("hoursPerDayForCurrentMonth function", () => {
   it("should return serialized meta data and time entries", async () => {
     expect.assertions(1);
     const relevantTimeEntries = [
@@ -140,7 +145,7 @@ describe("hoursPerDay function", () => {
       )
       .mockReturnValue(mockSerializedBody);
 
-    const result = await hoursPerDay();
+    const result = await hoursPerDayForCurrentMonth();
 
     expect(result).toStrictEqual({
       body: mockSerializedBody,
@@ -153,7 +158,7 @@ describe("hoursPerDay function", () => {
   });
 });
 
-describe("invoice function", () => {
+describe("invoiceForCurrentMonth function", () => {
   it("should return serialized total unbilled invoice excluding VAT", async () => {
     expect.assertions(1);
     const relevantTimeEntries = [
@@ -202,7 +207,7 @@ describe("invoice function", () => {
       )
       .mockReturnValue(mockSerializedBody);
 
-    const result = await invoice();
+    const result = await invoiceForCurrentMonth();
 
     expect(result).toStrictEqual({
       body: mockSerializedBody,
