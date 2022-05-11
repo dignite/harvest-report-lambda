@@ -7,7 +7,7 @@ import {
 } from "./";
 import { get } from "./time-entries";
 import { merge } from "./time-per-day";
-import { hoursMeta } from "./meta";
+import { hoursMeta, hoursMetaSlim } from "./meta";
 import { serialize } from "./serializer";
 import { mocked } from "ts-jest/utils";
 import { when } from "jest-when";
@@ -68,28 +68,19 @@ describe("hours function", () => {
       )
       .mockResolvedValue(relevantTimeEntries);
 
-    const meta: ReturnType<typeof hoursMeta> = {
-      description: "All hours for the current month.",
+    const metaSlim: ReturnType<typeof hoursMetaSlim> = {
       totalBillableHours: 11.1,
       totalBillableHoursPerWeek: {
         w1: 1,
       },
-      invoice: {
-        excludingVAT: "100 SEK",
-        includingVAT: "125 SEK",
-      },
     };
-    when(mocked(hoursMeta))
+    when(mocked(hoursMetaSlim))
       .calledWith(relevantTimeEntries)
-      .mockReturnValue(meta);
+      .mockReturnValue(metaSlim);
 
     const mockSerializedBody = `Serialized meta and time entries per day ${Date.now()}`;
     when(mocked(serialize))
-      .calledWith(
-        expect.objectContaining({
-          meta: meta,
-        })
-      )
+      .calledWith(metaSlim)
       .mockReturnValue(mockSerializedBody);
 
     const result = await hours({

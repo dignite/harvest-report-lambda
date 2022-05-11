@@ -1,6 +1,6 @@
 import { get } from "./time-entries";
 import { merge } from "./time-per-day";
-import { hoursMeta } from "./meta";
+import { hoursMeta, hoursMetaSlim } from "./meta";
 import { serialize } from "./serializer";
 import { startOfMonth, lastDayOfMonth } from "./date";
 
@@ -40,9 +40,7 @@ export const hours = async (
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Credentials": true,
     },
-    body: serialize({
-      meta: hoursMeta(relevantTimeEntries),
-    }),
+    body: serialize(hoursMetaSlim(relevantTimeEntries)),
   };
 };
 

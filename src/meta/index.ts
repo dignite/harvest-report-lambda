@@ -9,6 +9,11 @@ interface Meta {
   invoice: ReturnType<typeof totalCostSum>;
 }
 
+interface MetaSlim {
+  totalBillableHours: ReturnType<typeof totalSum>;
+  totalBillableHoursPerWeek: ReturnType<typeof perWeek>;
+}
+
 export const hoursMeta = (
   relevantTimeEntries: HarvestReportLambdaTimeEntry[]
 ): Meta => {
@@ -17,5 +22,14 @@ export const hoursMeta = (
     totalBillableHours: totalSum(relevantTimeEntries),
     totalBillableHoursPerWeek: perWeek(relevantTimeEntries),
     invoice: totalCostSum(relevantTimeEntries),
+  };
+};
+
+export const hoursMetaSlim = (
+  relevantTimeEntries: HarvestReportLambdaTimeEntry[]
+): MetaSlim => {
+  return {
+    totalBillableHours: totalSum(relevantTimeEntries),
+    totalBillableHoursPerWeek: perWeek(relevantTimeEntries),
   };
 };
