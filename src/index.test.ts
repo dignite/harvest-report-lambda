@@ -6,7 +6,7 @@ import {
 } from "./";
 import { get } from "./time-entries";
 import { merge } from "./time-per-day";
-import { hoursMeta, hoursMetaSlim } from "./meta";
+import { getInvoiceSumExcludingVAT, hoursMetaSlim } from "./meta";
 import { serialize } from "./serializer";
 import { mocked } from "ts-jest/utils";
 import { when } from "jest-when";
@@ -184,22 +184,16 @@ describe("invoiceForCurrentMonth function", () => {
       .calledWith(startOfMonth(), lastDayOfMonth())
       .mockResolvedValue(relevantTimeEntries);
 
-    const meta: ReturnType<typeof hoursMeta> = {
-      invoice: {
-        excludingVAT: "100 SEK",
-        includingVAT: "125 SEK",
-      },
-    };
-    when(mocked(hoursMeta))
+    const invoiceSumExcludingVAT: ReturnType<typeof getInvoiceSumExcludingVAT> =
+      "100 SEK";
+    when(mocked(getInvoiceSumExcludingVAT))
       .calledWith(relevantTimeEntries)
-      .mockReturnValue(meta);
+      .mockReturnValue(invoiceSumExcludingVAT);
 
     const mockSerializedBody = `Serialized ${Date.now()}`;
     when(mocked(serialize))
       .calledWith(
-        expect.objectContaining({
-          totalExcludingVAT: meta.invoice.excludingVAT,
-        })
+        expect.objectContaining({ totalExcludingVAT: invoiceSumExcludingVAT })
       )
       .mockReturnValue(mockSerializedBody);
 
