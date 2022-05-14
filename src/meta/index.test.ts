@@ -29,30 +29,6 @@ describe("hoursMeta function", () => {
   };
   const relevantTimeEntries = [novemberThird, novemberFourth, novemberSixth];
 
-  it("should return status code and endpoint description", () => {
-    expect.assertions(1);
-    const result = hoursMeta(relevantTimeEntries);
-
-    expect(result.description).toBe("All hours for the current month.");
-  });
-
-  it("should return total unbilled billable hours", () => {
-    expect.assertions(1);
-    const result = hoursMeta(relevantTimeEntries);
-
-    expect(result.totalBillableHours).toBe(11.3);
-  });
-
-  it("should return total unbilled billable hours per week", () => {
-    expect.assertions(1);
-    const result = hoursMeta(relevantTimeEntries);
-
-    expect(result.totalBillableHoursPerWeek).toStrictEqual({
-      w44: 7.2,
-      w45: 4.1,
-    });
-  });
-
   it("should return total unbilled invoice size", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
@@ -67,11 +43,6 @@ describe("hoursMeta function", () => {
     expect.assertions(1);
     const result = hoursMeta(relevantTimeEntries);
 
-    expect(Object.keys(result)).toStrictEqual([
-      "description",
-      "totalBillableHours",
-      "totalBillableHoursPerWeek",
-      "invoice",
-    ]);
+    expect(Object.keys(result)).toStrictEqual(["invoice"]);
   });
 });

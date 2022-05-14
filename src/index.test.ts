@@ -185,11 +185,6 @@ describe("invoiceForCurrentMonth function", () => {
       .mockResolvedValue(relevantTimeEntries);
 
     const meta: ReturnType<typeof hoursMeta> = {
-      description: "All hours for the current month.",
-      totalBillableHours: 11.1,
-      totalBillableHoursPerWeek: {
-        w1: 1,
-      },
       invoice: {
         excludingVAT: "100 SEK",
         includingVAT: "125 SEK",
