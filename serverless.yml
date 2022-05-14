@@ -14,11 +14,11 @@ provider:
   lambdaHashingVersion: 20201221
 
 functions:
-  unbilledInvoice:
-    handler: src/index.unbilledInvoice
+  invoiceForCurrentMonth:
+    handler: src/index.invoiceForCurrentMonth
     events:
       - http:
-          path: /${self:custom.dotenvVars.SECRET_URL_SLUG}/unbilled-invoice
+          path: /${self:custom.dotenvVars.SECRET_URL_SLUG}/invoice
           method: get
           cors: true
     environment:
@@ -28,7 +28,22 @@ functions:
     handler: src/index.hours
     events:
       - http:
-          path: /${self:custom.dotenvVars.SECRET_URL_SLUG}
+          path: /${self:custom.dotenvVars.SECRET_URL_SLUG}/hours/{startDate}/{endDate}
+          method: get
+          cors: true
+          request:
+            parameters:
+              paths:
+                startDate: true
+                endDate: true
+    environment:
+      HARVEST_ACCESS_TOKEN: ${self:custom.dotenvVars.HARVEST_ACCESS_TOKEN}
+      HARVEST_ACCOUNT_ID: ${self:custom.dotenvVars.HARVEST_ACCOUNT_ID}
+  hoursPerDayForCurrentMonth:
+    handler: src/index.hoursPerDayForCurrentMonth
+    events:
+      - http:
+          path: /${self:custom.dotenvVars.SECRET_URL_SLUG}/hours-per-day
           method: get
           cors: true
     environment:

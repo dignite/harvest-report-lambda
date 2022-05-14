@@ -15,11 +15,24 @@ export interface SimplifiedUnbilledTimeEntry {
 
 type NonNullable<T> = Exclude<T, null | undefined>;
 
-export const getUnbilledTimeEntries = async (): Promise<
-  SimplifiedUnbilledTimeEntry[]
-> => {
+export const getTimeEntriesForMonth = async (
+  from: Date,
+  to: Date
+): Promise<SimplifiedUnbilledTimeEntry[]> => {
+  const formattedFromDate =
+    from.getFullYear() +
+    "-" +
+    ("0" + (from.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + from.getDate()).slice(-2);
+  const formattedToDate =
+    to.getFullYear() +
+    "-" +
+    ("0" + (to.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + to.getDate()).slice(-2);
   const res = await fetch(
-    "https://api.harvestapp.com/v2/time_entries?is_billed=false",
+    `https://api.harvestapp.com/v2/time_entries?from=${formattedFromDate}&to=${formattedToDate}`,
     {
       method: "get",
       headers: {

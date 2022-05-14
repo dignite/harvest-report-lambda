@@ -1,72 +1,75 @@
-import { getRelevantUnbilled } from "./time-entries";
+import { get } from "./time-entries";
 import {
-  getUnbilledTimeEntries,
+  getTimeEntriesForMonth,
   SimplifiedUnbilledTimeEntry,
 } from "./npm-package-encapsulation/harvest-queries";
 import { mocked } from "ts-jest/utils";
+import { when } from "jest-when";
 
 jest.mock("./npm-package-encapsulation/harvest-queries");
 
-jest.mock("./date", () => ({
-  startOfLastMonth: () => Date.parse("2018-10-01"),
-}));
-
-describe("getRelevantUnbilled function", () => {
-  it("should return all unbilled billable hours", async () => {
+describe("get function", () => {
+  it("should return all hours", async () => {
     expect.assertions(1);
     setupReturnTimeEntries([
-      unbilledBillableDecember,
-      billedBillableFebruary,
-      unbilledBillableJanuary,
+      unbilledBillableNovember3,
+      unbilledUnbillableNovember4,
+      billedBillableNovember5,
+      unbilledBillableNovember6,
+      unbilledUnbillableNovember7,
+      unbilledUnbillableNovember8,
     ]);
+    const startOfMonth = new Date(Date.parse("2018-11-01"));
+    const lastDayOfMonth = new Date(Date.parse("2018-11-30"));
 
-    const result = await getRelevantUnbilled();
+    const result = await get(startOfMonth, lastDayOfMonth);
 
     const expected = [
       {
         billableHours: 4.1,
         comment: "",
         cost: 548.17,
-        date: "2018-11-04",
+        date: "2018-11-03",
         id: 1,
         name: "Programming",
       },
       {
-        billableHours: 7.0,
-        comment: "",
-        cost: 935.9,
-        date: "2018-01-01",
-        id: 4,
-        name: "Programming",
-      },
-    ];
-    expect(result).toStrictEqual(expect.arrayContaining(expected));
-  });
-
-  it("should return non-billable hours from the current month and last month", async () => {
-    expect.assertions(1);
-    setupReturnTimeEntries([
-      unbilledUnbillableNovember,
-      unbilledUnbillableOctober,
-      unbilledUnbillableJanuary,
-    ]);
-
-    const result = await getRelevantUnbilled();
-
-    const expected = [
-      {
         billableHours: 0,
         comment: "Umeå",
         cost: 0,
-        date: "2018-11-03",
+        date: "2018-11-04",
         id: 2,
+        name: "Vacation",
+      },
+      {
+        billableHours: 7,
+        comment: "",
+        cost: 935.9,
+        date: "2018-11-05",
+        id: 3,
+        name: "Programming",
+      },
+      {
+        billableHours: 7,
+        comment: "",
+        cost: 935.9,
+        date: "2018-11-06",
+        id: 4,
+        name: "Programming",
+      },
+      {
+        billableHours: 0,
+        comment: "",
+        cost: 0,
+        date: "2018-11-07",
+        id: 5,
         name: "Vacation",
       },
       {
         billableHours: 0,
         comment: "Uppsala",
         cost: 0,
-        date: "2018-10-01",
+        date: "2018-11-08",
         id: 6,
         name: "Vacation",
       },
@@ -74,87 +77,75 @@ describe("getRelevantUnbilled function", () => {
     expect(result).toStrictEqual(expect.arrayContaining(expected));
   });
 
-  it("should not return anything but unbilled billable hours and non-billable hours from the current month", async () => {
-    expect.assertions(1);
-    setupReturnTimeEntries([
-      unbilledBillableDecember,
-      unbilledUnbillableNovember,
-      billedBillableFebruary,
-      unbilledBillableJanuary,
-      unbilledUnbillableJanuary,
-    ]);
-
-    const result = await getRelevantUnbilled();
-    const actualIds = result.map((timeEntry) => timeEntry.id);
-
-    const expectedIds = [1, 2, 4];
-    expect(actualIds).toStrictEqual(expectedIds);
-  });
-
   const setupReturnTimeEntries = (entries: SimplifiedUnbilledTimeEntry[]) =>
-    mocked(getUnbilledTimeEntries).mockResolvedValue(entries);
+    when(mocked(getTimeEntriesForMonth))
+      .calledWith(
+        new Date(Date.parse("2018-11-01")),
+        new Date(Date.parse("2018-11-30"))
+      )
+      .mockResolvedValue(entries);
 });
 
-const unbilledBillableDecember: SimplifiedUnbilledTimeEntry = {
+const unbilledBillableNovember3: SimplifiedUnbilledTimeEntry = {
   billable: true,
   billableRate: 133.7,
   comment: "",
-  date: "2018-11-04",
+  date: "2018-11-03",
   hours: 4.12,
   id: 1,
   isBilled: false,
   name: "Programming",
 };
 
-const unbilledUnbillableNovember: SimplifiedUnbilledTimeEntry = {
+const unbilledUnbillableNovember4: SimplifiedUnbilledTimeEntry = {
   billable: false,
   billableRate: 0,
   comment: "Umeå",
-  date: "2018-11-03",
+  date: "2018-11-04",
   hours: 8,
   id: 2,
   isBilled: false,
   name: "Vacation",
 };
 
-const billedBillableFebruary: SimplifiedUnbilledTimeEntry = {
+const billedBillableNovember5: SimplifiedUnbilledTimeEntry = {
   billable: true,
   billableRate: 133.7,
   comment: "",
-  date: "2018-02-01",
+  date: "2018-11-05",
   hours: 7.01,
   id: 3,
   isBilled: true,
   name: "Programming",
 };
 
-const unbilledBillableJanuary: SimplifiedUnbilledTimeEntry = {
+const unbilledBillableNovember6: SimplifiedUnbilledTimeEntry = {
   billable: true,
   billableRate: 133.7,
   comment: "",
-  date: "2018-01-01",
+  date: "2018-11-06",
   hours: 7.01,
   id: 4,
   isBilled: false,
   name: "Programming",
 };
 
-const unbilledUnbillableJanuary: SimplifiedUnbilledTimeEntry = {
+const unbilledUnbillableNovember7: SimplifiedUnbilledTimeEntry = {
   billable: false,
   billableRate: 0,
   comment: "",
-  date: "2018-01-01",
+  date: "2018-11-07",
   hours: 6,
   id: 5,
   isBilled: false,
   name: "Vacation",
 };
 
-const unbilledUnbillableOctober: SimplifiedUnbilledTimeEntry = {
+const unbilledUnbillableNovember8: SimplifiedUnbilledTimeEntry = {
   billable: false,
   billableRate: 0,
   comment: "Uppsala",
-  date: "2018-10-01",
+  date: "2018-11-08",
   hours: 8,
   id: 6,
   isBilled: false,
