@@ -2,21 +2,15 @@ import { totalSum, perWeek } from "./time-summary";
 import { totalSum as totalCostSum } from "./cost-summary";
 import { HarvestReportLambdaTimeEntry } from "../time-entries";
 
-interface Meta {
-  invoice: ReturnType<typeof totalCostSum>;
-}
-
 interface MetaSlim {
   totalBillableHours: ReturnType<typeof totalSum>;
   totalBillableHoursPerWeek: ReturnType<typeof perWeek>;
 }
 
-export const hoursMeta = (
+export const getInvoiceSumExcludingVAT = (
   relevantTimeEntries: HarvestReportLambdaTimeEntry[]
-): Meta => {
-  return {
-    invoice: totalCostSum(relevantTimeEntries),
-  };
+): ReturnType<typeof totalCostSum>["excludingVAT"] => {
+  return totalCostSum(relevantTimeEntries).excludingVAT;
 };
 
 export const hoursMetaSlim = (

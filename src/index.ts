@@ -1,6 +1,6 @@
 import { get } from "./time-entries";
 import { merge } from "./time-per-day";
-import { hoursMeta, hoursMetaSlim } from "./meta";
+import { getInvoiceSumExcludingVAT, hoursMetaSlim } from "./meta";
 import { serialize } from "./serializer";
 import { startOfMonth, lastDayOfMonth } from "./date";
 
@@ -67,7 +67,7 @@ export const invoiceForCurrentMonth = async (): Promise<ServerlessLambdaResponse
       "Access-Control-Allow-Credentials": true,
     },
     body: serialize({
-      totalExcludingVAT: hoursMeta(relevantTimeEntries).invoice.excludingVAT,
+      totalExcludingVAT: getInvoiceSumExcludingVAT(relevantTimeEntries),
     }),
   };
 };
