@@ -1,6 +1,7 @@
 import "dotenv/config.js";
 
-import { getUnbilledTimeEntries } from "./harvest-queries";
+import { getTimeEntriesForMonth } from "./harvest-queries";
+import { startOfMonth, lastDayOfMonth } from "../date";
 
 import { get } from "../process-env";
 
@@ -13,16 +14,19 @@ const isTestEnvSetup = areAllDefined([
   "USER_AGENT_EMAIL",
 ]);
 
-describe("getUnbilledTimeEntries function", () => {
+describe("getTimeEntriesForMonth function", () => {
   isTestEnvSetup
-    ? it("should return all billable but unbilled and non-billable hours", async () => {
+    ? it("should return all hours for month", async () => {
         expect.assertions(1);
 
-        const result = await getUnbilledTimeEntries();
+        const result = await getTimeEntriesForMonth(
+          startOfMonth(),
+          lastDayOfMonth()
+        );
 
         expect(result.length).toBeGreaterThan(0);
       })
     : it.todo(
-        "should return all billable but unbilled and non-billable hours (not tested due to missing environment variables)"
+        "should return all hours for month (not tested due to missing environment variables)"
       );
 });

@@ -1,4 +1,4 @@
-import { getUnbilledTimeEntries } from "./harvest-queries";
+import { getTimeEntriesForMonth } from "./harvest-queries";
 import { server } from "../mock-service-worker/server";
 import {
   prepareGetTimeEntriesSuccess,
@@ -9,8 +9,13 @@ jest.mock("../process-env", () => ({
   get: (key: string) => `Value from process.env.${key}`,
 }));
 
-describe("getUnbilledTimeEntries function", () => {
-  it("should return all billable but unbilled and non-billable hours", async () => {
+jest.mock("../date", () => ({
+  startOfMonth: () => new Date(Date.parse("2022-01-01")),
+  lastDayOfMonth: () => new Date(Date.parse("2022-01-31")),
+}));
+
+describe("getTimeEntriesForMonth function", () => {
+  it("should return all billable but unbilled and non-billable hours for month", async () => {
     expect.assertions(1);
     server.resetHandlers(
       prepareGetTimeEntriesSuccess(
@@ -20,53 +25,22 @@ describe("getUnbilledTimeEntries function", () => {
           accessToken: "Value from process.env.HARVEST_ACCESS_TOKEN",
           accountId: "Value from process.env.HARVEST_ACCOUNT_ID",
           isBilledQueryParameter: "false",
+          isFromQueryParameter: "2022-01-01",
+          isToQueryParameter: "2022-01-31",
         },
         [
-          unbilledBillableDecember,
-          unbilledUnbillableDecember,
-          billedBillableFebruary,
           unbilledBillableJanuary,
           unbilledUnbillableJanuary,
           unbilledUnbillableNoTaskJanuary,
           unbilledUnbillableNoTaskNameJanuary,
-          unbilledUnbillableNoDate,
+          unbilledUnbillableNoDate, // <- Not going to happen in the real world
         ]
       )
     );
 
-    const result = await getUnbilledTimeEntries();
+    const result = await getTimeEntriesForMonth(new Date(), new Date());
 
     const expected = [
-      {
-        billable: true,
-        billableRate: 133.7,
-        comment: "None",
-        date: "2018-11-04",
-        hours: 4.12,
-        id: 1,
-        isBilled: false,
-        name: "Programming",
-      },
-      {
-        billable: false,
-        billableRate: 0,
-        comment: "Umeå",
-        date: "2018-11-03",
-        hours: 8,
-        id: 2,
-        isBilled: false,
-        name: "Vacation",
-      },
-      {
-        billable: true,
-        billableRate: 133.7,
-        comment: "None",
-        date: "2018-02-01",
-        hours: 7.01,
-        id: 3,
-        isBilled: true,
-        name: "Programming",
-      },
       {
         billable: true,
         billableRate: 133.7,
@@ -115,49 +89,12 @@ describe("getUnbilledTimeEntries function", () => {
     expect.assertions(1);
     server.resetHandlers(getTimeEntriesError);
 
-    await expect(getUnbilledTimeEntries()).rejects.toThrow(
+    await expect(
+      getTimeEntriesForMonth(new Date(), new Date())
+    ).rejects.toThrow(
       'Error getting time entries: 401 Unauthorized, {"message":"Error getting time entries, bad request"}'
     );
   });
-
-  const unbilledBillableDecember = {
-    id: 1,
-    spent_date: "2018-11-04",
-    task: {
-      name: "Programming",
-    },
-    is_billed: false,
-    billable: true,
-    billable_rate: 133.7,
-    hours: 4.12,
-    notes: null,
-  };
-
-  const unbilledUnbillableDecember = {
-    id: 2,
-    spent_date: "2018-11-03",
-    task: {
-      name: "Vacation",
-    },
-    is_billed: false,
-    billable: false,
-    billable_rate: null,
-    hours: 8,
-    notes: "Umeå",
-  };
-
-  const billedBillableFebruary = {
-    id: 3,
-    spent_date: "2018-02-01",
-    task: {
-      name: "Programming",
-    },
-    is_billed: true,
-    billable: true,
-    billable_rate: 133.7,
-    hours: 7.01,
-    notes: null,
-  };
 
   const unbilledBillableJanuary = {
     id: 4,

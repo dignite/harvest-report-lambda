@@ -1,6 +1,6 @@
 # Harvest Report Lambda
 
-Serverless framework functions to expose time reporting data to clients as JSON ([Example][hours-json-example]). Currently this project assumes invoicing in swedish crowns.
+Serverless framework functions to expose time reporting data to clients as JSON. Currently this project assumes invoicing in swedish crowns.
 
 <img src="https://f.hubspotusercontent10.net/hubfs/19495563/about/harvest-logo-black-thumb.png" height="64px" align="right" />
 

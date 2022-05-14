@@ -1,20 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`hours integration test mostly real modules should return meta data for time entries and relevant time entries per day 1`] = `
+exports[`hours integration test mostly real modules should return meta data for time entries 1`] = `
 Object {
   "body": Object {
     "serialize() of": Object {
-      "meta": Object {
-        "description": "*All* unbilled billable hours, and any non-billable hours logged for the current month.",
-        "totalUnbilledHours": 10.7,
-        "totalUnbilledHoursPerWeek": Object {
-          "w45": 10.7,
-        },
-        "unbilledInvoice": Object {
-          "excludingVAT": "2 354,00 kr",
-          "includingVAT": "2 942,50 kr",
-        },
+      "totalBillableHours": 10.7,
+      "totalBillableHoursPerWeek": Object {
+        "w45": 10.7,
       },
+    },
+  },
+  "headers": Object {
+    "Access-Control-Allow-Credentials": true,
+    "Access-Control-Allow-Origin": "*",
+  },
+  "statusCode": 200,
+}
+`;
+
+exports[`hoursPerDayForCurrentMonth integration test mostly real modules should return relevant time entries per day 1`] = `
+Object {
+  "body": Object {
+    "serialize() of": Object {
       "timeEntriesPerDay": Array [
         Object {
           "billableHours": 8,
