@@ -1,5 +1,4 @@
 import { get } from "./time-entries";
-import { merge } from "./time-per-day";
 import { getInvoiceSumExcludingVAT, hoursMetaSlim } from "./meta";
 import { serialize } from "./serializer";
 import { startOfMonth, lastDayOfMonth } from "./date";
@@ -41,20 +40,6 @@ export const hours = async (
       "Access-Control-Allow-Credentials": true,
     },
     body: serialize(hoursMetaSlim(relevantTimeEntries)),
-  };
-};
-
-export const hoursPerDayForCurrentMonth = async (): Promise<ServerlessLambdaResponse> => {
-  const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
-  return {
-    statusCode: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true,
-    },
-    body: serialize({
-      timeEntriesPerDay: merge(relevantTimeEntries),
-    }),
   };
 };
 
