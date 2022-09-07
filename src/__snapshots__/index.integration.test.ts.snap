@@ -18,34 +18,6 @@ Object {
 }
 `;
 
-exports[`hoursPerDayForCurrentMonth integration test mostly real modules should return relevant time entries per day 1`] = `
-Object {
-  "body": Object {
-    "serialize() of": Object {
-      "timeEntriesPerDay": Array [
-        Object {
-          "billableHours": 8,
-          "comment": "None",
-          "date": "2020-11-06",
-          "name": "Programmering",
-        },
-        Object {
-          "billableHours": 2.7,
-          "comment": "None",
-          "date": "2020-11-05",
-          "name": "Programmering",
-        },
-      ],
-    },
-  },
-  "headers": Object {
-    "Access-Control-Allow-Credentials": true,
-    "Access-Control-Allow-Origin": "*",
-  },
-  "statusCode": 200,
-}
-`;
-
 exports[`invoiceForCurrentMonth integration test mostly real modules should return relevant invoice information 1`] = `
 Object {
   "body": Object {
