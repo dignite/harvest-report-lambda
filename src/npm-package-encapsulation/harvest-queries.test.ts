@@ -9,11 +9,6 @@ jest.mock("../process-env", () => ({
   get: (key: string) => `Value from process.env.${key}`,
 }));
 
-jest.mock("../date", () => ({
-  startOfMonth: () => new Date(Date.parse("2022-01-01")),
-  lastDayOfMonth: () => new Date(Date.parse("2022-01-31")),
-}));
-
 describe("getTimeEntriesForMonth function", () => {
   it("should return all billable but unbilled and non-billable hours for month", async () => {
     expect.assertions(1);
@@ -38,7 +33,10 @@ describe("getTimeEntriesForMonth function", () => {
       )
     );
 
-    const result = await getTimeEntriesForMonth(new Date(), new Date());
+    const result = await getTimeEntriesForMonth(
+      new Date(Date.parse("2022-01-01")),
+      new Date(Date.parse("2022-01-31"))
+    );
 
     const expected = [
       {

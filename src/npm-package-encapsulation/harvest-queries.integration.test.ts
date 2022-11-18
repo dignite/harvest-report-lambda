@@ -1,8 +1,6 @@
 import "dotenv/config.js";
 
 import { getTimeEntriesForMonth } from "./harvest-queries";
-import { startOfMonth, lastDayOfMonth } from "../date";
-
 import { get } from "../process-env";
 
 const areAllDefined = (args: string[]) =>
@@ -20,8 +18,8 @@ describe("getTimeEntriesForMonth function", () => {
         expect.assertions(1);
 
         const result = await getTimeEntriesForMonth(
-          startOfMonth(),
-          lastDayOfMonth()
+          new Date(Date.parse("2022-10-01")),
+          new Date(Date.parse("2022-10-31"))
         );
 
         expect(result.length).toBeGreaterThan(0);
