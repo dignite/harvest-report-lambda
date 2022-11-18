@@ -1,5 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`byName integration test mostly real modules should return matching time entries 1`] = `
+Object {
+  "body": Object {
+    "serialize() of": Array [
+      Object {
+        "billableHours": 3.5,
+        "comment": "None",
+        "cost": 770,
+        "date": "2020-11-06",
+        "id": 1,
+        "name": "Programmering",
+      },
+      Object {
+        "billableHours": 4.5,
+        "comment": "None",
+        "cost": 990,
+        "date": "2020-11-06",
+        "id": 2,
+        "name": "Programmering",
+      },
+      Object {
+        "billableHours": 2.7,
+        "comment": "None",
+        "cost": 594,
+        "date": "2020-11-05",
+        "id": 3,
+        "name": "Programmering",
+      },
+    ],
+  },
+  "headers": Object {
+    "Access-Control-Allow-Credentials": true,
+    "Access-Control-Allow-Origin": "*",
+  },
+  "statusCode": 200,
+}
+`;
+
 exports[`hours integration test mostly real modules should return meta data for time entries 1`] = `
 Object {
   "body": Object {

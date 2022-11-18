@@ -42,6 +42,24 @@ export const hours = async (
   };
 };
 
+export const byName = async (
+  event: ServerlessLambdaEvent
+): Promise<ServerlessLambdaResponse> => {
+  const startDate = new Date(Date.parse(event.pathParameters.startDate));
+  const endDate = new Date(Date.parse(event.pathParameters.endDate));
+  const relevantTimeEntries = await get(startDate, endDate);
+  return {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
+    body: serialize(
+      relevantTimeEntries.filter((x) => x.name === event.pathParameters.name)
+    ),
+  };
+};
+
 export const invoice = async (
   event: ServerlessLambdaEvent
 ): Promise<ServerlessLambdaResponse> => {
