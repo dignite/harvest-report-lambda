@@ -1,5 +1,5 @@
 import { totalSum, perWeek } from "./time-summary";
-import { totalSum as totalCostSum } from "./cost-summary";
+import { totalExcludingVAT } from "./cost-summary";
 import { HarvestReportLambdaTimeEntry } from "../time-entries";
 
 interface MetaSlim {
@@ -9,8 +9,8 @@ interface MetaSlim {
 
 export const getInvoiceSumExcludingVAT = (
   relevantTimeEntries: HarvestReportLambdaTimeEntry[]
-): ReturnType<typeof totalCostSum>["excludingVAT"] => {
-  return totalCostSum(relevantTimeEntries).excludingVAT;
+): ReturnType<typeof totalExcludingVAT> => {
+  return totalExcludingVAT(relevantTimeEntries);
 };
 
 export const hoursMetaSlim = (
