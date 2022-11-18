@@ -1,7 +1,6 @@
 import { get } from "./time-entries";
 import { getInvoiceSumExcludingVAT, hoursMetaSlim } from "./meta";
 import { serialize } from "./serializer";
-import { startOfMonth, lastDayOfMonth } from "./date";
 
 interface ServerlessLambdaEvent {
   pathParameters: Record<string, string>;
@@ -40,20 +39,6 @@ export const hours = async (
       "Access-Control-Allow-Credentials": true,
     },
     body: serialize(hoursMetaSlim(relevantTimeEntries)),
-  };
-};
-
-export const invoiceForCurrentMonth = async (): Promise<ServerlessLambdaResponse> => {
-  const relevantTimeEntries = await get(startOfMonth(), lastDayOfMonth());
-  return {
-    statusCode: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Credentials": true,
-    },
-    body: serialize({
-      totalExcludingVAT: getInvoiceSumExcludingVAT(relevantTimeEntries),
-    }),
   };
 };
 
