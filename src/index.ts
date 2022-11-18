@@ -56,3 +56,21 @@ export const invoiceForCurrentMonth = async (): Promise<ServerlessLambdaResponse
     }),
   };
 };
+
+export const invoice = async (
+  event: ServerlessLambdaEvent
+): Promise<ServerlessLambdaResponse> => {
+  const startDate = new Date(Date.parse(event.pathParameters.startDate));
+  const endDate = new Date(Date.parse(event.pathParameters.endDate));
+  const relevantTimeEntries = await get(startDate, endDate);
+  return {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
+    body: serialize({
+      totalExcludingVAT: getInvoiceSumExcludingVAT(relevantTimeEntries),
+    }),
+  };
+};
