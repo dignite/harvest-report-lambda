@@ -18,6 +18,21 @@ Object {
 }
 `;
 
+exports[`invoice integration test mostly real modules should return relevant invoice information 1`] = `
+Object {
+  "body": Object {
+    "serialize() of": Object {
+      "totalExcludingVAT": "2 354,00 kr",
+    },
+  },
+  "headers": Object {
+    "Access-Control-Allow-Credentials": true,
+    "Access-Control-Allow-Origin": "*",
+  },
+  "statusCode": 200,
+}
+`;
+
 exports[`invoiceForCurrentMonth integration test mostly real modules should return relevant invoice information 1`] = `
 Object {
   "body": Object {
