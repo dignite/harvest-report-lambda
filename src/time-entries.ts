@@ -23,16 +23,17 @@ export const get = async (
     lastDayOfMonth
   );
   const timeEntriesWithCost = timeEntries.map((timeEntry) => {
+    const hours = timeEntry.hours
+      ? roundToNearestSixMinutes(timeEntry.hours)
+      : 0;
     const billableHours =
-      timeEntry.billable && timeEntry.billableRate && timeEntry.hours
-        ? roundToNearestSixMinutes(timeEntry.hours)
-        : 0;
+      timeEntry.billable && timeEntry.billableRate ? hours : 0;
     return {
       id: timeEntry.id,
       date: timeEntry.date,
       name: timeEntry.name,
       billableHours,
-      hours: timeEntry.hours ? roundToNearestSixMinutes(timeEntry.hours) : 0,
+      hours: hours,
       cost: SEK(billableHours).multiply(timeEntry.billableRate).getAmount(),
       comment: timeEntry.comment,
     };
