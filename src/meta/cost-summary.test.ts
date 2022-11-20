@@ -17,6 +17,7 @@ describe("totalExcludingVAT function", () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      hours: 3.1,
       cost: 1000,
       comment: "",
     };
@@ -35,6 +36,7 @@ describe("totalExcludingVAT function", () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      hours: 3.1,
       cost: 964.1,
       comment: "",
     };
@@ -43,6 +45,7 @@ describe("totalExcludingVAT function", () => {
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
+      hours: 4.1,
       cost: 1275.1,
       comment: "",
     };
@@ -51,6 +54,7 @@ describe("totalExcludingVAT function", () => {
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.1,
+      hours: 4.1,
       cost: 1275.1,
       comment: "",
     };

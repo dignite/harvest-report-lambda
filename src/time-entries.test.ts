@@ -27,6 +27,7 @@ describe("get function", () => {
     const expected = [
       {
         billableHours: 4.1,
+        hours: 4.1,
         comment: "",
         cost: 548.17,
         date: "2018-11-03",
@@ -35,6 +36,7 @@ describe("get function", () => {
       },
       {
         billableHours: 0,
+        hours: 8,
         comment: "Umeå",
         cost: 0,
         date: "2018-11-04",
@@ -43,6 +45,7 @@ describe("get function", () => {
       },
       {
         billableHours: 7,
+        hours: 7,
         comment: "",
         cost: 935.9,
         date: "2018-11-05",
@@ -51,6 +54,7 @@ describe("get function", () => {
       },
       {
         billableHours: 7,
+        hours: 7,
         comment: "",
         cost: 935.9,
         date: "2018-11-06",
@@ -59,6 +63,7 @@ describe("get function", () => {
       },
       {
         billableHours: 0,
+        hours: 6,
         comment: "",
         cost: 0,
         date: "2018-11-07",
@@ -67,11 +72,12 @@ describe("get function", () => {
       },
       {
         billableHours: 0,
+        hours: 0,
         comment: "Uppsala",
         cost: 0,
         date: "2018-11-08",
         id: 6,
-        name: "Vacation",
+        name: "Vacation 0 hours",
       },
     ];
     expect(result).toStrictEqual(expect.arrayContaining(expected));
@@ -146,8 +152,8 @@ const unbilledUnbillableNovember8: SimplifiedUnbilledTimeEntry = {
   billableRate: 0,
   comment: "Uppsala",
   date: "2018-11-08",
-  hours: 8,
+  hours: 0,
   id: 6,
   isBilled: false,
-  name: "Vacation",
+  name: "Vacation 0 hours",
 };
