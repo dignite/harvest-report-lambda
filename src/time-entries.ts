@@ -9,6 +9,7 @@ export interface HarvestReportLambdaTimeEntry {
   date: SimplifiedUnbilledTimeEntry["date"];
   name: SimplifiedUnbilledTimeEntry["name"];
   billableHours: number;
+  hours: number;
   cost: number;
   comment: SimplifiedUnbilledTimeEntry["comment"];
 }
@@ -31,6 +32,7 @@ export const get = async (
       date: timeEntry.date,
       name: timeEntry.name,
       billableHours,
+      hours: timeEntry.hours ? roundToNearestSixMinutes(timeEntry.hours) : 0,
       cost: SEK(billableHours).multiply(timeEntry.billableRate).getAmount(),
       comment: timeEntry.comment,
     };

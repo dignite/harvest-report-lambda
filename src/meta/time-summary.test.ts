@@ -15,6 +15,7 @@ describe("totalSum function", () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      hours: 3.1,
       cost: 0,
       comment: "",
     };
@@ -31,6 +32,7 @@ describe("totalSum function", () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      hours: 3.1,
       cost: 0,
       comment: "",
     };
@@ -39,6 +41,7 @@ describe("totalSum function", () => {
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
+      hours: 4.1,
       cost: 0,
       comment: "",
     };
@@ -47,6 +50,7 @@ describe("totalSum function", () => {
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.12,
+      hours: 4.12,
       cost: 0,
       comment: "",
     };
@@ -72,6 +76,7 @@ describe("perWeek function", () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      hours: 3.1,
       cost: 0,
       comment: "",
     };
@@ -90,6 +95,7 @@ describe("perWeek function", () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      hours: 3.1,
       cost: 0,
       comment: "",
     };
@@ -98,6 +104,7 @@ describe("perWeek function", () => {
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
+      hours: 4.1,
       cost: 0,
       comment: "",
     };
@@ -116,6 +123,7 @@ describe("perWeek function", () => {
       date: "2018-11-03",
       name: "Programming",
       billableHours: 3.1,
+      hours: 3.1,
       cost: 0,
       comment: "",
     };
@@ -124,6 +132,7 @@ describe("perWeek function", () => {
       date: "2018-11-04",
       name: "Programming",
       billableHours: 4.1,
+      hours: 4.1,
       cost: 0,
       comment: "",
     };
@@ -132,6 +141,7 @@ describe("perWeek function", () => {
       date: "2018-11-06",
       name: "Programming",
       billableHours: 4.1,
+      hours: 4.1,
       cost: 0,
       comment: "",
     };

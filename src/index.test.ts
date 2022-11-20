@@ -31,6 +31,7 @@ describe("hours function", () => {
     const relevantTimeEntries = [
       {
         billableHours: 4.1,
+        hours: 4.1,
         comment: "",
         cost: 548.17,
         date: "2018-11-04",
@@ -39,6 +40,7 @@ describe("hours function", () => {
       },
       {
         billableHours: 7.0,
+        hours: 7.0,
         comment: "",
         cost: 935.9,
         date: "2018-11-04",
@@ -94,6 +96,7 @@ describe("invoice function", () => {
     const relevantTimeEntries = [
       {
         billableHours: 4.1,
+        hours: 4.1,
         comment: "",
         cost: 548.17,
         date: "2018-11-04",
@@ -102,6 +105,7 @@ describe("invoice function", () => {
       },
       {
         billableHours: 7.0,
+        hours: 7.0,
         comment: "",
         cost: 935.9,
         date: "2018-01-04",
